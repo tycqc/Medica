@@ -1,0 +1,60 @@
+{% extends 'staff/staff_base.HTML' %}
+
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+<div class="right_content clearfix">
+	<div class="register_con">
+		<form action="" method="post">
+            {% csrf_token %}
+            <div class="l_con fl">
+{#			<a class="reg_logo"><img src="{% static 'images/logo02.png' %}"></a>#}
+			<div class="reg_slogan">Medica  ·  最专业的药品服务</div>
+			<div class="reg_banner"></div>
+		</div>
+
+		<div class="r_con fr">
+			<div class="reg_title clearfix">
+				<h1>员工添加</h1>
+			</div>
+			<div class="reg_form clearfix">
+
+				<ul>
+					<li>
+						<label>员工用户名:</label>
+						<input type="text" name="username" id="user_name">
+					</li>
+					<li>
+						<label>密码:</label>
+						<input type="password" name="password" id="pwd">
+					</li>
+					<li>
+						<label>确认密码:</label>
+						<input type="password" name="cpwd" id="cpwd">
+                    </li>
+                    <li>
+						<label>员工姓名:</label>
+						<input type="text"  name="name">
+                    </li>
+                    <li>
+						<label>联系方式:</label>
+						<input type="text" onkeypress="return event.keyCode>=48&&event.keyCode<=57" name="phonenumber">
+						<span class="error_tip">请正确输入手机号哦</span>
+                    </li>
+                    <li>
+						<label>员工简介:</label>
+						<input type="text"  name="desc">
+                    </li>
+
+                    <p>{{error_name}}</p>
+					<li class="reg_sub">
+						<input type="submit" value="添加" name="">
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+    </form>
+	</div>
+</div>
+{% endblock %}

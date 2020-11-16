@@ -1,0 +1,42 @@
+
+{% extends 'medicine/medicine_base.html' %}
+{% block right_content %}	{# 用户中心右侧内容块 #}
+		<div class="right_content clearfix">
+				<h3 class="common_title2">订单生成</h3>
+				
+                <div class="reg_form2 clearfix">
+				<table>
+					{% for i in carts %}
+                    <tr>
+                        <td>
+						药品名称：{{ i.med_name }}
+                        </td>
+                        <td>
+						药品价格：{{ i.med_price }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+						药品数量：{{ i.med_count }}
+                <form action="../add_to_cart/" method="get">
+                    <input type="hidden" name="id" value="{{ i.med_id }}">
+                    <input type="text" value="{{ i.med_count }}" name="goodsnum" >
+                    <input type="submit" name="" value="修改数量">
+                </form>						</td>
+						<td>
+							<a href="../del_cart_list/?id={{ i.id }}" style="text-decoration: none; color:rgb(160, 73, 73)">删除</a>
+						</td>
+					</tr>
+					{% endfor %}
+					<tr>
+						<td>
+						<a href="../../orders/staff_order_add/">
+                            <input type="button" value="生成订单" name="">
+                        </a>
+                        </td>
+					</tr>
+				</table>
+				<br>
+			</div>
+        </div>
+		{% endblock right_content %}

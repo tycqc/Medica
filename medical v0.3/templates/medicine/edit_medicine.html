@@ -1,0 +1,55 @@
+{# 药品查询 #}
+{% extends 'medicine/medicine_base.html' %}
+
+
+{% block right_content %}
+<div class="right_content clearfix">
+  <h3 class="common_title2">药品添加</h3>
+  <div class="site_con">
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="form_group1">
+        </table>
+        <label>药品状态:</label>
+        <table class="none">
+          <tr>
+            <td><input type="radio" name="status" value="0" />暂停销售</td>
+            <td><input type="radio" name="status" value="1" />在售</td>
+          </tr>
+        </table>
+      </div>
+      <div class="form_group">
+        <label>国家药品编码:&nbsp;</label>
+        <input type="text" name="medicinecode" value={{ obj.medicinecode }}>
+      </div>
+      <div class="form_group">
+        <label>药品名称:&nbsp;</label>
+        <input type="text" name="name" value={{ obj.name }}>
+      </div>
+      <div class="form_group">
+        <label>药品种类:&nbsp;</label>
+        <input type="text" name="type" value={{ obj.type }}>
+      </div>
+      <div class="form_group">
+        <label>药品价格:&nbsp;</label>
+        <input type="text" name="price" value={{ obj.price }}>
+      </div>
+      <div class="form_group">
+        <label>药品生产单位:&nbsp;</label>
+        <input type="text" name="unite" value={{ obj.unite }}>
+      </div>
+      <div class="form_group">
+        <label>药品简介;</label>
+        <input type="text" name="desc" value={{ obj.desc }}>
+      </div>
+      <div class="form_group">
+        <label>库存数目:&nbsp;</label>
+        <input type="text" name="stock" value={{ obj.stock }}>
+      </div>
+      <div align="center">
+        <input type="submit" name="" value="提交修改" class="info_submit" >
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock right_content %}

@@ -1,0 +1,46 @@
+{% extends 'staff/staff_base.html' %}
+
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+<div class="reg_form clearfix">
+	<form action="" method="post">
+        {% csrf_token %}
+		<ul>
+			<li>
+				<label>员工姓名:</label>
+				<input type="text" name="name" value={{ obj.name }}>
+
+			</li>
+			<li>
+				<label>员工用户名:</label>
+				<input type="text" name="username"value={{ obj.username }}>
+
+			</li>
+            <li>
+				<label>密码:</label>
+				<input type="text" name="password"value={{ obj.password }}>
+
+			</li>
+			<li>
+				<label>联系方式:</label>
+				<input type="text" name="phonenumber"value={{ obj.phonenumber }}>
+
+			</li>
+			<li>
+				<label>员工简介:</label>
+				<input type="text" name="desc"value={{ obj.desc }}>
+
+			</li>
+			<!--<li class="agreement">
+				<input type="checkbox" name="allow" id="allow" checked="checked">
+				<label>同意”medica用户使用协议“</label>
+				<span class="error_tip2">提示信息</span>
+				</li>-->
+			<p>{{error_name}}</p>
+			<li class="reg_sub">
+				<input type="submit" value="上 传" name="">
+			</li>
+		</ul>
+	</form>
+</div>
+{% endblock right_content %}

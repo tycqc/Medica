@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车列表</title>
+</head>
+<body>
+<table width="200" border="1">
+        <tbody>
+            <tr>
+                <th>序号</th>
+                <th>药品名称</th>
+                <th>药品价格</th>
+                <th>药品数量</th>
+
+            </tr>
+            {% for i in carts%}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.med_name }}</td>
+                <td>{{ i.med_price }}</td>
+                <td>{{ i.med_count }}</td>
+                <td><a href="../del_cart_list/?id={{ i.id }}">删除</a></td>
+                <td>
+                <form action="../add_to_cart/" method="get">
+                    <input type="hidden" name="id" value="{{ i.med_id }}">
+                    <input type="text" value="{{ i.med_count }}" name="goodsnum" >
+                    <input type="submit" name="" value="修改数量">
+                </form>
+                </td>
+            </tr>
+            {% endfor %}
+            <a href="../../orders/staff_order_add/">
+                <input type="button" value="生成订单" name="" />
+            </a>
+</body>
+</html>
