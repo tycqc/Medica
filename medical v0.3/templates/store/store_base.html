@@ -1,0 +1,122 @@
+
+{# 用户中心 #}
+{# {% extends 'store_base.html' %} #}
+
+
+{# 首页 注册 登录 #}
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+{% load static %}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    {# 网页标题内容块 #}
+    <title>
+        {% block title %}MADICAL-用户中心{% endblock title %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/store_reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/store_main.css' %}">
+
+    {# 网页顶部引入文件块 #}
+    {% block topfiles %}{% endblock topfiles %}
+
+</head>
+
+<body>
+    {% csrf_token %}
+
+    {# 顶部欢迎条 不用改#}
+
+    {% block header_con %}
+    <div class="header_con">
+        <div class="header">
+            <div class="welcome fl">欢迎来到medica药店管理系统!</div>
+            <div class="fr">
+                {% if username %}
+                <div class="login_btn fl">
+                    欢迎您：<em><a href="{% url 'store:homepage' %}">{{ username }}</a></em> <span>|</span>
+                    <a href="{% url 'store:logout' %}">退出</a>
+                </div>
+                {% else %}
+                <div class="login_btn fl">
+                    <a href="{% url 'store:login' %}">登录</a>
+                    <span>|</span>
+                    <a href="{% url 'store:register' %}">注册</a>
+                </div>
+                {% endif %}
+                <div class="user_link fl">
+                    <span>|</span>
+                    <a href="{% url 'store:cancellation' %}">药店注销</a>
+                    <span>|</span>
+                    <a href="{% url 'orders:staff_order_add' %}">购物车</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock header_con %}
+
+
+    {# 顶部导航栏 不用改 #}
+
+    {% block search_bar %}
+    <div class="search_bar clearfix">
+        <a href="index.html" class="logo fl"><img src="{% static 'images/logo.png' %}"></a>
+        <div class="sub_page_name fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'store:homepage' %}"><font color="#ff8800">用户中心</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'medicine:find_medicine' %}">药品管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'staff:find_staff' %}">员工管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'orders:order_list' %}">订单管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#">财务信息</a>
+        </div>
+    </div>
+    {% endblock search_bar %}
+
+
+    {# 网站主体内容块 #}
+    {% block body %}
+    <div class="main_con clearfix">
+        {# 左侧导航栏 不用改 #}
+        {% block left_bar %}
+        <div class="left_menu_con clearfix">
+            <h3>用户中心</h3>
+            <ul>
+                <li><a href="{% url 'store:homepage' %}" {% if page == 'homepage' %}class="active" {% endif %}>·
+                        账户信息</a></li>
+                <li><a href="{% url 'store:homepage_update' %}" {% if page == 'homepage_update' %}class="active"
+                        {% endif %}>· 信息修改</a></li>
+                <li><a href="{% url 'store:cancellation' %}" {% if page == 'cancellation' %}class="active" {% endif %}>·
+                        账号注销</a></li>
+            </ul>
+        </div>
+        {% endblock left_bar %}
+
+
+        {# 需要传入的内容 #}
+        {# 用户中心右侧内容块 #}
+        {% block right_content %}
+        {% endblock right_content %}
+    </div>
+    {% endblock body %}
+
+    {# 底部导航栏 不用改 #}
+    {% block button_bar %}
+    <div class="footer">
+        <div class="foot_link">
+            <a href="#">关于我们</a>
+            <span>|</span>
+            <a href="#">联系我们</a>
+            <span>|</span>
+            <a href="#">招聘人才</a>
+            <span>|</span>
+            <a href="#">友情链接</a>
+        </div>
+        <p>CopyRight © 2020 成都MADICAL信息技术有限公司 All Rights Reserved</p>
+        <p>电话：010-****888 SCU-ICP备*******8号</p>
+    </div>
+    {# 网页底部html元素块 #}
+    {% block bottom %}{% endblock bottom %}
+    {# 网页底部引入文件块 #}
+    {% block bottomfiles %}{% endblock bottomfiles %}
+    {% endblock button_bar %}

@@ -1,0 +1,67 @@
+{# 药品查询 #}
+{% extends 'medicine/medicine_base.html' %}
+
+
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+<div class="right_content clearfix">
+    <h3 class="common_title2">药品详情</h3>
+    <div class="reg_form2 clearfix">
+        <form method="" action="">
+            <table>
+                <tr>
+                    <td>
+                        ID:{{ obj.pk }}
+                    </td>
+                    <td>
+                        药品编号:{{ obj.medicinecode }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        名称:{{ obj.name }}
+                    </td>
+                    <td>
+                        库存:{{ obj.stock }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        价格:{{ obj.price }}
+                    </td>
+                    <td>
+                        状态:{{ obj.status }}
+                    </td>
+					</tr>
+					<tr>
+						<td>
+						种类:{{ obj.type }}
+                        </td>
+                    <td>
+                        销量:{{ obj.sales }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        生产单位:{{ obj.unite }}
+                    </td>
+                    <td height=80px>
+                        简介:{{ obj.desc }}
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <ul>
+                <li class="reg_sub2">
+                    <a href="../del_medicine/?id={{ obj.id }}">
+					<input type=" submit" value="删除" name="">
+                    </a>
+                    <a href="../edit_medicine/?id={{ obj.id }}">
+					<input type=" submit" value="编辑" name="">
+                    </a>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+{% endblock right_content %}
