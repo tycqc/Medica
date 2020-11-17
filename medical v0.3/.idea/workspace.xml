@@ -264,7 +264,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django server.medical v0.3">
+  <component name="RunManager" selected="Django Server.medical">
     <configuration name="DecisionTree" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="medical" />
       <option name="INTERPRETER_OPTIONS" value="" />
