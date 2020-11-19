@@ -65,7 +65,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="JupyterTrust" id="158d2de2-aa8b-4a42-a4ee-0f43c4ed65af" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
@@ -90,7 +90,7 @@
       <recent name="C:\Users\18095078657\Desktop\medical\user" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.medical v0.3">
+  <component name="RunManager" selected="Django server.medical">
     <configuration name="DecisionTree" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="medical" />
       <option name="INTERPRETER_OPTIONS" value="" />
