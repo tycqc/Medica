@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'medicine',
     'store',
     'orders',
+    'user',
 
 
 
