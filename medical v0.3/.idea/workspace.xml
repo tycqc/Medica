@@ -19,45 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="">
+    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="改前端">
+      <change afterPath="$PROJECT_DIR$/static/js/staff.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/staff/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/staff/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/medical/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/medical/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/store_main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/store_reset.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/store_style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/cart_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/cart_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/cart_list1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/cart_list1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/edit_medicine.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/edit_medicine.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/medicine_detail.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/medicine_detail.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/finance.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/finance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/find_orders.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/find_orders.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/find_orders2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/find_orders2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/order_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/order_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/order_details.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/order_details.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/order_details2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/order_details2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/staff_order_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/staff_order_add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/detail_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/detail_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/edit_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/edit_staff.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/staff/find_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/find_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/register_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/register_staff.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/staff/staff_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/staff_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/AAAshiyan.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/AAAshiyan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/CANCELLATION.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/CANCELLATION.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/LOGIN.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/LOGIN.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/REGISTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/REGISTER.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/USER_INFO_homepage.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/USER_INFO_homepage.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/USER_INFO_homepage_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/USER_INFO_homepage_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/store_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/store_base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +56,7 @@
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -142,7 +109,29 @@
       <recent name="C:\Users\18095078657\Desktop\medical\user" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.medical">
+  <component name="RunManager" selected="Python.Database migration command">
+    <configuration name="Database migration command" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="medical v0.3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Database migration command.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DecisionTree" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="medical" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -241,6 +230,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Database migration command" />
         <item itemvalue="Python.DecisionTree" />
       </list>
     </recent_temporary>
@@ -342,7 +332,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605525813312</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="改前端">
+      <created>1605780011706</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605780011706</updated>
+    </task>
+    <task id="LOCAL-00005" summary="改前端">
+      <created>1605780235527</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605780235527</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -388,21 +392,30 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="v3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="v3.0" />
+    <MESSAGE value="改前端" />
+    <option name="LAST_COMMIT_MESSAGE" value="改前端" />
   </component>
   <component name="WindowStateProjectService">
     <state x="267" y="19" key="#Inspections" timestamp="1605624210325" />
     <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605624210325" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.bottom" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.center" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.left" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.right" timestamp="1605624210325" />
-    <state width="1306" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
+    <state width="1288" height="175" key="GridCell.Tab.0.bottom" timestamp="1605785468375">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1288" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
+    <state width="1288" height="175" key="GridCell.Tab.0.center" timestamp="1605785468375">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1288" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
+    <state width="1288" height="175" key="GridCell.Tab.0.left" timestamp="1605785468375">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1288" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
+    <state width="1288" height="175" key="GridCell.Tab.0.right" timestamp="1605785468375">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1288" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.center" timestamp="1605624210325" />
@@ -411,10 +424,14 @@
     <state width="1306" height="219" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.right" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
-    <state x="284" y="96" key="Vcs.Push.Dialog.v2" timestamp="1605624213859">
+    <state x="284" y="96" key="Vcs.Push.Dialog.v2" timestamp="1605780466057">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605624213859" />
+    <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605780466057" />
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605785442649">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1605785442649" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1" timestamp="1605624210325" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="-7" y="0" width="653" height="687" key="dock-window-2" timestamp="1605624210325" />
@@ -424,7 +441,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/medical_v0_3$Random_data.coverage" NAME="Random data Coverage Results" MODIFIED="1605744676157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1605666552936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1605785468281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
