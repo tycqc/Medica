@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="改前端">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/medical/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/medical/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/staff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/find_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/find_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/staff_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/staff_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/REGISTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/REGISTER.html" afterDir="false" />
-    </list>
+    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="改界面" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -350,7 +343,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605785564165</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="改界面">
+      <created>1605798321420</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605798321420</updated>
+    </task>
+    <task id="LOCAL-00008" summary="改界面">
+      <created>1605798622833</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1605798622833</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -397,7 +404,8 @@
     </ignored-roots>
     <MESSAGE value="v3.0" />
     <MESSAGE value="改前端" />
-    <option name="LAST_COMMIT_MESSAGE" value="改前端" />
+    <MESSAGE value="改界面" />
+    <option name="LAST_COMMIT_MESSAGE" value="改界面" />
   </component>
   <component name="WindowStateProjectService">
     <state x="267" y="19" key="#Inspections" timestamp="1605624210325" />
