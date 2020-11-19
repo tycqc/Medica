@@ -10,7 +10,7 @@ from medicine.models import Medicine,Cart
 from orders.models import Orders,OrderGoods
 
 
-
+#线下订单添加
 def staff_order_add(request):
     store_id = request.session.get('storeid')
     staff_id = request.session.get('staffid')
@@ -44,6 +44,7 @@ def staff_order_add(request):
         order.total_count = count
         order.order_status = 4
         order.pay_method = int(pay_method)
+        order.sale_method = 0                                #默认线下销售
         order.save()
 
         paymethod = ['现金支付', '微信支付', '支付宝']

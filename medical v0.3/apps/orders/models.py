@@ -7,7 +7,10 @@ class Orders(models.Model):
         (1, '微信支付'),
         (2, '支付宝')
     )
-
+    SALE_METHOD_CHOICES = (
+        (0, '线下销售'),
+        (1, '线上小程序销售')
+    )
     ORDER_STATUS_CHOICES = (
         (0, '待支付'),
         (1, '待配送'),
@@ -18,7 +21,9 @@ class Orders(models.Model):
     order_id = models.CharField(max_length=32, verbose_name='订单ID', primary_key=True)
     staff = models.ForeignKey('staff.Staff', verbose_name='操作员', on_delete=models.CASCADE, null=True, blank=True)
     drugstore = models.ForeignKey('store.Medstore', verbose_name='药店', on_delete=models.CASCADE)
+    customer = models.ForeignKey('user.User', verbose_name='顾客', on_delete=models.CASCADE, null=True, blank=True)
     addr = models.CharField(null=True, blank=True, max_length=128, verbose_name='收货地址')
+    sale_method = models.SmallIntegerField(choices=SALE_METHOD_CHOICES, default=0, verbose_name='销售方式')
     pay_method = models.SmallIntegerField(choices=PAY_METHOD_CHOICES, default=0, verbose_name='支付方式')
     total_count = models.IntegerField(default=1, verbose_name='数量')
     med_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='药品总价')
