@@ -1,4 +1,3 @@
-
 {# 员工管理 #}
 {# {% extends 'staff_base.html' %} #}
 
@@ -16,8 +15,8 @@
     <title>
         {% block title %}MADICAL-用户中心{% endblock title %}
     </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/store_reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/store_main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
@@ -66,7 +65,9 @@
         <div class="sub_page_name fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'store:homepage' %}">用户中心</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'medicine:find_medicine' %}">药品管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'staff:find_staff' %}"><font color="#ff8800">员工管理</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'staff:find_staff' %}">
+                <font color="#ff8800">员工管理</font>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'orders:order_list' %}">订单管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="#">财务信息</a>
         </div>
@@ -82,9 +83,10 @@
         <div class="left_menu_con clearfix">
             <h3>员工管理</h3>
             <ul>
-                <li><a href="{% url 'staff:find_staff' %}" {% if page == 'find_staff' %}class="active"
-                        {% endif %}>· 员工查询</a></li>
-                <li><a href="{% url 'staff:register_staff' %}" {% if page == 'register_staff' %}class="active" {% endif %}>·
+                <li><a href="{% url 'staff:find_staff' %}" {% if page == 'find_staff' %}class="active" {% endif %}>·
+                        员工查询</a></li>
+                <li><a href="{% url 'staff:register_staff' %}" {% if page == 'register_staff' %}class="active"
+                        {% endif %}>·
                         员工添加</a></li>
             </ul>
         </div>

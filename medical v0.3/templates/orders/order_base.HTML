@@ -1,4 +1,3 @@
-
 {# 订单管理 #}
 {# {% extends 'order_base.html' %} #}
 
@@ -16,8 +15,8 @@
     <title>
         {% block title %}MADICAL-用户中心{% endblock title %}
     </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/store_reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/store_main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
@@ -67,7 +66,9 @@
             <a href="{% url 'store:homepage' %}">用户中心</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'medicine:find_medicine' %}">药品管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'staff:find_staff' %}">员工管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'orders:order_list' %}"><font color="#ff8800">订单管理</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'orders:order_list' %}">
+                <font color="#ff8800">订单管理</font>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="#">财务信息</a>
         </div>
     </div>
@@ -82,10 +83,11 @@
         <div class="left_menu_con clearfix">
             <h3>用户中心</h3>
             <ul>
-                <li><a href="{% url 'orders:order_list' %}" class="active"{% if page == 'order_list' %}class="active" {% endif %}>·
+                <li><a href="{% url 'orders:order_list' %}" class="active" {% if page == 'order_list' %}class="active"
+                        {% endif %}>·
                         订单查询</a></li>
-{#                <li><a href="{% url 'store:homepage_update' %}" {% if page == 'homepage_update' %}class="active"#}
-{#                        {% endif %}>· 订单添加</a></li>#}
+                {#                <li><a href="{% url 'store:homepage_update' %}" {% if page == 'homepage_update' %}class="active"#}
+                {#                        {% endif %}>· 订单添加</a></li>#}
             </ul>
         </div>
         {% endblock left_bar %}

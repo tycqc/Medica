@@ -85,7 +85,13 @@ def register(request):
             store.save()
         except:
             return render(request, 'store/REGISTER.html', {'info': info,'errmsg': '用户注册失败，请重试'})
-        else:
+        else: # try成功的奖励
+            # 直接登录
+            request.session['is_login'] = True
+            request.session['username'] = store.username
+            request.session['storeid'] = store.pk
+            request.session['storename'] = store.name
+            request.session['identity'] = "shopkeeper"
             return HttpResponseRedirect('/store/login')
     # 显示注册界面
     else:
@@ -93,8 +99,8 @@ def register(request):
 
 # 药店，店主，员工登录
 def login(request,user = None):
-
-
+    # print (request)
+    # print(type(request))
     # 判断是否登录，已登录则返回信息详情页
     if request.session.get('is_login', None):
         return store_homepage(request)

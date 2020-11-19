@@ -3,51 +3,51 @@
 {# 用户中心右侧内容块 #}
 {% block right_content %}
 <div class="right_content clearfix">
-	<h3 class="common_title2">订单查询</h3>
-	<form action="" method="post" class="search_con">
-		{% csrf_token %}
-		<label for="订单查询"></label>
-		<input type="text" class="input_text fl" name="search_text" placeholder="查询订单">
-		<input type="submit" class="input_btn fr" name="submit" value="查询">
-	</form>
-    <h3 class="common_title2">订单列表</h3>
-<div class="reg_form2 clearfix">
+  <h3 class="common_title2">订单查询</h3>
+  <form action="" method="post" class="search_con">
+    {% csrf_token %}
+    <label for="订单查询"></label>
+    <input type="text" class="input_text fl" name="search_text" placeholder="查询订单">
+    <input type="submit" class="input_btn fr" name="submit" value="查询">
+  </form>
+  <h3 class="common_title2">订单列表</h3>
+  <div class="reg_form2 clearfix">
     {% for a in orderlist %}
     <table border="1" bgcolor="#7fffd4">
-            <tr>
-              <td>订单号</td>
-              <td>{{ a.order_id }}</td>
-            </tr>
-            <tr>
-              <td>操作员工</td>
-              <td>{{ a.staff }}</td>
-            </tr>
-            <tr>
-              <td>药品总数</td>
-              <td>{{ a.total_count }}</td>
-            </tr>
-            <tr>
-              <td>总价</td>
-              <td>{{ a.total_price }}</td>
-            </tr>
-            <tr>
-              <td>订单状态</td>
-              <td>{{ a.order_status }}</td>
-            {% if a.tag %}
-            <tr>
-              <td>相关度</td>
-              <td>{{ a.tag }}</td>
-            </tr>
-            {% endif %}
-            <tr>
-                <td><a href="../del_order/?order_id={{ a.order_id }}">删除</a></td>
-                <td><a href="../order_details/?order_id={{ a.order_id }}">详情</a></td>
-            </tr>
+      <tr>
+        <td>订单号</td>
+        <td>{{ a.order_id }}</td>
+      </tr>
+      <tr>
+        <td>操作员工</td>
+        <td>{{ a.staff }}</td>
+      </tr>
+      <tr>
+        <td>药品总数</td>
+        <td>{{ a.total_count }}</td>
+      </tr>
+      <tr>
+        <td>总价</td>
+        <td>{{ a.total_price }}</td>
+      </tr>
+      <tr>
+        <td>订单状态</td>
+        <td>{{ a.order_status }}</td>
+        {% if a.tag %}
+      <tr>
+        <td>相关度</td>
+        <td>{{ a.tag }}</td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td><a href="../del_order/?order_id={{ a.order_id }}">删除</a></td>
+        <td><a href="../order_details/?order_id={{ a.order_id }}">详情</a></td>
+      </tr>
     </table>
-        <br>
-        <br>
+    <br>
+    <br>
     {% endfor %}
-</div>
+  </div>
 
 
 </div>

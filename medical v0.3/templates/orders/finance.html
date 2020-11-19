@@ -2,13 +2,13 @@
 {# 用户中心右侧内容块 #}
 {% block right_content %}
 <h3 class="common_title2">财务查询</h3>
-    <form action="" method="post" class="search_con">
-		{% csrf_token %}
-		<label for="财务查询"></label>
-		<input type="text" class="input_text fl" name="search_text" placeholder="起始日期">
-        <input type="text" class="input_text fl" name="search_text" placeholder="截止日期">
-        <input type="submit" class="input_btn fr" name="submit" value="查询">
-	</form>
+<form action="" method="post" class="search_con">
+	{% csrf_token %}
+	<label for="财务查询"></label>
+	<input type="text" class="input_text fl" name="search_text" placeholder="起始日期">
+	<input type="text" class="input_text fl" name="search_text" placeholder="截止日期">
+	<input type="submit" class="input_btn fr" name="submit" value="查询">
+</form>
 
 
 {% endblock right_content %}

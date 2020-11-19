@@ -2,52 +2,54 @@
 {% extends 'store/store_base.html' %}
 
 {# 用户中心右侧主体内容块 #}
-		{% block right_content %}
-		<div class="right_content clearfix">
-            <div class="site_con clearfix">
-				<h3 class="common_title2">基本信息</h3>
-                <ul class="user_info_list2">
-                    <li><span>药店用户名:</span>{{ store.username }}</li>
-                    <li><span>药店名:</span>{{ store.name }}</li>
-                    <li><span>药店简介:</span>{{ store.desc }}</li>
-                </ul>
-            </div>
-            {% if saleINFO %}
-            <div class="site_con clearfix">
-				<h3 class="common_title2">总共盈利信息</h3>
-                <ul class="user_info_list2">
-                    <li><span>总共卖出药品数量:</span>{{ saleINFO.username }}</li>
-                    <li><span>总共交易金额:</span>{{ saleINFO.name }}</li>
-                </ul>
-                <h3 class="common_title2">第一笔交易</h3>
-                <ul class="user_info_list2">
-                    <li><span>第一次卖出药品:</span>{{ saleINFO.username }}</li>
-                    <li><span>第一次交易金额:</span>{{ saleINFO.name }}</li>
-                    <li><span>第一次交易时间:</span>{{ saleINFO.desc }}</li>
-                </ul>
-                <h3 class="common_title2">最大的交易</h3>
-                <ul class="user_info_list2">
-                    <li><span>最大交易卖出的药品:</span>{{ saleINFO.username }}</li>
-                    <li><span>最大交易的金额:</span>{{ saleINFO.name }}</li>
-                    <li><span>最大交易的时间:</span>{{ saleINFO.desc }}</li>
-                </ul>
-            </div>
-            {% endif %}
-            {% csrf_token %}
-            <form method="post" action="/store/cancellation" class="reg_form2 clearfix">
-                            {% csrf_token %}
+{% block right_content %}
+<div class="right_content clearfix">
+    <div class="site_con clearfix">
+        <h3 class="common_title2">基本信息</h3>
+        <ul class="user_info_list2">
+            <li><span>药店用户名:</span>{{ store.username }}</li>
+            <li><span>药店名:</span>{{ store.name }}</li>
+            <li><span>药店简介:</span>{{ store.desc }}</li>
+        </ul>
+    </div>
+    {% if saleINFO %}
+    <div class="site_con clearfix">
+        <h3 class="common_title2">总共盈利信息</h3>
+        <ul class="user_info_list2">
+            <li><span>总共卖出药品数量:</span>{{ saleINFO.username }}</li>
+            <li><span>总共交易金额:</span>{{ saleINFO.name }}</li>
+        </ul>
+        <h3 class="common_title2">第一笔交易</h3>
+        <ul class="user_info_list2">
+            <li><span>第一次卖出药品:</span>{{ saleINFO.username }}</li>
+            <li><span>第一次交易金额:</span>{{ saleINFO.name }}</li>
+            <li><span>第一次交易时间:</span>{{ saleINFO.desc }}</li>
+        </ul>
+        <h3 class="common_title2">最大的交易</h3>
+        <ul class="user_info_list2">
+            <li><span>最大交易卖出的药品:</span>{{ saleINFO.username }}</li>
+            <li><span>最大交易的金额:</span>{{ saleINFO.name }}</li>
+            <li><span>最大交易的时间:</span>{{ saleINFO.desc }}</li>
+        </ul>
+    </div>
+    {% endif %}
+    {% csrf_token %}
+    <form method="post" action="/store/cancellation" class="reg_form2 clearfix">
+        {% csrf_token %}
 
-                <ul>
-                    <li class="agreement">
-                        <input type="checkbox" name="allow" id="allow" checked="">
-                        <label>确认注销账号&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                        <label> <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font></label>
-                    </li>
-                    <li class="reg_sub">
-                        <input type="submit" value="注  销" name="">
-                    </li>
-                </ul>
-            </form>
-		</div>
+        <ul>
+            <li class="agreement">
+                <input type="checkbox" name="allow" id="allow" checked="">
+                <label>确认注销账号&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <label>
+                    <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+                </label>
+            </li>
+            <li class="reg_sub">
+                <input type="submit" value="注  销" name="">
+            </li>
+        </ul>
+    </form>
+</div>
 
-		{% endblock right_content %}
+{% endblock right_content %}

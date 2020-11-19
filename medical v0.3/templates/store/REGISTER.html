@@ -1,24 +1,27 @@
 {# 首页 注册 登录 #}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 {% load static %}
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    {# 网页标题内容块 #}
+	{# 网页标题内容块 #}
 	<title>
-		{% block title %}MADICAL-药店注册{% endblock title %}
-    </title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/store_reset.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/store_main.css' %}">
+	{% block title %}MADICAL-药店注册{% endblock title %}
+	</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 	{# 网页顶部引入文件块 #}
 	{% block topfiles %}
 	<script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/register.js' %}"></script>
 	{% endblock topfiles %}
 </head>
+
 <body>
-{# 网站主体内容块 #}
-{% block body %}
+	{# 网站主体内容块 #}
+	{% block body %}
 	<div class="register_con2">
 		<div class="l_con fl">
 			<a class="reg_logo"><img src="{% static 'images/logo02.png' %}"></a>
@@ -33,87 +36,86 @@
 			</div>
 			<div class="reg_form2 clearfix">
 				<form method="post" action="/store/register">
-                    {% csrf_token %}
-				<table>
-                    <tr>
-                        <td>
-						<label>药店用户名:</label>
-						<input type="text" name="username" id="username"
-                               value="{{ info.username }}" placeholder="请输入5-20个字符的用户名">
-                        </td>
-                        <td>
-						<label>药店名:</label>
-						<input type="text" name="name" id="name"
-                               value="{{ info.name }}" placeholder="必填">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-						<label>密码:</label>
-						<input type="password" name="password" id="password"
-                               value="{{ info.password }}" placeholder="密码最少8位，最长20位">
-                        </td>
-                        <td>
-						<label>确认密码:</label>
-						<input type="password" name="cpwd" id="cpwd1" value="{{ info.cpwd }}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-						<label>药品经营许可证号码:</label>
-						<input type="text" name="ypjyxkzcode" id="ypjyxkzcode"
-                               value="{{ info.ypjyxkzcode }}" placeholder="必填">
-                        </td>
-                        <td>
-						<label>开办时间:</label>
-						<input type="text" name="time" id="time"
-                               value="{{ info.time }}" placeholder="可不填">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-						<label>gsp证书编号:</label>
-						<input type="text" name="gspcode" id="gspcode"
-                               value="{{ info.gspcode }}" placeholder="必填">
-                        </td>
-                        <td>
-						<label>药店简介:</label>
-						<input type="text" name="desc" id="desc"
-                               value="{{ info.desc }}"placeholder="必填">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-						<label>药店地址:</label>
-						<input type="text" name="address" id="address"
-                               value="{{ info.address }}"placeholder="必填">
-                        </td>
-                        <td>
-						<label>邮政编码:</label>
-						<input type="text" name="postcode" id="postcode"
-                               value="{{ info.postcode }}"placeholder="必填">
-                        </td>
-                    </tr>
+					{% csrf_token %}
+					<table>
+						<tr>
+							<td>
+								<label>药店用户名:</label>
+								<input type="text" name="username" id="username" value="{{ info.username }}"
+									placeholder="请输入5-20个字符的用户名">
+							</td>
+							<td>
+								<label>药店名:</label>
+								<input type="text" name="name" id="name" value="{{ info.name }}" placeholder="必填">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>密码:</label>
+								<input type="password" name="password" id="password" value="{{ info.password }}"
+									placeholder="密码最少8位，最长20位">
+							</td>
+							<td>
+								<label>确认密码:</label>
+								<input type="password" name="cpwd" id="cpwd1" value="{{ info.cpwd }}">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>药品经营许可证号码:</label>
+								<input type="text" name="ypjyxkzcode" id="ypjyxkzcode" value="{{ info.ypjyxkzcode }}"
+									placeholder="必填">
+							</td>
+							<td>
+								<label>开办时间:</label>
+								<input type="text" name="time" id="time" value="{{ info.time }}" placeholder="可不填">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>gsp证书编号:</label>
+								<input type="text" name="gspcode" id="gspcode" value="{{ info.gspcode }}"
+									placeholder="必填">
+							</td>
+							<td>
+								<label>药店简介:</label>
+								<input type="text" name="desc" id="desc" value="{{ info.desc }}" placeholder="必填">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>药店地址:</label>
+								<input type="text" name="address" id="address" value="{{ info.address }}"
+									placeholder="必填">
+							</td>
+							<td>
+								<label>邮政编码:</label>
+								<input type="text" name="postcode" id="postcode" value="{{ info.postcode }}"
+									placeholder="必填">
+							</td>
+						</tr>
 
-                </table>
-                <ul>
-					<li class="agreement">
-						<input type="checkbox" name="allow" id="allow" checked="checked">
-						<label>同意”MEDICAL用户使用协议“&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                        <label> <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font></label>
-                    </li>
-					<li class="reg_sub">
-						<input type="submit" value="注 册" name="">
-					</li>
-                </ul>
+					</table>
+					<ul>
+						<li class="agreement">
+							<input type="checkbox" name="allow" id="allow" checked="checked">
+							<label>同意”MEDICAL用户使用协议“&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+							<label>
+								<font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+							</label>
+						</li>
+						<li class="reg_sub">
+							<input type="submit" value="注 册" name="">
+						</li>
+					</ul>
 				</form>
 			</div>
 
 		</div>
 	</div>
-{% endblock body %}
+	{% endblock body %}
 
-<div class="footer">
+	<div class="footer">
 		<div class="foot_link">
 			<a href="#">关于我们</a>
 			<span>|</span>
@@ -121,14 +123,15 @@
 			<span>|</span>
 			<a href="#">招聘人才</a>
 			<span>|</span>
-			<a href="#">友情链接</a>		
+			<a href="#">友情链接</a>
 		</div>
 		<p>CopyRight © 2020 成都MADICAL信息技术有限公司 All Rights Reserved</p>
-		<p>电话：010-****888    SCU-ICP备*******8号</p>
+		<p>电话：010-****888 SCU-ICP备*******8号</p>
 	</div>
-    {# 网页底部html元素块 #}
-    {% block bottom %}{% endblock bottom %}
-    {# 网页底部引入文件块 #}
+	{# 网页底部html元素块 #}
+	{% block bottom %}{% endblock bottom %}
+	{# 网页底部引入文件块 #}
 	{% block bottomfiles %}{% endblock bottomfiles %}
 </body>
+
 </html>

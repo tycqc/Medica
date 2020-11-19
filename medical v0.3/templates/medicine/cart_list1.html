@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>购物车列表</title>
 </head>
+
 <body>
-<table width="200" border="1">
+    <table width="200" border="1">
         <tbody>
             <tr>
                 <th>序号</th>
@@ -22,11 +24,11 @@
                 <td>{{ i.med_count }}</td>
                 <td><a href="../del_cart_list/?id={{ i.id }}">删除</a></td>
                 <td>
-                <form action="../add_to_cart/" method="get">
-                    <input type="hidden" name="id" value="{{ i.med_id }}">
-                    <input type="text" value="{{ i.med_count }}" name="goodsnum" >
-                    <input type="submit" name="" value="修改数量">
-                </form>
+                    <form action="../add_to_cart/" method="get">
+                        <input type="hidden" name="id" value="{{ i.med_id }}">
+                        <input type="text" value="{{ i.med_count }}" name="goodsnum">
+                        <input type="submit" name="" value="修改数量">
+                    </form>
                 </td>
             </tr>
             {% endfor %}
@@ -34,4 +36,5 @@
                 <input type="button" value="生成订单" name="" />
             </a>
 </body>
+
 </html>
