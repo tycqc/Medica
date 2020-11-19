@@ -1,60 +1,60 @@
-
 {% extends 'orders/order_base.html' %}
 {% block body %}{# 网站主体内容块 #}
-    <div class="main_con clearfix">
+<div class="main_con clearfix">
 
-        {# 用户中心左侧导航栏 #}
-        <div class="left_menu_con clearfix">
-			<h3>用户中心</h3>
-			<ul>
-				<li><a href="{% url 'store:homepage' %}"
-                       {% if page == 'homepage' %}class="active"{% endif %}>· 账户信息</a></li>
-				<li><a href="{% url 'store:homepage_update' %}"
-                       {% if page == 'homepage_update' %}class="active"{% endif %}>· 信息修改</a></li>
-				<li><a href="{% url 'store:cancellation' %}"
-                       {% if page == 'cancellation' %}class="active"{% endif %}>· 账号注销</a></li>
-                <li><a href="#{# {% url 'store:' %} #}"
-                       {% if page == 'cancellation' %}class="active"{% endif %}>· 订单管理</a></li>
-                <li><a href="#{# {% url 'store:cancellation' %} #}"
-                       {% if page == 'cancellation' %}class="active"{% endif %}>· 员工管理</a></li>
-			</ul>
-		</div>
+	{# 用户中心左侧导航栏 #}
+	<div class="left_menu_con clearfix">
+		<h3>用户中心</h3>
+		<ul>
+			<li><a href="{% url 'store:homepage' %}" {% if page == 'homepage' %}class="active" {% endif %}>· 账户信息</a>
+			</li>
+			<li><a href="{% url 'store:homepage_update' %}" {% if page == 'homepage_update' %}class="active"
+					{% endif %}>· 信息修改</a></li>
+			<li><a href="{% url 'store:cancellation' %}" {% if page == 'cancellation' %}class="active" {% endif %}>·
+					账号注销</a></li>
+			<li><a href="#{# {% url 'store:' %} #}" {% if page == 'cancellation' %}class="active" {% endif %}>· 订单管理</a>
+			</li>
+			<li><a href="#{# {% url 'store:cancellation' %} #}" {% if page == 'cancellation' %}class="active"
+					{% endif %}>· 员工管理</a></li>
+		</ul>
+	</div>
 
-		{# 用户中心右侧内容块 #}
-		{% block right_content %}
-		<div class="right_content clearfix">
-				<h3 class="common_title2">订单生成</h3>
-				
-                <div class="reg_form2 clearfix">
-					<h3 class="common_title2">基本信息</h3>
-					<div class="new_goods">
-					<ul>
-						<li><span>订单号</span>{{ order.order_id }}</li>
-						<li><span>操作员名</span>{{ order.staff }}</li>
-						<li><span>药品总数</span>{{ order.total_count }}</li>
-						<li><span>药品总价</span>{{ order.med_price }}</li>
-						<li><span>运费</span>{{ order.transit_price }}</li>
-						<li><span>总量</span>{{ order.total_count }}</li>
-						<li><span>订单状态</span>{{ order.order_status }}</li>
-						<form method="post" >
+	{# 用户中心右侧内容块 #}
+	{% block right_content %}
+	<div class="right_content clearfix">
+		<h3 class="common_title2">订单生成</h3>
+
+		<div class="reg_form2 clearfix">
+			<h3 class="common_title2">基本信息</h3>
+			<div class="new_goods">
+				<ul>
+					<li><span>订单号</span>{{ order.order_id }}</li>
+					<li><span>操作员名</span>{{ order.staff }}</li>
+					<li><span>药品总数</span>{{ order.total_count }}</li>
+					<li><span>药品总价</span>{{ order.med_price }}</li>
+					<li><span>运费</span>{{ order.transit_price }}</li>
+					<li><span>总量</span>{{ order.total_count }}</li>
+					<li><span>订单状态</span>{{ order.order_status }}</li>
+					<form method="post">
 						{% csrf_token %}
 						<li>
 							<label>支付方式</label>
 							<label>现金支付</label>
-							<input type="radio" value="0"  name="pay_method" />
+							<input type="radio" value="0" name="pay_method" />
 							<label>微信支付</label>
-							<input type="radio" value="1"  name="pay_method" />
+							<input type="radio" value="1" name="pay_method" />
 							<label>支付宝</label>
-							<input type="radio" value="2"  name="pay_method" />
+							<input type="radio" value="2" name="pay_method" />
 						</li>
 						{% for med in ordergoods %}
 						<li><span>药品名</span>{{ med.med_name }}</li>
 						<li><span>药品数</span>{{ med.med_count }}</li>
 						<li><span>药品总价</span>{{ med.med_price }}</li>
 						{% endfor %}
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" id="submit" value="确认订单">
-						</form>
-					</ul>
-		{% endblock right_content %}
-    </div>
-{% endblock body %}
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="submit" name="submit" id="submit" value="确认订单">
+					</form>
+				</ul>
+				{% endblock right_content %}
+			</div>
+			{% endblock body %}

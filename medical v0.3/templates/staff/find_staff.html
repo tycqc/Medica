@@ -3,51 +3,44 @@
 {# 用户中心右侧内容块 #}
 {% block right_content %}
 <div class="right_content clearfix">
-	<h3 class="common_title2">员工查询</h3>
-<div  class="search_con">
-    <form action="" method="post">
+    <h3 class="common_title2">员工查询</h3>
+    <div class="search_con">
+        <form action="" method="post">
             {% csrf_token %}
-		<div>
-			<input type="text" class="input_text fl" name="name" placeholder="查询员工">
-			<input type="submit" class="input_btn fr" name="" value="查询">
-		</div>
-	</form>
-</div>
-
-	<br>
-	<h3 class="common_title2">
-		查询结果&nbsp&nbsp&nbsp&nbsp
-		<label>
-			<font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
-		</label>
-	</h3>
-	<div class="reg_form2 clearfix">
-        {% for staff in staff_model %}
-    <table border="1" bgcolor="#f0ffff">
-            <tr>
-                <th>员工ID</th>
-                <th>员工姓名</th>
-            </tr>
-            <tr>
-                <td>{{ staff.id }}</td>
-                <td>{{ staff.name }}</td>
-            </tr>
-            </table>
-        <div class="reg_form3 clearfix">
-        <table>
-            <tr>
-                <td><a href="../del_staff/?id={{ staff.id }}">删除</a></td>
-                <td><a href="../edit_staff/?id={{ staff.id }}">编辑</a></td>
-                <td><a href="../detail_staff/?id={{ staff.id }}">详情</a></td>
-            </tr>
-        </table>
-        </div>
-
+            <div>
+                <input type="text" class="input_text fl" name="name" placeholder="查询员工">
+                <input type="submit" class="input_btn fr" name="" value="查询">
+            </div>
+        </form>
+    </div>
 
     <br>
-            <hr width="1000px" float="left" color="green"/>
-    {% endfor %}
-	</div>
+    <h3 class="common_title2">
+        查询结果&nbsp&nbsp&nbsp&nbsp
+        <label>
+            <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+        </label>
+    </h3>
+    <div class="reg_form2 clearfix">
+        <table border="1" bgcolor="#f0ffff">
+            <tr>
+                <th>员工姓名</th>
+                <th>员工电话</th>
+                <th>员工详情</th>
+                <th>员工编辑</th>
+                <th>员工删除</th>
+            </tr>
+            {% for staff in staff_model %}
+            <tr>
+                <td>{{ staff.name }}</td>
+                <td>{{ staff.phonenumber }}</td>
+                <td><a href="../detail_staff/?id={{ staff.id }}">详情</a></td>
+                <td><a href="../edit_staff/?id={{ staff.id }}">编辑</a></td>
+                <td><a href="../del_staff/?id={{ staff.id }}">删除</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 {% endblock right_content %}
 </div>

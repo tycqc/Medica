@@ -2,7 +2,7 @@
 {% extends 'medicine/medicine_base.html' %}
 
 
-{# 用户中心右侧内容块 #} 
+{# 用户中心右侧内容块 #}
 {% block right_content %}
 {% csrf_token %}
 <div class="right_content clearfix">
@@ -17,11 +17,13 @@
 
   <h3 class="common_title2">
     查询结果&nbsp&nbsp&nbsp&nbsp
-    <label> <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font></label>
+    <label>
+      <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+    </label>
   </h3>
   <div class="reg_form2 clearfix">
     <form method="" action="">
-        {% for medicine in medicine_model %}
+      {% for medicine in medicine_model %}
       <table>
         <tr>
           <td>ID:{{ medicine.pk }}</td>
@@ -39,28 +41,27 @@
       <ul>
         <li class="reg_sub2">
           <a href="../del_medicine/?id={{ medicine.id }}">
-          <input type="button" value="删除" name="" />
+            <input type="button" value="删除" name="" />
           </a>
           <a href="../edit_medicine/?id={{ medicine.id }}">
-          <input type="button" value="编辑" name="" />
+            <input type="button" value="编辑" name="" />
           </a>
           <a href="../medicine_detail/?id={{ medicine.id }}">
-          <input type="button" value="详情" name="" />
+            <input type="button" value="详情" name="" />
           </a>
           <a href="../add_to_cart/?id={{ medicine.id }}&goodsnum=1">
-          <input type="button" value="添加到购物车" name="" />
+            <input type="button" value="添加到购物车" name="" />
           </a>
 
         </li>
       </ul>
-            <!--<form action="" method="get">
+      <!--<form action="" method="get">
             <input type="text" name="goodsnum" >
             <input type="text" name="id" value={{ medicine.id }}>
             <input type="submit" name="" value="添加">
             </form>-->
-        {% endfor %}
+      {% endfor %}
     </form>
   </div>
 </div>
 {% endblock right_content %}
-

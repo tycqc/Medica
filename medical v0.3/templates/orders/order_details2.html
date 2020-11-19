@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>订单详情</title>
 </head>
+
 <body>
-<table>
-    <form action="" method="post">
-        {% csrf_token %}
-    </form>
-    <table width="200" border="1">
-        <tbody>
-            <tr>
-                <th>订单ID</th>
-                <th>操作员</th>
-                <th>支付方式</th>
-                <th>总件数</th>
-                <th>药品总价</th>
-                <th>运费</th>
-                <th>合计总价</th>
-                <th>进度状态</th>
-            </tr>
-            <tr>
-                <td>{{ context.order.order_id }}</td>
-                <td>{{ context.order.staff }}</td>
-                <td>{{ context.order.pay_method }}</td>
-                <td>{{ context.order.total_count }}</td>
-                <td>{{ context.order.med_price }}</td>
-                <td>{{ context.order.transit_price }}</td>
-                <td>{{ context.order.total_price }}</td>
-                <td>{{ context.order.order_status }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <table>
+        <form action="" method="post">
+            {% csrf_token %}
+        </form>
+        <table width="200" border="1">
+            <tbody>
+                <tr>
+                    <th>订单ID</th>
+                    <th>操作员</th>
+                    <th>支付方式</th>
+                    <th>总件数</th>
+                    <th>药品总价</th>
+                    <th>运费</th>
+                    <th>合计总价</th>
+                    <th>进度状态</th>
+                </tr>
+                <tr>
+                    <td>{{ context.order.order_id }}</td>
+                    <td>{{ context.order.staff }}</td>
+                    <td>{{ context.order.pay_method }}</td>
+                    <td>{{ context.order.total_count }}</td>
+                    <td>{{ context.order.med_price }}</td>
+                    <td>{{ context.order.transit_price }}</td>
+                    <td>{{ context.order.total_price }}</td>
+                    <td>{{ context.order.order_status }}</td>
+                </tr>
+            </tbody>
+        </table>
 
 
-    <table width="200" border="1">
-        <tbody>
-            <tr>
-                <td>药品编号</td>
-                <td>药品名称</td>
-                <td>药品数量</td>
-                <td>药品价格</td>
-            </tr>
-         {% for i in context.order_med %}
-            <tr>
-                <td>{{ i.med_code}}</td>
-                <td>{{ i.med_name}}</td>
-                <td>{{ i.med_count}}</td>
-                <td>{{ i.med_price}}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
+        <table width="200" border="1">
+            <tbody>
+                <tr>
+                    <td>药品编号</td>
+                    <td>药品名称</td>
+                    <td>药品数量</td>
+                    <td>药品价格</td>
+                </tr>
+                {% for i in context.order_med %}
+                <tr>
+                    <td>{{ i.med_code}}</td>
+                    <td>{{ i.med_name}}</td>
+                    <td>{{ i.med_count}}</td>
+                    <td>{{ i.med_price}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </table>
-</table>
 </body>
+
 </html>

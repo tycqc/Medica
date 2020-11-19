@@ -6,53 +6,53 @@
 <div class="right_content clearfix">
 	<h3 class="common_title2">员工详情</h3>
 	<div class="reg_form2 clearfix">
-        <label for="员工详情"></label>
-        <table border="1" bgcolor="#f0f8ff">
+		<label for="员工详情"></label>
+		<table border="1" bgcolor="#f0f8ff">
+			<tr>
+				<td>员工ID</td>
+				<td>{{ staff.id }}</td>
+			</tr>
+			<tr>
+				<td>员工用户名</td>
+				<td>{{ staff.username }}</td>
+			</tr>
+			<tr>
+				<td>员工密码</td>
+				<td>{{ staff.password }}</td>
+			</tr>
+			<tr>
+				<td>员工姓名</td>
+				<td>{{ staff.name }}</td>
+			</tr>
+			<tr>
+				<td>联系方式</td>
+				<td>{{ staff.phonenumber }}</td>
+			</tr>
+			<tr>
+				<td>员工简介</td>
+				<td height=80px>{{ staff.desc }}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="reg_form2 clearfix">
+		<table>
+			<form action="" method="get">
+				{% csrf_token %}
 				<tr>
-					<td>员工ID</td>
-					<td>{{ staff.id }}</td>
+					<td>
+						<a href="../del_staff/?id={{ staff.id }}">
+							<input type="button" value="删除" name="">
+						</a>
+					</td>
+					<td>
+						<a href="../edit_staff/?id={{ staff.id }}">
+							<input type="button" value="编辑" name="">
+						</a>
+					</td>
 				</tr>
-				<tr>
-					<td>员工用户名</td>
-					<td>{{ staff.username }}</td>
-				</tr>
-				<tr>
-					<td>员工密码</td>
-					<td>{{ staff.password }}</td>
-				</tr>
-				<tr>
-					<td>员工姓名</td>
-					<td>{{ staff.name }}</td>
-				</tr>
-				<tr>
-					<td>联系方式</td>
-					<td>{{ staff.phonenumber }}</td>
-				</tr>
-				<tr>
-					<td>员工简介</td>
-					<td height=80px>{{ staff.desc }}</td>
-				</tr>
-        </table>
-    </div>
-        <div class="reg_form2 clearfix">
-            <table>
-                <form action="" method="get">
-                    {% csrf_token %}
-                        <tr>
-                            <td>
-                            <a href="../del_staff/?id={{ staff.id }}">
-                            <input type="button" value="删除" name="">
-                            </a>
-                            </td>
-                            <td>
-                            <a href="../edit_staff/?id={{ staff.id }}">
-                            <input type="button" value="编辑" name="">
-                            </a>
-                            </td>
-                        </tr>
-                </form>
-        </table>
-        </div>
+			</form>
+		</table>
+	</div>
 
 </div>
 {% endblock right_content %}
