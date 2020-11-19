@@ -17,13 +17,13 @@
     </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <script src="{% static 'css/staff.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/staff.js' %}"></script>
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
 
 </head>
 
-<body>
+<body onLoad="changbackgroundcolor();">
     {% csrf_token %}
 
     {# 顶部欢迎条 不用改#}

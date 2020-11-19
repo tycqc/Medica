@@ -2,7 +2,7 @@
 
 {# 用户中心右侧内容块 #}
 {% block right_content %}
-<div class="right_content clearfix">
+<div class="right_content clearfix" onload="function changbackgroundcolor()">
     <h3 class="common_title2">员工查询</h3>
     <div class="search_con">
         <form action="" method="post">
@@ -22,7 +22,8 @@
         </label>
     </h3>
     <div class="reg_form2 clearfix">
-        <table border="1" bgcolor="#f0ffff" id="staff_table">
+        <table border="1" id="staff_table">
+            {% if staff_model %}
             <tr>
                 <th>员工姓名</th>
                 <th>员工电话</th>
@@ -30,6 +31,9 @@
                 <th>员工编辑</th>
                 <th>员工删除</th>
             </tr>
+            {% else %}
+                <tr border="0"><font color="red" size="5">没有找到</font></tr>
+            {% endif %}
             {% for staff in staff_model %}
             <tr>
                 <td>{{ staff.name }}</td>

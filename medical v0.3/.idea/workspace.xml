@@ -20,10 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="改前端">
-      <change afterPath="$PROJECT_DIR$/static/js/staff.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/medical/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/medical/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/staff.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/staff/find_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/find_staff.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/staff/staff_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/staff_base.HTML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/store/REGISTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/REGISTER.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,11 +86,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="JupyterTrust" id="158d2de2-aa8b-4a42-a4ee-0f43c4ed65af" />
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-10" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
-  </component>
   <component name="ProjectId" id="1jQ3az7MptfQH4y3OKsOKyR5oI9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -109,7 +106,7 @@
       <recent name="C:\Users\18095078657\Desktop\medical\user" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Database migration command">
+  <component name="RunManager" selected="Django Server.medical v0.3">
     <configuration name="Database migration command" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="medical v0.3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -346,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605780235527</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="改前端">
+      <created>1605785564165</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605785564165</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -400,22 +404,22 @@
     <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605624210325" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
-    <state width="1288" height="175" key="GridCell.Tab.0.bottom" timestamp="1605785468375">
+    <state width="1288" height="175" key="GridCell.Tab.0.bottom" timestamp="1605794290607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
-    <state width="1288" height="175" key="GridCell.Tab.0.center" timestamp="1605785468375">
+    <state width="1288" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605794290607" />
+    <state width="1288" height="175" key="GridCell.Tab.0.center" timestamp="1605794290607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
-    <state width="1288" height="175" key="GridCell.Tab.0.left" timestamp="1605785468375">
+    <state width="1288" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605794290607" />
+    <state width="1288" height="175" key="GridCell.Tab.0.left" timestamp="1605794290607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
-    <state width="1288" height="175" key="GridCell.Tab.0.right" timestamp="1605785468375">
+    <state width="1288" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605794290607" />
+    <state width="1288" height="175" key="GridCell.Tab.0.right" timestamp="1605794290607">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605785468375" />
+    <state width="1288" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605794290607" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.center" timestamp="1605624210325" />
@@ -428,10 +432,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605780466057" />
-    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605785442649">
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605787649797">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1605785442649" />
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1605787649797" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1" timestamp="1605624210325" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="-7" y="0" width="653" height="687" key="dock-window-2" timestamp="1605624210325" />
@@ -441,7 +445,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/medical_v0_3$Random_data.coverage" NAME="Random data Coverage Results" MODIFIED="1605744676157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1605785468281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1605793112478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
