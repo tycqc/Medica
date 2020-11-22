@@ -1,6 +1,6 @@
 from store.models import medstore
 from staff.models import Staff
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 from django.shortcuts import render
 import re
@@ -239,7 +239,6 @@ def store_homepage_update(request):
     # 判断是否登录
     context = {
         'page': 'homepage_update',
-
     }
     if request.session.get('is_login', None):
         username = request.session.get('username')
@@ -247,15 +246,18 @@ def store_homepage_update(request):
         context['username'] = username
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
-            return render(request, 'store/USER_INFO_homepage_update.HTML', context=context)
+            shopkeeper = False
+            return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
     else:
         return login(request)
 
-    if request.method == "POST":
+    if request.method == "POST" and shopkeeper:
         # 员工不可操作
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
-            return render(request, 'store/USER_INFO_homepage_update.HTML', context=context)
+            return render(request, 'store/USER_INFO_update.html', context=context)
 
         else:
             store = medstore.objects.get(pk = storeid)
@@ -294,31 +296,31 @@ def store_homepage_update(request):
             if Opassword != store.password:
                 # 参数不完整
                 context['errmsg'] = '原密码不正确'
-                return render(request, 'store/USER_INFO_homepage_update.html',context = context)
+                return render(request, 'store/USER_INFO_update.html', context = context)
 
             # 用户名验证
             if len(username) > 20 or len(username) < 5:
                 # 用户名不合格
                 context['errmsg'] = '请输入5-20个字符的用户名'
-                return render(request, 'store/USER_INFO_homepage_update.html',context = context)
+                return render(request, 'store/USER_INFO_update.html', context = context)
 
             # 密码验证
             if len(password) < 8 or len(password) > 20:
                 # 密码不合格
                 context['errmsg'] = '密码最少8位，最长20位'
-                return render(request, 'store/USER_INFO_homepage_update.html',context = context)
+                return render(request, 'store/USER_INFO_update.html', context = context)
 
             # 密码一致性验证
             if password != cpwd:
                 # 密码不一致
                 context['errmsg'] = '新密码不一致'
-                return render(request, 'store/USER_INFO_homepage_update.html',context = context)
+                return render(request, 'store/USER_INFO_update.html', context = context)
 
             # 是否同意使用协议
             if allow != 'on':
                 # 协议不同意
                 context['errmsg'] = '请首先同意协议'
-                return render(request, 'store/USER_INFO_homepage_update.html',context = context)
+                return render(request, 'store/USER_INFO_update.html', context = context)
 
 
             # 注册
@@ -337,14 +339,14 @@ def store_homepage_update(request):
                 print("OK")
             except:
                 context['errmsg'] = '信息修改失败（可能是时间格式不正确），请重试'
-                return render(request, 'store/USER_INFO_homepage_update.html',context = context)
+                return render(request, 'store/USER_INFO_update.html', context = context)
             else:
                 return store_homepage(request)
     else:
         # 员工不可操作
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
-            return render(request, 'store/USER_INFO_homepage_update.HTML', context = context)
+            return render(request, 'store/USER_INFO_update.html', context = context)
 
         else:
             store = medstore.objects.get(pk=storeid)
@@ -354,7 +356,7 @@ def store_homepage_update(request):
                 'info': store,
                 'page': 'homepage_update'
             }
-        return render(request, 'store/USER_INFO_homepage_update.HTML', context=context)
+        return render(request, 'store/USER_INFO_update.html', context=context)
 
 # 药店注销
 def store_cancellation(request):
@@ -366,13 +368,18 @@ def store_cancellation(request):
         storeid = request.session.get('storeid')
         username = request.session.get('username')
         context['username'] = username
+        store = medstore.objects.get(pk=storeid)
+        context["store"] =store
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
             return render(request, 'store/CANCELLATION.HTML', context = context)
+        else:
+            shopkeeper = True
     else:
         return login(request)
 
-    if request.method == "POST":
+    if request.method == "POST" and shopkeeper:
         # 员工不可操作
         context['errmsg'] = '请以店主账号登录'
         if request.session.get('identity') != 'shopkeeper':
@@ -380,6 +387,7 @@ def store_cancellation(request):
 
         else:
             store = medstore.objects.get(pk = storeid)
+            staffs = Staff.objects.filter(store_id=store)
             context = {
                 'store': store,
                 'info': '',
@@ -394,9 +402,11 @@ def store_cancellation(request):
 
             # 注销
             try:
+                # for staff in staffs:
+                #     staff.delete()
+                #
                 store.delete()
                 request.session.flush()
-                print("OK")
             except:
                 context['errmsg'] = '注销失败，请重试'
                 return render(request, 'store/CANCELLATION.html', context=context)
@@ -410,10 +420,13 @@ def store_cancellation(request):
 
         else:
             store = medstore.objects.get(pk=storeid)
+            username = request.session.get('username')
             context = {
                 'store': store,
                 'info': store,
-                'page': 'cancellation'
+                'page': 'cancellation',
+                'username': username
+
             }
         return render(request, 'store/CANCELLATION.HTML', context=context)
 
