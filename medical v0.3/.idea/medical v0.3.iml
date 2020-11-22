@@ -13,7 +13,12 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/apps/medicine/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/orders/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/staff/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/store/migrations" />
+    </content>
     <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
@@ -26,7 +31,6 @@
     </option>
   </component>
   <component name="TestRunnerService">
-    <option name="projectConfiguration" value="Twisted Trial" />
     <option name="PROJECT_TEST_RUNNER" value="Twisted Trial" />
   </component>
 </module>

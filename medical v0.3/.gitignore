@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+static/images/
+apps/orders/migrations/
+apps/medicine/__pycache__/
+apps/orders/__pycache__/
+apps/staff/__pycache__/
+apps/staff/migrations/
+apps/store/__pycache__/
+apps/store/migrations/
+apps/user/__pycache__/
+medical/__pycache__/
+/static/images/

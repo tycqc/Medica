@@ -1,69 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="staff 和store完成">
+    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="staff 和store完成1">
+      <changelist_data name="cai" email="" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/medical v0.3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/medical v0.3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0002_auto_20201118_1028.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0003_auto_20201118_1028.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0004_cart_medicine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0005_auto_20201118_1029.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0006_auto_20201119_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0007_auto_20201119_2126.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0008_auto_20201119_2137.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0009_auto_20201119_2138.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/medicine_main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0002_ordergoods_orders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0003_auto_20201118_1029.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0004_auto_20201119_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0005_auto_20201119_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0006_auto_20201119_2126.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0007_auto_20201119_2137.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0008_auto_20201119_2138.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/medicine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0002_staff.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0003_auto_20201118_1029.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0004_auto_20201119_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0005_auto_20201119_2126.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0006_auto_20201119_2137.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0007_auto_20201119_2138.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/staff/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0002_medstore.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0003_auto_20201118_1029.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0004_auto_20201119_1943.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0005_auto_20201119_2126.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0006_auto_20201119_2137.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0007_auto_20201119_2138.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Random data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nothing" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +76,7 @@
       <recent name="C:\Users\18095078657\Desktop\medical\user" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.medical v0.3">
+  <component name="RunManager" selected="Python.Database migration command">
     <configuration name="Database migration command" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="medical v0.3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -329,7 +277,7 @@
       <workItem from="1605595115060" duration="153000" />
       <workItem from="1605595318926" duration="77000" />
       <workItem from="1605623967847" duration="262000" />
-      <workItem from="1606033200887" duration="23061000" />
+      <workItem from="1606033200887" duration="23893000" />
     </task>
     <task id="LOCAL-00001" summary="v3.0">
       <created>1605525643827</created>
@@ -415,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606047268374</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="staff 和store完成1">
+      <created>1606058142185</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1606058142185</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -433,9 +388,26 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
-        <entry key="MAIN">
+        <entry key="1">
           <value>
             <State />
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -464,9 +436,15 @@
     <MESSAGE value="改前端" />
     <MESSAGE value="改界面" />
     <MESSAGE value="staff 和store完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="staff 和store完成" />
+    <MESSAGE value="staff 和store完成1" />
+    <MESSAGE value="staff 和store完成 加入ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="staff 和store完成 加入ignore" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="284" y="21" key="#Deployment" timestamp="1606058979534">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="284" y="21" key="#Deployment/0.0.1366.728@0.0.1366.728" timestamp="1606058979534" />
     <state x="267" y="19" key="#Inspections" timestamp="1605624210325" />
     <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="414" y="186" key="#Notifications" timestamp="1606047335160">
@@ -520,7 +498,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/medical_v0_3$Random_data.coverage" NAME="Random data Coverage Results" MODIFIED="1605744676157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1605793112478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1606058521379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
