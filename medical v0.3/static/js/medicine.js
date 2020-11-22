@@ -1,0 +1,10 @@
+function changbackgroundcolor() {
+    var trs = document.getElementById("medicine_table").getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        if (i % 2 == 0) {
+            trs[i].style.backgroundColor = "#f7f7f7";
+        } else {
+            trs[i].style.backgroundColor = "";
+        }
+    }
+}

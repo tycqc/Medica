@@ -1,5 +1,6 @@
 from medicine.models import Medicine, Cart
 from store.models import medstore
+from store.views import login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
@@ -8,6 +9,21 @@ import jieba
 
 
 def add_medicine(request):
+    context = {
+        "page": "add_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     drugstore = request.session.get('storeid')
     if request.method=="POST":
         name=request.POST.get("name")
@@ -33,9 +49,25 @@ def add_medicine(request):
 
         medicine.save()
 
-    return render(request,"medicine/add_medicine.html")
+    return render(request,"medicine/add_medicine.html",context = context)
 
 def find_medicine(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     drugstore=request.session.get('storeid')
     if request.method=="POST":
         search = request.POST.get("name")
@@ -62,12 +94,30 @@ def find_medicine(request):
             med_details.append(med_detail)
         med_details.sort(key=get_tag, reverse=True)
         # print(med_details)
-        return render(request, "medicine/find_medicine.html", {"medicine_model": med_details})
+        context["medicine_model"] =med_details
+        return render(request, "medicine/find_medicine.html", context =context)
     else:
         medicine_model = Medicine.objects.filter(drugstore_id=drugstore)
-        return render(request, "medicine/find_medicine.html",{"medicine_model":medicine_model})
+        context["medicine_model"] = medicine_model
+        return render(request, "medicine/find_medicine.html",context = context)
 
 def del_medicine(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     pk = request.GET.get('id')
     obj= Medicine.objects.get(id=pk)
     obj.delete()
@@ -75,6 +125,22 @@ def del_medicine(request):
     #return HttpResponse('删除成功')
 
 def edit_medicine(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     pk = request.GET.get('id')
     obj = Medicine.objects.get(id=pk)
     if request.method == "POST":
@@ -99,14 +165,47 @@ def edit_medicine(request):
 
         obj.save()
         return redirect(reverse('medicine:find_medicine'))
-    return render(request, "medicine/edit_medicine.html",{'obj':obj})
+    context['obj'] = obj
+    return render(request, "medicine/edit_medicine.html",context =context)
 
 def medicine_detail(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     pk = request.GET.get('id')
     obj = Medicine.objects.get(id=pk)
-    return render(request, "medicine/medicine_detail.html",{"obj": obj})
+    context["obj"] = obj
+    return render(request, "medicine/medicine_detail.html",context = context)
 
 def add_to_cart(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
 
     goodsid = request.GET.get('id')
     goodsnum = request.GET.get('goodsnum')
@@ -134,6 +233,22 @@ def add_to_cart(request):
 
 
 def cart_list(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     carts = Cart.objects.filter(C_store=request.session.get('storeid'))
     carts_ = []
     for med in carts:
@@ -146,10 +261,27 @@ def cart_list(request):
             'med_id': med.C_goods_id,
         }
         carts_.append(context)
-    return render(request, "medicine/cart_list.html", {"carts": carts_})
+    context["carts"] = carts_
+    return render(request, "medicine/cart_list.html", context = context)
 
 
 def del_cart_list(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        # if request.session.get('identity') != 'shopkeeper':
+        #     context['errmsg'] = '请以店主账号登录'
+        #     shopkeeper = False
+        #     return render(request, 'store/find_staff.html', context=context)
+        # else:
+        #     shopkeeper = True
+    else:
+        return login(request)
+
     pk = request.GET.get('id')
     obj = Cart.objects.get(id=pk)
     obj.delete()

@@ -9,15 +9,14 @@
     <form action="" method="post">
       {% csrf_token %}
       <div class="form_group1">
-        </table>
         <label>药品状态:</label>
-        <table class="none">
-          <tr>
-            <td><input type="radio" name="status" value="0" />暂停销售</td>
-            <td><input type="radio" name="status" value="1" />在售</td>
-          </tr>
+        <table class="form_group_table">
+            <td><input type="radio" name="status" value="0" >暂停销售</td>
+            <td>   |   </td>
+            <td><input type="radio" name="status" value="1" >在  售</td>
         </table>
       </div>
+        <br>
       <div class="form_group">
         <label>国家药品编码:&nbsp;</label>
         <input type="text" name="medicinecode">
@@ -39,7 +38,7 @@
         <input type="text" name="unite">
       </div>
       <div class="form_group">
-        <label>药品简介;</label>
+        <label>药品简介:&nbsp;</label>
         <input type="text" name="desc">
       </div>
       <div class="form_group">

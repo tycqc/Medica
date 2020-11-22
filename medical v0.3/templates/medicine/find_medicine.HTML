@@ -23,44 +23,46 @@
   </h3>
   <div class="reg_form2 clearfix">
     <form method="" action="">
-      {% for medicine in medicine_model %}
-      <table>
-        <tr>
-          <td>ID:{{ medicine.pk }}</td>
-          <td>药品编号:{{ medicine.medicinecode }}</td>
-        </tr>
-        <tr>
-          <td>名称:{{ medicine.name }}</td>
-          <td>库存:{{ medicine.stock }}</td>
-        </tr>
-        <tr>
-          <td>价格:{{ medicine.price }}</td>
-        </tr>
-      </table>
-      <br />
-      <ul>
-        <li class="reg_sub2">
-          <a href="../del_medicine/?id={{ medicine.id }}">
-            <input type="button" value="删除" name="" />
-          </a>
-          <a href="../edit_medicine/?id={{ medicine.id }}">
-            <input type="button" value="编辑" name="" />
-          </a>
-          <a href="../medicine_detail/?id={{ medicine.id }}">
-            <input type="button" value="详情" name="" />
-          </a>
-          <a href="../add_to_cart/?id={{ medicine.id }}&goodsnum=1">
-            <input type="button" value="添加到购物车" name="" />
-          </a>
 
-        </li>
-      </ul>
+      <table id="medicine_table">
+        {% if medicine_model %}
+          <tr>
+            <th>ID</th>
+            <th>药品编号</th>
+            <th>名称</th>
+            <th>库存</th>
+            <th>价格</th>
+            <th>删除</th>
+            <th>编辑</th>
+            <th>详情</th>
+            <th>添加到购物车</th>
+        </tr>
+      {% endif %}
+        {% for medicine in medicine_model %}
+        <tr>
+          <td>{{ medicine.pk }}</td>
+          <td>{{ medicine.medicinecode }}</td>
+          <td>{{ medicine.name }}</td>
+          <td>{{ medicine.stock }}</td>
+          <td>{{ medicine.price }}</td>
+        <td><a href="../del_medicine/?id={{ medicine.id }}">
+            <form >
+            <input type="button" value="删除" name="" /></form></a></td>
+        <td><a href="../edit_medicine/?id={{ medicine.id }}">
+            <input type="button" value="编辑" name="" /></a></td>
+        <td><a href="../medicine_detail/?id={{ medicine.id }}">
+            <input type="button" value="详情" name="" /></a></td>
+        <td><a href="../add_to_cart/?id={{ medicine.id }}&goodsnum=1">
+            <input type="button" value="添加到购物车" name="" />
+          </a></td>
+        </tr>
+            {% endfor %}
+      </table>
       <!--<form action="" method="get">
             <input type="text" name="goodsnum" >
             <input type="text" name="id" value={{ medicine.id }}>
             <input type="submit" name="" value="添加">
             </form>-->
-      {% endfor %}
     </form>
   </div>
 </div>

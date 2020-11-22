@@ -19,17 +19,51 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="改界面">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
+    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="staff 和store完成">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0002_auto_20201118_1028.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0003_auto_20201118_1028.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0004_cart_medicine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0005_auto_20201118_1029.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0006_auto_20201119_1943.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0007_auto_20201119_2126.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0008_auto_20201119_2137.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/0009_auto_20201119_2138.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/medicine_main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0002_ordergoods_orders.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0003_auto_20201118_1029.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0004_auto_20201119_1943.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0005_auto_20201119_1943.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0006_auto_20201119_2126.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0007_auto_20201119_2137.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/0008_auto_20201119_2138.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/orders/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/medicine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0002_staff.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0003_auto_20201118_1029.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0004_auto_20201119_1943.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0005_auto_20201119_2126.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0006_auto_20201119_2137.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/0007_auto_20201119_2138.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/staff/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/staff/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/staff/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/edit_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/edit_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/register_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/register_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/staff_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/staff_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/CANCELLATION.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/CANCELLATION.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/store_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/store_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0002_medstore.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0003_auto_20201118_1029.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0004_auto_20201119_1943.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0005_auto_20201119_2126.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0006_auto_20201119_2137.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/0007_auto_20201119_2138.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +96,7 @@
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -76,11 +111,13 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -292,7 +329,7 @@
       <workItem from="1605595115060" duration="153000" />
       <workItem from="1605595318926" duration="77000" />
       <workItem from="1605623967847" duration="262000" />
-      <workItem from="1606033200887" duration="13509000" />
+      <workItem from="1606033200887" duration="23061000" />
     </task>
     <task id="LOCAL-00001" summary="v3.0">
       <created>1605525643827</created>
@@ -371,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606037542319</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="staff 和store完成">
+      <created>1606047268373</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1606047268374</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -419,29 +463,38 @@
     <MESSAGE value="v3.0" />
     <MESSAGE value="改前端" />
     <MESSAGE value="改界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="改界面" />
+    <MESSAGE value="staff 和store完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="staff 和store完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="267" y="19" key="#Inspections" timestamp="1605624210325" />
     <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
+    <state x="414" y="186" key="#Notifications" timestamp="1606047335160">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="414" y="186" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1606047335160" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605624210325" />
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
-    <state width="1288" height="174" key="GridCell.Tab.0.bottom" timestamp="1606046981536">
+    <state x="435" y="163" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606058066612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606046981536" />
-    <state width="1288" height="174" key="GridCell.Tab.0.center" timestamp="1606046981536">
+    <state x="435" y="163" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606058066612" />
+    <state width="1288" height="174" key="GridCell.Tab.0.bottom" timestamp="1606057803004">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606046981536" />
-    <state width="1288" height="174" key="GridCell.Tab.0.left" timestamp="1606046981536">
+    <state width="1288" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606057803004" />
+    <state width="1288" height="174" key="GridCell.Tab.0.center" timestamp="1606057803004">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606046981536" />
-    <state width="1288" height="174" key="GridCell.Tab.0.right" timestamp="1606046981536">
+    <state width="1288" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606057803004" />
+    <state width="1288" height="174" key="GridCell.Tab.0.left" timestamp="1606057803004">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606046981536" />
+    <state width="1288" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606057803004" />
+    <state width="1288" height="174" key="GridCell.Tab.0.right" timestamp="1606057803004">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1288" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606057803004" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.center" timestamp="1605624210325" />
@@ -450,14 +503,14 @@
     <state width="1306" height="219" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.right" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
-    <state x="284" y="96" key="Vcs.Push.Dialog.v2" timestamp="1605780466057">
+    <state x="284" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606047301885">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605780466057" />
-    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606033697594">
+    <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606047301884" />
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606047280693">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1606033697594" />
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1606047280693" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1" timestamp="1605624210325" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="-7" y="0" width="653" height="687" key="dock-window-2" timestamp="1605624210325" />

@@ -17,13 +17,16 @@
     </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/medicine_main.css' %}">
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/medicine.js' %}"></script>
 
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
 
 </head>
 
-<body>
+<body onLoad="changbackgroundcolor();">
     {% csrf_token %}
 
     {# 顶部欢迎条 不用改#}
@@ -33,9 +36,9 @@
         <div class="header">
             <div class="welcome fl">欢迎来到medica药店管理系统!</div>
             <div class="fr">
-                {% if store.username %}
+                {% if username %}
                 <div class="login_btn fl">
-                    欢迎您：<em><a href="{% url 'store:homepage' %}">{{ store.username }}</a></em> <span>|</span>
+                    欢迎您：<em><a href="{% url 'store:homepage' %}">{{ username }}</a></em> <span>|</span>
                     <a href="{% url 'store:logout' %}">退出</a>
                 </div>
                 {% else %}

@@ -1,0 +1,27 @@
+.site_con .form_group1{
+	height:40px;
+	line-height:40px;
+	margin-top:10px;
+}
+
+.site_con .form_group1 label{
+	width:100px;
+	float:left;
+	text-align:right;
+	font-size:14px;
+	height:40px;
+	line-height:40px;
+}
+
+.site_con .form_group1 input{
+	width:30px;
+	height:20px;
+	border:1px solid #ddd;
+	float:left;
+	outline:none;
+	margin-top:7px;
+	text-indent:10px;
+}
+.site_con .form_group1 table tr{
+	font-size: 15px;
+}

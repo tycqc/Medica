@@ -2,7 +2,8 @@ from staff.models import Staff
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
+# from django.contrib.auth import authenticate, login, logout
+from store.views import login
 
 
 # Create your views here.
@@ -99,7 +100,7 @@ def detail_staff(request):
     pk = request.GET.get('id')
     obj = Staff.objects.get(id=pk)
     context["staff"] = obj
-    return render(request,('staff/detail_staff.html'), context =context)
+    return render(request,'staff/detail_staff.html', context = context)
 
 def del_staff(request):
     context = {
@@ -164,4 +165,5 @@ def edit_staff(request):
         obj.desc = desc
         obj.save()
         return redirect(reverse('staff:find_staff'))
-    return render(request, "staff/edit_staff.html",{'obj':obj,"page":"find_staff"})
+    context["obj"]  = obj
+    return render(request, "staff/edit_staff.html",context = context)
