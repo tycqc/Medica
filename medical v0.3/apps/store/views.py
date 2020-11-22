@@ -413,10 +413,13 @@ def store_cancellation(request):
 
         else:
             store = medstore.objects.get(pk=storeid)
+            username = request.session.get('username')
             context = {
                 'store': store,
                 'info': store,
-                'page': 'cancellation'
+                'page': 'cancellation',
+                'username': username
+
             }
         return render(request, 'store/CANCELLATION.HTML', context=context)
 
