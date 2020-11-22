@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'store',
     'orders',
     'user',
+    'rest_framework',
 
 
 
