@@ -1,6 +1,6 @@
 from store.models import medstore
 from staff.models import Staff
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 from django.shortcuts import render
 import re
@@ -239,7 +239,6 @@ def store_homepage_update(request):
     # 判断是否登录
     context = {
         'page': 'homepage_update',
-
     }
     if request.session.get('is_login', None):
         username = request.session.get('username')
@@ -247,11 +246,14 @@ def store_homepage_update(request):
         context['username'] = username
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
             return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
     else:
         return login(request)
 
-    if request.method == "POST":
+    if request.method == "POST" and shopkeeper:
         # 员工不可操作
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
@@ -366,13 +368,18 @@ def store_cancellation(request):
         storeid = request.session.get('storeid')
         username = request.session.get('username')
         context['username'] = username
+        store = medstore.objects.get(pk=storeid)
+        context["store"] =store
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
             return render(request, 'store/CANCELLATION.HTML', context = context)
+        else:
+            shopkeeper = True
     else:
         return login(request)
 
-    if request.method == "POST":
+    if request.method == "POST" and shopkeeper:
         # 员工不可操作
         context['errmsg'] = '请以店主账号登录'
         if request.session.get('identity') != 'shopkeeper':

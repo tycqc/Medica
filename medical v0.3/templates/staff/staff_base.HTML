@@ -33,9 +33,9 @@
         <div class="header">
             <div class="welcome fl">欢迎来到medica药店管理系统!</div>
             <div class="fr">
-                {% if store.username %}
+                {% if username %}
                 <div class="login_btn fl">
-                    欢迎您：<em><a href="{% url 'store:homepage' %}">{{ store.username }}</a></em> <span>|</span>
+                    欢迎您：<em><a href="{% url 'store:homepage' %}">{{ username }}</a></em> <span>|</span>
                     <a href="{% url 'store:logout' %}">退出</a>
                 </div>
                 {% else %}

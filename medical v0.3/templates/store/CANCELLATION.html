@@ -34,7 +34,7 @@
     </div>
     {% endif %}
     {% csrf_token %}
-    <form method="post" action="/store/cancellation" class="reg_form2 clearfix">
+    <form method="post" action="/store/cancellation" class="reg_form2 clearfix"  onsubmit="return sumbit_sure()">
         {% csrf_token %}
 
         <ul>
@@ -47,7 +47,7 @@
             </li>
             <li class="reg_sub">
                 <input type="submit" value="注  销" name="">
-                <input id="input_test" data-method="input_submit" type="button" value="弹窗提交表单">
+
             </li>
         </ul>
     </form>
