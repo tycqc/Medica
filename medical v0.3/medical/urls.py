@@ -20,6 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls import url
 from store import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -28,5 +29,5 @@ urlpatterns = [
     re_path('store/', include(('store.urls', 'store'), namespace='store')),
     re_path('orders/', include(('orders.urls', 'orders'), namespace='orders')),
     re_path('user/', include(('user.urls', 'user'), namespace='user')),
-    path('', views.login)
+    path('', views.login),
 ]
