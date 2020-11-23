@@ -1,0 +1,103 @@
+.find_staff_table {
+  width: 800px;
+  margin: 0px 0 0 30px;
+  float: left;
+  position: relative;
+}
+.find_staff_table table {
+  border: 0;
+}
+.find_staff_table table tr {
+  height: 50px;
+}
+.find_staff_table table tr td {
+  width: 400px;
+}
+.find_staff_table table tr td a {
+  font-size: medium;
+}
+.find_staff_table tr label {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  font-size: 14px;
+  color: #a8a8a8;
+}
+.find_staff_table table tr td input {
+  width: 200px;
+  height: 38px;
+  border: 1px solid #e0e0e0;
+  float: left;
+  outline: none;
+  text-indent: 10px;
+  background-color: #f8f8f8;
+}
+.find_staff_table table tr td button {
+  width: 100%;
+  background: none;
+  border: 0px;
+  height: 38px;
+  outline: none;
+  text-indent: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.find_staff_table tr.agreement input {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-top: 13px;
+}
+.find_staff_table tr.agreement label {
+  width: 300px;
+  float: left;
+  margin-left: 10px;
+}
+.find_staff_table tr.reg_sub input {
+  width: 360px;
+  height: 40px;
+  background-color: #47aa34;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Microsoft Yahei";
+  cursor: pointer;
+}
+.find_staff_table tr .error_tip {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 70px;
+  color: #e62e2e;
+  display: none;
+}
+.find_staff_table tr .error_tip2 {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  color: #e62e2e;
+  display: none;
+}
+
+.staff_info {
+  width: 800px;
+  margin: 0px 0 0 30px;
+  float: left;
+  position: relative;
+}
+.staff_info table {
+  border: 1px;
+}
+.staff_info table tr {
+  height: 50px;
+}
+.staff_info table tr td.first{
+  width: 10%;
+  font-size: medium;
+  background: #dddddd;
+}
+.staff_info table tr td.second{
+  width: 70%;
+  font-size: small;
+  background: #F8F8F8;
+}

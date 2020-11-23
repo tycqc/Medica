@@ -18,6 +18,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/store.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
+
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
 
@@ -49,7 +53,7 @@
                     <span>|</span>
                     <a href="{% url 'store:cancellation' %}">药店注销</a>
                     <span>|</span>
-                    <a href="{% url 'orders:staff_order_add' %}">购物车</a>
+                    <a href="{% url 'medicine:cart_list' %}">购物车</a>
                 </div>
             </div>
         </div>

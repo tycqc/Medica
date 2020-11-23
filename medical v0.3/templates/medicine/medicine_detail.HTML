@@ -6,9 +6,8 @@
 {% block right_content %}
 <div class="right_content clearfix">
     <h3 class="common_title2">药品详情</h3>
-    <div class="reg_form2 clearfix">
-        <form method="" action="">
-            <table>
+    <div class="reg_form_medicine clearfix">
+            <table id="medicine_table">
                 <tr>
                     <td>
                         ID:{{ obj.pk }}
@@ -45,23 +44,23 @@
                     <td>
                         生产单位:{{ obj.unite }}
                     </td>
+                </tr>
+                <tr>
                     <td height=80px>
                         简介:{{ obj.desc }}
                     </td>
                 </tr>
+                <tr>
+                    <td>
+{#                    <button value="" name="" onclick="window.location.href='../del_medicine/?id={{ obj.id }}'">删除</button>#}
+                    <button value="" name="" onclick="window.location.href='../del_medicine/?id={{ obj.id }}'">删除</button>
+                    </td>
+                    <td>
+                     <button value="" name="" onclick="window.location.href='../edit_medicine/?id={{ obj.id }}'">编辑</button>
+                    </td>
+                </tr>
+
             </table>
-            <br>
-            <ul>
-                <li class="reg_sub2">
-                    <a href="../del_medicine/?id={{ obj.id }}">
-                        <input type=" submit" value="删除" name="">
-                    </a>
-                    <a href="../edit_medicine/?id={{ obj.id }}">
-                        <input type=" submit" value="编辑" name="">
-                    </a>
-                </li>
-            </ul>
-        </form>
     </div>
 </div>
 {% endblock right_content %}

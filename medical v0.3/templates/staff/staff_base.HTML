@@ -17,13 +17,17 @@
     </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/staff_main.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/staff.js' %}"></script>
+    {#注意导入js的顺序#}
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
 
 </head>
 
-<body onLoad="changbackgroundcolor();">
+<body>
     {% csrf_token %}
 
     {# 顶部欢迎条 不用改#}
@@ -49,7 +53,7 @@
                     <span>|</span>
                     <a href="{% url 'store:cancellation' %}">药店注销</a>
                     <span>|</span>
-                    <a href="{% url 'orders:staff_order_add' %}">购物车</a>
+                    <a href="{% url 'medicine:cart_list' %}">购物车</a>
                 </div>
             </div>
         </div>

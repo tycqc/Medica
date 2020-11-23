@@ -5,52 +5,44 @@
 {% block right_content %}
 <div class="right_content clearfix">
 	<h3 class="common_title2">员工详情</h3>
-	<div class="reg_form2 clearfix">
+	<div class="staff_info clearfix">
 		<label for="员工详情"></label>
-		<table border="1" bgcolor="#f0f8ff">
+		<table id="staff_info">
 			<tr>
-				<td>员工ID</td>
-				<td>{{ staff.id }}</td>
+				<td class="first">员工ID</td>
+				<td class="second">{{ staff.id }}</td>
 			</tr>
 			<tr>
-				<td>员工用户名</td>
-				<td>{{ staff.username }}</td>
+				<td class="first">员工用户名</td>
+				<td class="second">{{ staff.username }}</td>
 			</tr>
 			<tr>
-				<td>员工密码</td>
-				<td>{{ staff.password }}</td>
+				<td class="first">员工密码</td>
+				<td class="second">{{ staff.password }}</td>
 			</tr>
 			<tr>
-				<td>员工姓名</td>
-				<td>{{ staff.name }}</td>
+				<td class="first">员工姓名</td>
+				<td class="second">{{ staff.name }}</td>
 			</tr>
 			<tr>
-				<td>联系方式</td>
-				<td>{{ staff.phonenumber }}</td>
+				<td class="first">联系方式</td>
+				<td class="second">{{ staff.phonenumber }}</td>
 			</tr>
 			<tr>
-				<td>员工简介</td>
-				<td height=80px>{{ staff.desc }}</td>
+				<td class="first">员工简介</td>
+				<td class="second" height=80px>{{ staff.desc }}</td>
 			</tr>
 		</table>
 	</div>
-	<div class="reg_form2 clearfix">
+	<div class="find_staff_table clearfix">
 		<table>
-			<form action="" method="get">
 				{% csrf_token %}
 				<tr>
+                    <td><button onclick="del_staff({{ staff.id }})">删除</button></td>
 					<td>
-						<a href="../del_staff/?id={{ staff.id }}">
-							<input type="button" value="删除" name="">
-						</a>
-					</td>
-					<td>
-						<a href="../edit_staff/?id={{ staff.id }}">
-							<input type="button" value="编辑" name="">
-						</a>
-					</td>
+                    <button value="" name="" onclick="window.location.href='../edit_staff/?id={{ staff.id }}'">员工编辑</button>
+                    </td>
 				</tr>
-			</form>
 		</table>
 	</div>
 

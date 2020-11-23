@@ -21,7 +21,7 @@
             <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
         </label>
     </h3>
-    <div class="reg_form2 clearfix">
+    <div class="find_staff_table clearfix">
         <table border="1" id="staff_table">
             {% if staff_model %}
             <tr>
@@ -32,15 +32,21 @@
                 <th>员工删除</th>
             </tr>
             {% else %}
-                <tr border="0"><font color="red" size="5">没有找到</font></tr>
+            <tr border="0">
+                <font color="red" size="5">没有找到</font>
+            </tr>
             {% endif %}
             {% for staff in staff_model %}
             <tr>
                 <td>{{ staff.name }}</td>
                 <td>{{ staff.phonenumber }}</td>
-                <td><a href="../detail_staff/?id={{ staff.id }}">详情</a></td>
-                <td><a href="../edit_staff/?id={{ staff.id }}">编辑</a></td>
-                <td><a href="../del_staff/?id={{ staff.id }}">删除</a></td>
+                <td>
+                    <button value="" name="" onclick="window.location.href='../detail_staff/?id={{ staff.id }}'">员工详情</button>
+                </td>
+                <td>
+                    <button value="" name="" onclick="window.location.href='../edit_staff/?id={{ staff.id }}'">员工编辑</button>
+                </td>
+                <td><button onclick="del_staff({{ staff.id }})">删除</button></td>
             </tr>
             {% endfor %}
         </table>

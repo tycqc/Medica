@@ -6,13 +6,21 @@
 {% block right_content %}
 {% csrf_token %}
 <div class="right_content clearfix">
-  <h3 class="common_title2">药品查询：</h3>
+  <h3 class="common_title2">药品查询</h3>
 
   <form action="" method="post" class="search_con">
     <label for="药品查询"></label>
     {% csrf_token %}
     <input type="text" class="input_text fl" name="name" placeholder="查询药品" />
     <input type="submit" class="input_btn fr" name="submit" value="查询" />
+  </form>
+  <h3 class="common_title2">高级搜索</h3>
+  <form>
+    <label>开始时间：<input type="date" name="begin_data"></label>
+    <label>——————结束时间：<input type="date" name="end_data"></label>
+    <br>
+
+    <input type="submit" value="搜索">
   </form>
 
   <h3 class="common_title2">
@@ -21,49 +29,46 @@
       <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
     </label>
   </h3>
-  <div class="reg_form2 clearfix">
-    <form method="" action="">
 
-      <table id="medicine_table">
-        {% if medicine_model %}
-          <tr>
-            <th>ID</th>
-            <th>药品编号</th>
-            <th>名称</th>
-            <th>库存</th>
-            <th>价格</th>
-            <th>删除</th>
-            <th>编辑</th>
-            <th>详情</th>
-            <th>添加到购物车</th>
-        </tr>
+  <div class="find_medicine_table clearfix">
+    <table id="medicine_table" border="1">
+      {% if medicine_model %}
+      <tr>
+        <th>ID</th>
+        <th>药品编号</th>
+        <th>名称</th>
+        <th>库存</th>
+        <th>价格</th>
+        <th>删除</th>
+        <th>编辑</th>
+        <th>详情</th>
+        <th>添加到购物车</th>
+      </tr>
       {% endif %}
-        {% for medicine in medicine_model %}
-        <tr>
-          <td>{{ medicine.pk }}</td>
-          <td>{{ medicine.medicinecode }}</td>
-          <td>{{ medicine.name }}</td>
-          <td>{{ medicine.stock }}</td>
-          <td>{{ medicine.price }}</td>
-        <td><a href="../del_medicine/?id={{ medicine.id }}">
-            <form >
-            <input type="button" value="删除" name="" /></form></a></td>
-        <td><a href="../edit_medicine/?id={{ medicine.id }}">
-            <input type="button" value="编辑" name="" /></a></td>
-        <td><a href="../medicine_detail/?id={{ medicine.id }}">
-            <input type="button" value="详情" name="" /></a></td>
-        <td><a href="../add_to_cart/?id={{ medicine.id }}&goodsnum=1">
-            <input type="button" value="添加到购物车" name="" />
-          </a></td>
-        </tr>
-            {% endfor %}
-      </table>
-      <!--<form action="" method="get">
-            <input type="text" name="goodsnum" >
-            <input type="text" name="id" value={{ medicine.id }}>
-            <input type="submit" name="" value="添加">
-            </form>-->
-    </form>
+      {% for medicine in medicine_model %}
+      <tr>
+        <td>{{ medicine.pk }}</td>
+        <td>{{ medicine.medicinecode }}</td>
+        <td>{{ medicine.name }}</td>
+        <td>{{ medicine.stock }}</td>
+        <td>{{ medicine.price }}</td>
+        <td>
+            <button onclick="del_medicine({{ medicine.id }})">删除</button>
+{#          <button value="" name="" onclick="window.location.href='../del_medicine/?id={{ medicine.id }}'">删除</button>#}
+        </td>
+        <td>
+          <button value="" name="" onclick="window.location.href='../edit_medicine/?id={{ medicine.id }}'">编辑</button>
+        </td>
+        <td>
+          <button value="" name="" onclick="window.location.href='../medicine_detail/?id={{ medicine.id }}'">详情</button>
+        </td>
+        <td>
+          <button value="" name=""
+            onclick="window.location.href='../add_to_cart/?id={{ medicine.id }}&goodsnum=1'">添加到购物车</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
 </div>
 {% endblock right_content %}
