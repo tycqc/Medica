@@ -1,0 +1,56 @@
+{# 药品查询 #}
+{% extends 'medicine/medicine_base.html' %}
+
+
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+{% csrf_token %}
+<div class="right_content clearfix">
+  <h3 class="common_title2">药品查询</h3>
+
+  <form action="" method="post" class="search_con">
+    <label for="药品查询"></label>
+    {% csrf_token %}
+    <input type="text" class="input_text fl" name="name" placeholder="查询药品" />
+    <input type="submit" class="input_btn fr" name="submit" value="查询" />
+  </form>
+  <h3 class="common_title2">
+    查询结果&nbsp&nbsp&nbsp&nbsp
+    <label>
+      <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+    </label>
+  </h3>
+<table id="demo" lay-filter="test"></table>
+
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+
+                , url:
+                    {% if name %}
+                        '{% url 'medicine:find_medicine_data' %}?name={{ name }}'
+                    {% else %}
+                        '{% url 'medicine:find_medicine_data' %}'
+                    {% endif %}//数据接口
+                , page: false //开启分页
+                , cols: [[ //表头
+                    { field: 'id', title: 'ID', width:70, sort: true }
+                    , { field: 'medicinecode', title: '药品编号', minWidth:70,  sort: true  }
+                    , { field: 'name', title: '名称', sort: true }
+                    , { field: 'stock', title: '库存', width:90, sort: true  }
+                    , { field: 'price', title: '价格', width:90, sort: true  }
+                    , { field: 'del_medicine', width:70, title: '删除' }
+                    , { field: 'edit_medicine', width:70, title: '编辑' }
+                    , { field: 'medicine_detail', width:70, title: '详情' }
+                    , { field: 'add_to_cart', width:140, title: '添加到购物车' }
+    ]]
+            });
+
+        });
+    </script>
+</div>
+{% endblock right_content %}
