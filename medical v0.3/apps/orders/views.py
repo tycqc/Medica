@@ -5,9 +5,9 @@ from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from staff.models import Staff
-from medicine.models import Medicine,Cart
-from orders.models import Orders,OrderGoods
+from apps.staff.models import Staff
+from apps.medicine.models import Medicine,Cart
+from apps.orders.models import Orders,OrderGoods
 
 
 #线下订单添加

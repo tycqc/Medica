@@ -1,5 +1,5 @@
-from store.models import medstore
-from staff.models import Staff
+from apps.store.models import medstore
+from apps.staff.models import Staff
 from django.http import HttpResponseRedirect
 
 from django.shortcuts import render

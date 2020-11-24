@@ -1,4 +1,4 @@
-from medicine.models import Medicine, Cart
+from apps.medicine.models import Medicine, Cart
 from store.models import medstore
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
