@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/layui/layui.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
+</head>
+
+<body>
+
+    <table id="demo" lay-filter="test"></table>
+
+    <script src="{% static 'js/layui/layui.js' %}"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+
+                , url: '{% url 'store:shiyan' %}' //数据接口
+                , page: true //开启分页
+                , cols: [[ //表头
+                    { field: 'medicineMaterialName', title: '名称', width: 80, sort: true, fixed: 'left' }
+                    , { field: 'medicineMaterialAlias', title: '别名', width: 80 }
+                    , { field: 'EnglishName', title: '英语名', width: 80, sort: true }
+                    , { field: 'medicineMaterialSource', title: '来源', width: 200 }
+                    , { field: 'channelTropism', title: '性味归经', width: 177 }
+                    , { field: 'button', title: '按钮', width: 177 }
+                ]]
+            });
+
+        });
+    </script>
+</body>
+
+</html>

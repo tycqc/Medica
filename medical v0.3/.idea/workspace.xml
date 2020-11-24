@@ -5,48 +5,127 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="staff 和store完成1">
-      <changelist_data name="cai" email="" />
-      <change afterPath="$PROJECT_DIR$/static/css/staff_main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/mobile/layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/mobile/need/layer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/theme/default/icon-ext.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/theme/default/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/theme/default/layer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/theme/default/loading-0.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/theme/default/loading-1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/layer/theme/default/loading-2.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="staff 和store完成 部分弹窗完成">
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/layui.mobile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/10.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/11.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/12.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/13.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/14.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/15.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/17.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/18.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/19.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/20.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/21.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/22.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/23.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/24.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/25.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/26.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/27.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/28.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/29.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/30.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/31.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/33.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/34.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/35.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/36.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/37.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/38.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/39.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/4.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/40.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/41.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/42.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/43.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/44.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/45.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/46.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/47.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/48.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/49.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/5.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/50.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/51.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/52.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/53.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/54.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/55.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/56.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/57.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/58.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/59.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/6.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/60.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/61.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/62.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/63.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/64.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/65.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/66.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/67.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/68.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/69.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/7.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/70.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/71.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/8.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/images/face/9.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/transfer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/layui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/medical/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/medical/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/medicine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/medicine_main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/medicine_main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/reset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/staff-main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery-1.12.4.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery-1.12.4.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery-ui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery-ui.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.cookie.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery.cookie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/medicine.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/medicine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/slide.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/slide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/staff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/add_medicine.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/medicine/find_medicine.HTML" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/medicine_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine/medicine_detail.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine/medicine_detail.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/orders/order_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders/order_base.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/detail_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/detail_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/edit_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/edit_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/find_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/find_staff.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/staff/register_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/register_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/staff/staff_base.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/staff/staff_base.HTML" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/store/CANCELLATION.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/CANCELLATION.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/REGISTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/REGISTER.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/store/USER_INFO_homepage.HTML" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/USER_INFO_homepage.HTML" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/store_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/store_base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,13 +157,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="cai" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RESET_MODE" value="KEEP" />
   </component>
@@ -99,17 +183,22 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\templates" />
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static" />
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js\layer" />
       <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js" />
       <recent name="C:\Users\Administrator\Desktop\medical\apps\orders" />
       <recent name="C:\Users\Administrator\Desktop\medical\apps\medicine" />
-      <recent name="C:\Users\18095078657\Desktop\medical\user" />
     </key>
   </component>
   <component name="RunManager" selected="Django Server.medical v0.3">
@@ -314,6 +403,9 @@
       <workItem from="1605595318926" duration="77000" />
       <workItem from="1605623967847" duration="262000" />
       <workItem from="1606033200887" duration="23893000" />
+      <workItem from="1606178208797" duration="175000" />
+      <workItem from="1606181143927" duration="4551000" />
+      <workItem from="1606194909328" duration="17287000" />
     </task>
     <task id="LOCAL-00001" summary="v3.0">
       <created>1605525643827</created>
@@ -406,7 +498,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606058142185</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="staff 和store完成 部分弹窗完成">
+      <created>1606148305822</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1606148305869</updated>
+    </task>
+    <task id="LOCAL-00015" summary="不知道啥">
+      <created>1606181334379</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606181334379</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -474,7 +580,9 @@
     <MESSAGE value="staff 和store完成" />
     <MESSAGE value="staff 和store完成1" />
     <MESSAGE value="staff 和store完成 加入ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="staff 和store完成 加入ignore" />
+    <MESSAGE value="staff 和store完成 部分弹窗完成" />
+    <MESSAGE value="不知道啥" />
+    <option name="LAST_COMMIT_MESSAGE" value="不知道啥" />
   </component>
   <component name="WindowStateProjectService">
     <state x="284" y="21" key="#Deployment" timestamp="1606058979534">
@@ -493,22 +601,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="435" y="163" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606058066612" />
-    <state width="1288" height="174" key="GridCell.Tab.0.bottom" timestamp="1606137195425">
+    <state width="1288" height="174" key="GridCell.Tab.0.bottom" timestamp="1606222686130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606137195425" />
-    <state width="1288" height="174" key="GridCell.Tab.0.center" timestamp="1606137195425">
+    <state width="1288" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606222686130" />
+    <state width="1288" height="174" key="GridCell.Tab.0.center" timestamp="1606222686130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606137195425" />
-    <state width="1288" height="174" key="GridCell.Tab.0.left" timestamp="1606137195410">
+    <state width="1288" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606222686130" />
+    <state width="1288" height="174" key="GridCell.Tab.0.left" timestamp="1606222686130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606137195410" />
-    <state width="1288" height="174" key="GridCell.Tab.0.right" timestamp="1606137195425">
+    <state width="1288" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606222686130" />
+    <state width="1288" height="174" key="GridCell.Tab.0.right" timestamp="1606222686130">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1288" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606137195425" />
+    <state width="1288" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606222686130" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.center" timestamp="1605624210325" />
