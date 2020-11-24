@@ -321,16 +321,17 @@ def find_medicine_data(request):
         username = request.session.get('username')
         store = request.session.get('storeid')
         context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
     else:
         return login(request)
 
     drugstore = request.session.get('storeid')
+    page = 1
+    if request.GET.get("page") != None:
+        page = int(request.GET.get("page"))
+    limit = 30
+    if request.GET.get("limit") != None:
+        limit = int(request.GET.get("limit"))
+
     if request.GET.get("name") != None:
         search = request.GET.get("name")
         search_list = jieba.lcut(search)
@@ -371,9 +372,7 @@ def find_medicine_data(request):
             del data['image']
             all_medicine.append(data)
         num = len(all_medicine)
-        return HttpResponse(
-            '{"code":0,"msg":"","count":' + str(num) + ',"data":' + json.dumps(all_medicine, ensure_ascii=False) + "}",
-            content_type="application/json")
+
     else:
         medicine_model = Medicine.objects.filter(drugstore_id=drugstore)
         all_medicine = []
@@ -386,8 +385,15 @@ def find_medicine_data(request):
             data['add_to_cart'] ='<button class="button1" onclick="window.location.href=\'../add_to_cart/?id='+id+'&goodsnum=1\'">添加到购物车</button>'
             del data['image']
             all_medicine.append(data)
-            all_medicine.append(data)
-            all_medicine.append(data)
         num = len(all_medicine)
-        return HttpResponse('{"code":0,"msg":"","count":'+str(num)+',"data":' + json.dumps(all_medicine, ensure_ascii=False) + "}",
-                            content_type="application/json")
+
+    x = (page - 1) * limit
+    y = x + limit - 1
+    medicines = []
+    for i in range(x, y+1):
+        if i >= num:
+            break
+        medicines.append(all_medicine[i])
+    return HttpResponse(
+        '{"code":0,"msg":"","count":' + str(num) + ',"data":' + json.dumps(medicines, ensure_ascii=False) + "}",
+        content_type="application/json")

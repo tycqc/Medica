@@ -36,17 +36,18 @@
                     {% else %}
                         '{% url 'medicine:find_medicine_data' %}'
                     {% endif %}//数据接口
-                , page: false //开启分页
+                , page: true //开启分页
+                , limit: 30
                 , cols: [[ //表头
-                    { field: 'id', title: 'ID', width:70, sort: true }
+                    { field: 'id', title: 'ID', width:70, sort: true,align:'center' }
                     , { field: 'medicinecode', title: '药品编号', minWidth:70,  sort: true  }
                     , { field: 'name', title: '名称', sort: true }
-                    , { field: 'stock', title: '库存', width:90, sort: true  }
-                    , { field: 'price', title: '价格', width:90, sort: true  }
-                    , { field: 'del_medicine', width:70, title: '删除' }
-                    , { field: 'edit_medicine', width:70, title: '编辑' }
-                    , { field: 'medicine_detail', width:70, title: '详情' }
-                    , { field: 'add_to_cart', width:140, title: '添加到购物车' }
+                    , { field: 'stock', title: '库存', width:90, sort: true,align:'center'  }
+                    , { field: 'price', title: '价格', width:90, sort: true,align:'center'  }
+                    , { field: 'del_medicine', width:70, title: '删除',align:'center' }
+                    , { field: 'edit_medicine', width:70, title: '编辑',align:'center' }
+                    , { field: 'medicine_detail', width:70, title: '详情',align:'center' }
+                    , { field: 'add_to_cart', width:140, title: '添加到购物车',align:'center' }
     ]]
             });
 

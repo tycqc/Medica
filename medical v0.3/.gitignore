@@ -12,3 +12,4 @@ medical/__pycache__/
 /static/images/
 .idea/shelf/Uncommitted_changes_before_Update_at_2020_11_22_16_28__Default_Changelist_.xml
 .idea/shelf/Uncommitted_changes_before_Update_at_2020_11_22_23_42_[Default_Changelist]/
+apps/user/serializer/__pycache__/
