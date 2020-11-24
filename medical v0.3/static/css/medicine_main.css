@@ -59,6 +59,16 @@
   cursor: pointer;
   font-size: 13px;
 }
+.button1 {
+  width: 100%;
+  background: none;
+  border: 0px;
+  height: 38px;
+  outline: none;
+  text-indent: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
 /*.find_medicine_table tr.agreement input{width:15px;height:15px;float:left;margin-top:13px}*/
 /*.find_medicine_table tr.agreement label{width:300px;float:left;margin-left:10px;}*/
 /*.find_medicine_table tr.reg_sub input{width:360px;height:40px;background-color:#47aa34;font-size:18px;color:#fff;font-family:'Microsoft Yahei';cursor:pointer;}*/

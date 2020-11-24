@@ -1,12 +1,38 @@
 from store.models import medstore
 from staff.models import Staff
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 
 from django.shortcuts import render
-import re
+import re,json
 
 # Create your views here.
-
+def shiyan_index(request):
+    return render(request, 'layui样式.html')
+def shiyan(request):
+    data =[
+{"medicineMaterialName": "海风藤", "medicineMaterialAlias": "满坑香、荖藤、大风藤、岩胡椒。", "EnglishName": "Caulis Piperis Kadsurae。", "medicineMaterialSource": "为胡椒科胡椒属植物风藤Piper kadsura (Choisy)Ohwi[P.futokadsura Sieb.et Zucc.的藤茎。", "channelTropism": "性微温，味辛、苦。归肝经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "青羊参 qingyangshe", "medicineMaterialAlias": "青阳参、白石参、毒狗药、地藕、小白蔹、白药、白芪、青洋参、闹狗药、牛尾参、牛尾七。", "EnglishName": "Radix Cynanchi Otophylli。", "medicineMaterialSource": "为萝藦科鹅绒属植物青羊参Cynanchum otophyllum Schneid.的根。", "channelTropism": "性温，味甘、辛。归心经、肝经、脾经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "使君子 shijunzi", "medicineMaterialAlias": "史君子、留求子、五棱子、山羊屎、冬君子。", "EnglishName": "Quisqualis Fructus", "medicineMaterialSource": "使君子科植物使君子Quisqualis indicaL.的成熟果实。", "channelTropism": "性温，味甘。归脾经、胃经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "水飞蓟 shuifeiji", "medicineMaterialAlias": "水飞雉、奶蓟、老鼠勒。", "EnglishName": "Silybi Fructus。", "medicineMaterialSource": "菊科植物水飞蓟Silybum marianum (L.)Gaerth的瘦果。", "channelTropism": "性寒，味苦。归肝经、胆经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "片姜黄 pianjianghuang", "medicineMaterialAlias": "片子姜黄。", "EnglishName": "Wenyujin Rhizoma Concisum。", "medicineMaterialSource": "姜科植物温郁金Curcuma wenyujinY.H.Chen et C.Ling的根茎。", "channelTropism": "性温，味辛、苦。归脾经、肝经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "白石英 baishiying", "medicineMaterialAlias": "石英。", "EnglishName": "Quartz Album。", "medicineMaterialSource": "来源于氧化物类石英族矿物石英Quartz。", "channelTropism": "性微温，味甘、辛。归肺经、肾经、心经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "马桑根 ma sang gen", "medicineMaterialAlias": "乌龙须、黑龙须。", "EnglishName": "Radix Coriaria。", "medicineMaterialSource": "来源于马桑科植物马桑Coriaria nepalensis Wall.的根。", "channelTropism": "性凉，味苦、酸。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "问荆 wen jing", "medicineMaterialAlias": "连续草，笔头菜，节节草，猪鬃草，公母草，搂接草，空心草，马蜂草，骨节草，土木贼。", "EnglishName": "Bottle Brush Herb。", "medicineMaterialSource": "来源于木贼科植物问荆Equisetum arvense L.的地上部分。", "channelTropism": "性平，味苦。归肺经、胃经、肝经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "鸡眼草 jiyancao", "medicineMaterialAlias": "掐不齐、大字草、公母草、人字草、小蓄片、妹子草、红花草、地兰草、细花草、铺地龙、红骨丹、夏闭草。", "EnglishName": "Herba Kummerowiae。", "medicineMaterialSource": "来源于豆科植物鸡眼草Kummerowia striata (Thunb) Schindl的全草。", "channelTropism": "性凉，味苦。归胃经、大肠经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "雪上一枝蒿 xue shang yi zhi hao", "medicineMaterialAlias": "一支蒿、铁棒锤、铁牛七。", "EnglishName": "Radix Aconiti Brachypodi", "medicineMaterialSource": "来源于毛茛科植物短柄乌头 Aconitum brachypodum Diels、铁棒锤A.pendulum Busch、展毛短柄鸟头 A. brachypodum Diels var. laxiflorum Fletcher et Lauener、宣威乌头 A.nagarum Stapf var. lasiandrym W.T.Wang、曲毛短柄乌头 A. brachypodum Diels var. crispulum W.T.Wang及伏毛铁棒锤A. flavum Hand.-mazz的块根。", "channelTropism": "性温，味苦、辛。有大毒。归肝经、肾经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "白芥子 baijiezi", "medicineMaterialAlias": "辣菜子。", "EnglishName": "Semen Sinapis Albae。", "medicineMaterialSource": "为十字花科欧白芥属植物白芥Sinapis alba L.的种子。", "channelTropism": "性温，味辛。归肺经、胃经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "鸡内金 jineijin", "medicineMaterialAlias": "鸡肫皮、鸡肶胵、鸡黄皮、鸡食皮、鸡合子、鸡中金、化石胆、化骨胆。", "EnglishName": "Galli Gigerii Endothelium Corneum", "medicineMaterialSource": "来源于雉科动物家鸡Gallus gallus domesticus Brisson的干燥沙囊内壁。", "channelTropism": "性平，味甘。归脾经、胃经、小肠经、膀胱经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "燕窝 yanwo", "medicineMaterialAlias": "燕窝菜、燕蔬菜、燕根、燕菜。", "EnglishName": "Nidus Collocaliae。", "medicineMaterialSource": "来源于雨燕科动物金丝燕Collocalia esculentaL.及同属多种燕类用唾液或唾液与绒羽等混合黏结所筑成的巢窝。", "channelTropism": "性平，味甘。归肺经、胃经、肾经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "辣椒 lajiao", "medicineMaterialAlias": "番椒、辣茄、辣虎、腊茄、海椒、辣子、大椒。", "EnglishName": "Capsici Fructus。", "medicineMaterialSource": "来源于茄科植物辣椒Capsicum annuum L.或其栽培变种的干燥成熟果实。", "channelTropism": "性热，味辛。归心经、脾经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": " 缬草 xiecao", "medicineMaterialAlias": "满山香、拔地麻、甘松、五里香、小救驾、穿心排草、鹿子松、猫食菜、抓地虎。", "EnglishName": "Rhizoma Et Radix Valerianae。", "medicineMaterialSource": "来源于败酱科植物缬草Valeriana officinalisL.的根茎及根。", "channelTropism": "性平，味苦，微甘。归心经、肝经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "胆矾 danfan", "medicineMaterialAlias": "石胆、蓝矾、毕石、君石、黑石，鸭嘴胆矾、翠胆矾、石液。", "EnglishName": "Chalcanthitum。", "medicineMaterialSource": "硫酸盐类胆矾族矿物胆矾Chalcanthite的晶体，或为硫酸作用于铜而制成的含水硫酸铜结晶。", "channelTropism": "性寒，味酸、辛。归肝经、胆经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "马蹄金 matijin", "medicineMaterialAlias": "小金钱草、黄胆草、螺丕草、荷包草、肉馄饨草、黄疸草、小铜钱草、星子草、九连环。", "EnglishName": "Herba Dichondrae", "medicineMaterialSource": "旋花科植物马蹄金Dichondra repens Forst的全草。", "channelTropism": "性凉，味辛、苦。无归经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "广东刘寄奴 guangdongliujinu", "medicineMaterialAlias": "鸭脚艾、四季菜、甜菜子、珍珠菊、甜艾、鸭脚菜。", "EnglishName": "Herba Artemisiae Lactiflorae", "medicineMaterialSource": "来源于菊科植物白苞蒿Artemisia lactiflora Wall.ex DC.的全草。", "channelTropism": "性温，味苦。归心经、肝经、脾经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "铁皮石斛 tiepishihu", "medicineMaterialAlias": "耳环石斛、风斗、枫斗、黑节。", "EnglishName": "Dendrobii Officmalis Caulis。", "medicineMaterialSource": "兰科植物铁皮石斛Dendrobium officinale Kimura et Migo的干燥茎。", "channelTropism": "性微寒，味甘。归胃经、肾经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "翼首草 yishoucao", "medicineMaterialAlias": "棒子头、狮子草、榜孜多乌(藏药)。", "EnglishName": "Pterocephali Herba。", "medicineMaterialSource": "来源于川续断科植物匙叶翼首草Pterocephalus hookeri(C.B.Clarke)Hoeck的干燥全草。", "channelTropism": "性苦，味寒。无归经。","button":"<button>nothibg</button>"},
+{"medicineMaterialName": "红粉 hongfen", "medicineMaterialAlias": "红升丹、升药、灵药、三白丹、三仙散、升丹、三仙丹。", "EnglishName": "Hydrargyri Oxydum Rubrum", "medicineMaterialSource": "人工炼制的红氧化汞Hydrargyri Oxydum Rubrum。", "channelTropism": "性热，味辛。有大毒。归肺经、脾经。","button":"<button>nothibg</button>"},
+]
+    return HttpResponse('{"code":0,"msg":"","count":20,"data":'+json.dumps(data, ensure_ascii=False)+"}", content_type="application/json")
 # 药店，店主注册
 def register(request):
     # 注册界面逻辑的处理
