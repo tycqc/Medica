@@ -95,6 +95,7 @@
   width: 10%;
   font-size: medium;
   background: #dddddd;
+  vertical-align: middle;
 }
 .staff_info table tr td.second{
   width: 70%;

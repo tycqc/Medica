@@ -6,11 +6,11 @@
 <div class="right_content clearfix">
     <h3 class="common_title2">基本信息</h3>
     <div class="site_con clearfix">
-        <ul class="user_info_list2">
-            <li><span>药店用户名:</span>{{ store.username }}</li>
-            <li><span>药店名:</span>{{ store.name }}</li>
-            <li><span>药店简介:</span>{{ store.desc }}</li>
-        </ul>
+        <table class="user_info_table">
+            <tr><td class="first">药店用户名:</td><td class="second">{{ store.username }}</td></tr>
+            <tr><td class="first">药店名:</td><td class="second">{{ store.name }}</td></tr>
+            <tr><td class="first">药店简介:</td><td class="second">{{ store.desc }}</td></tr>
+        </table>
     </div>
     {% if saleINFO %}
     <div class="site_con clearfix">

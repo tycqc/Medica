@@ -6,61 +6,53 @@
 {% block right_content %}
 <div class="right_content clearfix">
     <h3 class="common_title2">药品详情</h3>
-    <div class="reg_form_medicine clearfix">
+    <div class="medicine_info clearfix">
             <table id="medicine_table">
                 <tr>
-                    <td>
-                        ID:{{ obj.pk }}
-                    </td>
-                    <td>
-                        药品编号:{{ obj.medicinecode }}
-                    </td>
-                </tr>
+				<td class="first">ID：</td>
+				<td class="second">{{ obj.pk }}</td>
+				<td class="first">药品编号:</td>
+				<td class="second">{{ obj.medicinecode }}</td>
+			</tr>
+			<tr>
+				<td class="first">名称:</td>
+				<td class="second">{{ obj.name }}</td>
+				<td class="first">库存:</td>
+				<td class="second">{{ obj.name }}</td>
+			</tr>
+			<tr>
+				<td class="first">价格:</td>
+				<td class="second">{{ obj.price }}</td>
+				<td class="first">状态:</td>
+				<td class="second">{{ obj.status }}</td>
+			</tr><tr>
+				<td class="first">种类:</td>
+				<td class="second">{{ obj.type }}</td>
+				<td class="first">销量:</td>
+				<td class="second">{{ obj.sales }}</td>
+			</tr>
                 <tr>
-                    <td>
-                        名称:{{ obj.name }}
+				<td class="first">生产单位:</td>
+				<td class="second" colspan="3">{{ obj.unite }}</td>
+			</tr>
+			<tr>
+				<td class="first">简介:</td>
+				<td class="second" colspan="3" height=80px>{{ obj.desc }}</td>
+			</tr>
+				{% csrf_token %}
+				<tr>
+                    <td colspan="2";class="button">
+                        <button class="button1" onclick="del_medicine({{ obj.id }})">删除</button>
+{#                        <button class="button1" onclick="window.location.href='../del_medicine/?id={{ obj.id }}'">删除</button>#}
                     </td>
-                    <td>
-                        库存:{{ obj.stock }}
+					<td colspan="2"; class="button">
+                    <button class="button1" onclick="window.location.href='../edit_medicine/?id={{ obj.id }}'">编辑</button>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        价格:{{ obj.price }}
-                    </td>
-                    <td>
-                        状态:{{ obj.status }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        种类:{{ obj.type }}
-                    </td>
-                    <td>
-                        销量:{{ obj.sales }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        生产单位:{{ obj.unite }}
-                    </td>
-                </tr>
-                <tr>
-                    <td height=80px>
-                        简介:{{ obj.desc }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-{#                    <button value="" name="" onclick="window.location.href='../del_medicine/?id={{ obj.id }}'">删除</button>#}
-                    <button value="" name="" onclick="window.location.href='../del_medicine/?id={{ obj.id }}'">删除</button>
-                    </td>
-                    <td>
-                     <button value="" name="" onclick="window.location.href='../edit_medicine/?id={{ obj.id }}'">编辑</button>
-                    </td>
-                </tr>
+				</tr>
+		</table>
+	</div>
 
-            </table>
+
     </div>
 </div>
 {% endblock right_content %}

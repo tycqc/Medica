@@ -16,12 +16,7 @@ def add_medicine(request):
     if request.session.get('is_login', None):
         username = request.session.get('username')
         context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
+
     else:
         return login(request)
 
@@ -102,196 +97,6 @@ def add_medicine(request):
 #         context["medicine_model"] = medicine_model
 #         return render(request, "medicine/find_medicine_1.html",context = context)
 
-def del_medicine(request):
-    context = {
-        "page": "find_medicine"
-    }
-    if request.session.get('is_login', None):
-        username = request.session.get('username')
-        store = request.session.get('storeid')
-        context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
-    else:
-        return login(request)
-
-    pk = request.GET.get('id')
-    obj= Medicine.objects.get(id=pk)
-    obj.delete()
-    return redirect(reverse('medicine:find_medicine'))
-    #return HttpResponse('删除成功')
-
-def edit_medicine(request):
-    context = {
-        "page": "find_medicine"
-    }
-    if request.session.get('is_login', None):
-        username = request.session.get('username')
-        store = request.session.get('storeid')
-        context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
-    else:
-        return login(request)
-
-    pk = request.GET.get('id')
-    obj = Medicine.objects.get(id=pk)
-    if request.method == "POST":
-        name=request.POST.get("name")
-        medicinecode=request.POST.get("medicinecode")
-        price=request.POST.get("price")
-        desc=request.POST.get("desc")
-        stock=request.POST.get("stock")
-        unite = request.POST.get("unite")
-        type=request.POST.get("type")
-        status=request.POST.get("status")
-        #image=request.FILES.get("medicineimg")
-
-        obj.name = name
-        obj.price = price
-        obj.status = status
-        obj.desc = desc
-        obj.stock = stock
-        obj.medicinecode = medicinecode
-        obj.unite = unite
-        obj.type_id = type
-
-        obj.save()
-        return redirect(reverse('medicine:find_medicine'))
-    context['obj'] = obj
-    return render(request, "medicine/edit_medicine.html",context =context)
-
-def medicine_detail(request):
-    context = {
-        "page": "find_medicine"
-    }
-    if request.session.get('is_login', None):
-        username = request.session.get('username')
-        store = request.session.get('storeid')
-        context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
-    else:
-        return login(request)
-
-    pk = request.GET.get('id')
-    obj = Medicine.objects.get(id=pk)
-    context["obj"] = obj
-    return render(request, "medicine/medicine_detail.html",context = context)
-
-def add_to_cart(request):
-    context = {
-        "page": "find_medicine"
-    }
-    if request.session.get('is_login', None):
-        username = request.session.get('username')
-        store = request.session.get('storeid')
-        context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
-    else:
-        return login(request)
-
-    goodsid = request.GET.get('id')
-    goodsnum = request.GET.get('goodsnum')
-
-    # 获取购物车里的数据
-    carts = Cart.objects.filter(C_store_id=request.session.get('storeid')).filter(C_goods_id=goodsid)
-    # 有数据
-    if carts.exists():
-        c_obj = carts.first()
-        c_obj.C_goods_num = goodsnum
-
-    # 没有数据创建新的
-    else:
-        c_obj = Cart()
-        c_obj.C_goods_id = goodsid
-        c_obj.C_store_id = request.session.get('storeid')
-        c_obj.C_goods_num = goodsnum
-
-    c_obj.save()
-
-    if c_obj.C_goods_num == 0:
-        Cart.objects.filter(pk=c_obj.id).delete()
-
-    return redirect(reverse('medicine:cart_list'))
-
-
-def cart_list(request):
-    context = {
-        "page": "find_medicine"
-    }
-    if request.session.get('is_login', None):
-        username = request.session.get('username')
-        store = request.session.get('storeid')
-        context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
-    else:
-        return login(request)
-
-    carts = Cart.objects.filter(C_store=request.session.get('storeid'))
-    carts_ = []
-    for med in carts:
-        price = med.C_goods.price * med.C_goods_num
-        context = {
-            'id': med.id,
-            'med_name': med.C_goods.name,
-            'med_price': price,
-            'med_count': med.C_goods_num,
-            'med_id': med.C_goods_id,
-        }
-        carts_.append(context)
-    context["carts"] = carts_
-    return render(request, "medicine/cart_list.html", context = context)
-
-
-def del_cart_list(request):
-    context = {
-        "page": "find_medicine"
-    }
-    if request.session.get('is_login', None):
-        username = request.session.get('username')
-        store = request.session.get('storeid')
-        context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
-    else:
-        return login(request)
-
-    pk = request.GET.get('id')
-    obj = Cart.objects.get(id=pk)
-    obj.delete()
-    return redirect(reverse('medicine:cart_list'))
-
-def get_tag(dict_):
-    tag = dict_.get('tag')
-    return tag
-
 def find_medicine(request):
     context = {
         "page": "find_medicine"
@@ -300,12 +105,7 @@ def find_medicine(request):
         username = request.session.get('username')
         store = request.session.get('storeid')
         context['username'] = username
-        # if request.session.get('identity') != 'shopkeeper':
-        #     context['errmsg'] = '请以店主账号登录'
-        #     shopkeeper = False
-        #     return render(request, 'store/find_staff.html', context=context)
-        # else:
-        #     shopkeeper = True
+
     else:
         return login(request)
     if request.method == 'POST':
@@ -313,6 +113,7 @@ def find_medicine(request):
         context["name"] = name
     return render(request, "medicine/find_medicine.html", context = context)
 
+# 返回json数据
 def find_medicine_data(request):
     context = {
         "page": "find_medicine"
@@ -397,3 +198,163 @@ def find_medicine_data(request):
     return HttpResponse(
         '{"code":0,"msg":"","count":' + str(num) + ',"data":' + json.dumps(medicines, ensure_ascii=False) + "}",
         content_type="application/json")
+
+def del_medicine(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+
+    else:
+        return login(request)
+
+    pk = request.GET.get('id')
+    obj= Medicine.objects.get(id=pk)
+    obj.delete()
+    return redirect(reverse('medicine:find_medicine'))
+    #return HttpResponse('删除成功')
+
+def edit_medicine(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+
+    else:
+        return login(request)
+
+    pk = request.GET.get('id')
+    obj = Medicine.objects.get(id=pk)
+    if request.method == "POST":
+        name=request.POST.get("name")
+        medicinecode=request.POST.get("medicinecode")
+        price=request.POST.get("price")
+        desc=request.POST.get("desc")
+        stock=request.POST.get("stock")
+        unite = request.POST.get("unite")
+        type=request.POST.get("type")
+        status=request.POST.get("status")
+        #image=request.FILES.get("medicineimg")
+
+        obj.name = name
+        obj.price = price
+        obj.status = status
+        obj.desc = desc
+        obj.stock = stock
+        obj.medicinecode = medicinecode
+        obj.unite = unite
+        obj.type_id = type
+
+        obj.save()
+        return redirect(reverse('medicine:find_medicine'))
+    context['obj'] = obj
+    return render(request, "medicine/edit_medicine.html",context =context)
+
+def medicine_detail(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+
+    else:
+        return login(request)
+
+    pk = request.GET.get('id')
+    obj = Medicine.objects.get(id=pk)
+    context["obj"] = obj
+    return render(request, "medicine/medicine_detail.html",context = context)
+
+def add_to_cart(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+    else:
+        return login(request)
+
+    goodsid = request.GET.get('id')
+    goodsnum = request.GET.get('goodsnum')
+
+    # 获取购物车里的数据
+    carts = Cart.objects.filter(C_store_id=request.session.get('storeid')).filter(C_goods_id=goodsid)
+    # 有数据
+    if carts.exists():
+        c_obj = carts.first()
+        c_obj.C_goods_num = goodsnum
+
+    # 没有数据创建新的
+    else:
+        c_obj = Cart()
+        c_obj.C_goods_id = goodsid
+        c_obj.C_store_id = request.session.get('storeid')
+        c_obj.C_goods_num = goodsnum
+
+    c_obj.save()
+
+    if c_obj.C_goods_num == 0:
+        Cart.objects.filter(pk=c_obj.id).delete()
+
+    return redirect(reverse('medicine:cart_list'))
+
+
+def cart_list(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+
+    else:
+        return login(request)
+
+    carts = Cart.objects.filter(C_store=request.session.get('storeid'))
+    carts_ = []
+    for med in carts:
+        price = med.C_goods.price * med.C_goods_num
+        context = {
+            'id': med.id,
+            'med_name': med.C_goods.name,
+            'med_price': price,
+            'med_count': med.C_goods_num,
+            'med_id': med.C_goods_id,
+        }
+        carts_.append(context)
+    context["carts"] = carts_
+    return render(request, "medicine/cart_list.html", context = context)
+
+
+def del_cart_list(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+
+    else:
+        return login(request)
+
+    pk = request.GET.get('id')
+    obj = Cart.objects.get(id=pk)
+    obj.delete()
+    return redirect(reverse('medicine:cart_list'))
+
+def get_tag(dict_):
+    tag = dict_.get('tag')
+    return tag
+

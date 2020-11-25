@@ -1,0 +1,23 @@
+.user_info_table {
+  background-color: #f9f9f9;
+  margin: 10px 0 15px;
+  padding: 10px 0;
+}
+
+.user_info_table tr {
+  line-height: 30px;
+  text-indent: 30px;
+  font-size: 14px;
+}
+
+.user_info_table tr td.first {
+  width: 200px;
+  vertical-align: top;
+  text-align: right;
+    font-size: medium;
+}
+
+.user_info_table tr td.second {
+  width: 800px;
+  text-align: left;
+}

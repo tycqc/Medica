@@ -5,19 +5,19 @@
 {# 用户中心右侧内容块 #}
 {% block right_content %}
 <div class="right_content clearfix">
-    <h3 class="common_title2">基本信息</h3>
+    <h3 class="common_title2">用户信息</h3>
 
     <div class="site_con clearfix">
-        <ul class="user_info_list2">
-            <li><span>药店用户名:</span>{{ store.username }}</li>
-            <li><span>药品经营许可证号码:</span>{{ store.ypjyxkzcode }}</li>
-            <li><span>gsp证书编号:</span>{{ store.gspcode }}</li>
-            <li><span>药店名:</span>{{ store.name }}</li>
-            <li><span>药店简介:</span>{{ store.desc }}</li>
-            <li><span>药店地址:</span>{{ store.address }}</li>
-            <li><span>邮政编码:</span>{{ store.postcode }}</li>
-            <li><span>开办时间:</span>{{ store.time }}</li>
-        </ul>
+        <table class="user_info_table">
+            <tr><td class="first">药店用户名:</td><td class="second">{{ store.username }}</td></tr>
+            <tr><td class="first">药品经营许可证号码:</td><td class="second">{{ store.ypjyxkzcode }}</td></tr>
+            <tr><td class="first">gsp证书编号:</td><td class="second">{{ store.gspcode }}</td></tr>
+            <tr><td class="first">药店名:</td><td class="second">{{ store.name }}</td></tr>
+            <tr><td class="first">药店地址:</td><td class="second">{{ store.address }}</td></tr>
+            <tr><td class="first">邮政编码:</td><td class="second">{{ store.postcode }}</td></tr>
+            <tr><td class="first">开办时间:</td><td class="second">{{ store.time }}</td></tr>
+            <tr><td class="first">药店简介:</td><td class="second">{{ store.desc }}</td></tr>
+        </table>
     </div>
 
     <h3 class="common_title2">最近浏览</h3>
