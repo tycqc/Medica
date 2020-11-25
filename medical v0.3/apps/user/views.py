@@ -6,8 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_redis import get_redis_connection
 
-from apps.user import models
-from apps.user.serializer.account import MessageSerializer, LoginSerializer
+from user import models
+from user.serializer.account import MessageSerializer, LoginSerializer
 
 
 class MessageView(APIView):
