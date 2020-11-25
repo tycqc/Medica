@@ -6,8 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_redis import get_redis_connection
 
-from user import models
-from user.serializer.account import MessageSerializer, LoginSerializer
+from apps.user import models
+from apps.user.serializer.account import MessageSerializer, LoginSerializer
 
 
 class MessageView(APIView):
@@ -58,6 +58,20 @@ class LoginView(APIView):
 
         return Response({"status": True, "data": {"token": user_object.token, 'phone': phone}})
 
+class EditView(APIView):
+
+    def post(self, request):
+        token = request.data.get('token')
+        name = request.data.get('name')
+        addr = request.data.get('addr')
+        desc = request.data.get('desc')
+        user_object= models.User.objects.get(token=token)
+        user_object.name=name
+        user_object.addr=addr
+        user_object.desc=desc
+        user_object.save()
+
+        return Response({"status": True})
 
 
 
