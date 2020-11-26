@@ -8,6 +8,7 @@ from django.urls import reverse
 from staff.models import Staff
 from medicine.models import Medicine,Cart
 from orders.models import Orders,OrderGoods
+from store.models import medstore
 
 
 #线下订单添加
@@ -110,10 +111,14 @@ def staff_order_add(request):
 
         paymethod = ['现金支付', '微信支付', '支付宝']
         orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
-
+        try:
+            staffname = Staff.objects.get(id=staff_id).name
+        except:
+            stored1 = request.session.get('storeid')
+            staffname = medstore.objects.get(pk=stored1).username
         order_ = {
             'order_id': order.order_id,
-            'staff': Staff.objects.get(id=staff_id).name,
+            'staff': staffname,
             # 'address': Order.addr,
             # 'receiver': address_.receiver,
             # 'phone': address_.phone,

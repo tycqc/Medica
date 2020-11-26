@@ -169,7 +169,7 @@ def find_medicine_data(request):
             data[
                 'medicine_detail'] = '<button class="button1" onclick="window.location.href=\'../medicine_detail/?id=' + id + '\'">详情</button>'
             data[
-                'add_to_cart'] = '<button class="button1" onclick="window.location.href=\'../add_to_cart/?id=' + id + '&goodsnum=1\'">添加到购物车</button>'
+                'add_to_cart'] = '<button class="button1" onclick="add('+id+')">添加到购物车</button>'
             del data['image']
             all_medicine.append(data)
         num = len(all_medicine)
@@ -183,7 +183,7 @@ def find_medicine_data(request):
             data['del_medicine'] ='<button class="button1" onclick="del_medicine('+id+')">删除</button>'
             data['edit_medicine'] = '<button class="button1" onclick="window.location.href=\'../edit_medicine/?id='+id+'\'">编辑</button>'
             data['medicine_detail'] ='<button class="button1" onclick="window.location.href=\'../medicine_detail/?id='+id+'\'">详情</button>'
-            data['add_to_cart'] ='<button class="button1" onclick="window.location.href=\'../add_to_cart/?id='+id+'&goodsnum=1\'">添加到购物车</button>'
+            data['add_to_cart'] ='<button class="button1" onclick="add('+id+')">添加到购物车</button>'
             del data['image']
             all_medicine.append(data)
         num = len(all_medicine)
@@ -284,32 +284,82 @@ def add_to_cart(request):
     else:
         return login(request)
 
-    goodsid = request.GET.get('id')
-    goodsnum = request.GET.get('goodsnum')
+    if request.method =="POST":
+        goodsid = request.POST.get('id')
+        goodsnum = request.POST.get('goodsnum')
+        Cart1 = Cart.objects.filter(C_goods_id=goodsid).filter(C_store_id=store)
+        if Cart1.exists():
+            Cart1 = Cart1[0]
+            Cart1.C_goods_num = goodsnum
+            Cart1.save()
+        else:
+            c_obj = Cart()
+            c_obj.C_goods_id = goodsid
+            c_obj.C_store_id = store
+            c_obj.C_goods_num = goodsnum
+            c_obj.save()
 
-    # 获取购物车里的数据
-    carts = Cart.objects.filter(C_store_id=request.session.get('storeid')).filter(C_goods_id=goodsid)
-    # 有数据
-    if carts.exists():
-        c_obj = carts.first()
-        c_obj.C_goods_num = goodsnum
+        if goodsnum == 0:
+            Cart.objects.filter(C_goods_id=goodsid).filter(C_store_id=store).filter(C_goods_num=goodsnum).delete()
+        return redirect(reverse('medicine:cart_list'))
+    elif request.method =="GET":
+        goodsid = request.GET.get('id')
+        if (goodsid == None):
+            return redirect(reverse('medicine:find_medicine'))
+        # 获取购物车里的数据
+        carts = Cart.objects.filter(C_store_id=request.session.get('storeid')).filter(C_goods_id=goodsid)
+        # 有数据
+        if carts.exists():
+            c_obj = carts.first()
+            goodsnum = c_obj.C_goods_num
 
-    # 没有数据创建新的
+        # 没有数据创建新的
+        else:
+            goodsnum = 1
+
+        if goodsnum == 0:
+            Cart.objects.filter(pk=c_obj.id).delete()
     else:
-        c_obj = Cart()
-        c_obj.C_goods_id = goodsid
-        c_obj.C_store_id = request.session.get('storeid')
-        c_obj.C_goods_num = goodsnum
+        print("ok")
+        return redirect(reverse('medicine:find_medicine'))
+    good = Medicine.objects.filter(pk=goodsid)
+    context["good"] = good[0]
+    context["goodnum"] = goodsnum
+    return render(request, "medicine/add_to_cart.html",context = context)
 
-    c_obj.save()
+def get_allprice(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+    else:
+        return login(request)
 
-    if c_obj.C_goods_num == 0:
-        Cart.objects.filter(pk=c_obj.id).delete()
-
-    return redirect(reverse('medicine:cart_list'))
-
+    carts = Cart.objects.filter(C_store=store)
+    allprice = 0
+    for med in carts:
+        price = med.C_goods.price * med.C_goods_num
+        allprice += price
+    return allprice
 
 def cart_list(request):
+    context = {
+        "page": "find_medicine"
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        store = request.session.get('storeid')
+        context['username'] = username
+        allprice = get_allprice(request)
+    else:
+        return login(request)
+    context['allprice'] = allprice
+    return render(request, "medicine/cart_list.html", context = context)
+
+def cart_list_data(request):
     context = {
         "page": "find_medicine"
     }
@@ -321,21 +371,36 @@ def cart_list(request):
     else:
         return login(request)
 
-    carts = Cart.objects.filter(C_store=request.session.get('storeid'))
+    carts = Cart.objects.filter(C_store=store)
     carts_ = []
+    allprice = 0
     for med in carts:
         price = med.C_goods.price * med.C_goods_num
-        context = {
+        allprice += price
+        cart1 = {
             'id': med.id,
             'med_name': med.C_goods.name,
-            'med_price': price,
+            'price': price,
             'med_count': med.C_goods_num,
             'med_id': med.C_goods_id,
+            'med_price': med.C_goods.price
         }
-        carts_.append(context)
-    context["carts"] = carts_
-    return render(request, "medicine/cart_list.html", context = context)
-
+        carts_.append(cart1)
+    for data in carts_:
+        med_id = str(data['med_id'])
+        id = str(data['id'])
+        data['med_price'] = str(data['med_price'])+"元"
+        data['price'] = str(data['price'])+"元"  
+        data['del_cart'] ='<button class="button1" onclick="del_cart('+id+')">删除</button>'
+        data['edit_cart'] ='<button class="button1" onclick="add('+med_id+')">修改数量</button>'
+    num = len(carts_)+1
+    cart1 ={
+        'price':str(allprice)+"元"
+    }
+    carts_.append(cart1)
+    return HttpResponse(
+        '{"code":0,"msg":"","count":' + str(num) + ',"data":' + json.dumps(carts_, ensure_ascii=False) + "}",
+        content_type="application/json")
 
 def del_cart_list(request):
     context = {
