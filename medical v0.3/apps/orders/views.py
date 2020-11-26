@@ -9,10 +9,27 @@ from staff.models import Staff
 from medicine.models import Medicine,Cart
 from orders.models import Orders,OrderGoods
 from store.models import medstore
-
+from store.views import login
 
 #线下订单添加
 def staff_order_add(request):
+    # 判断是否登录
+    context = {
+        'page': 'homepage_update',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
+
     store_id = request.session.get('storeid')
     staff_id = request.session.get('staffid')
 
@@ -133,9 +150,24 @@ def staff_order_add(request):
         return render(request, "orders/staff_order_add.html", {'ordergoods': ordergoods, 'order': order_})
 
 
-
-
 def order_details(request):
+    # 判断是否登录
+    context = {
+        'page': 'homepage_update',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
+
     id = request.GET.get("order_id")
 
     Order = Orders.objects.get(order_id=id)
@@ -174,9 +206,24 @@ def order_details(request):
 
     return render(request, "orders/order_details.html", {'context': context})
 
+def order_list(request):    # 判断是否登录
+    context = {
+        'page': 'homepage_update',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
 
 
-def order_list(request):
         if request.method == "POST":
             search = request.POST.get("search_text")
             id = request.session.get('storeid')
@@ -278,6 +325,23 @@ def order_list(request):
             return render(request, "orders/find_orders.html", {"orderlist": Orderlist})
 
 def del_order(request):
+    # 判断是否登录
+    context = {
+        'page': 'homepage_update',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
+
     id = request.GET.get('order_id')
     obj= Orders.objects.get(order_id=id)
     obj.delete()
@@ -287,6 +351,23 @@ def del_order(request):
     return redirect(reverse('orders:order_list'))
 
 def finance(request):
+    # 判断是否登录
+    context = {
+        'page': 'homepage_update',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/USER_INFO_update.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
+
     year = request.POST.get('time1')
     month = request.POST.get('time2')
     id = request.session.get('storeid')
