@@ -3,15 +3,6 @@
 {# 用户中心右侧内容块 #}
 {% block right_content %}
     <div class="right_content clearfix">
-        <h3 class="common_title2">订单查询</h3>
-
-        <form action="" method="post" class="search_con">
-            {% csrf_token %}
-            <label for="订单查询"></label>
-            <input type="text" class="input_text fl" name="" placeholder="查询订单">
-            <input type="button" class="input_btn fr" name="" value="查询">
-        </form>
-
 
         <h3 class="common_title2">
             订单详情&nbsp&nbsp&nbsp&nbsp
@@ -65,25 +56,31 @@
             </tr>
             </tbody>
         </table>
-    </div>
 
+        <br>
+        <h3 class="common_title2">
+            药品信息&nbsp&nbsp&nbsp&nbsp
+            <label>
+                <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+            </label>
+        </h3>
 
-    <h3 class="common_title2">
-        药品信息&nbsp&nbsp&nbsp&nbsp
-        <label>
-            <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
-        </label>
-    </h3>
-
-    <div class="reg_form2 clearfix fr">
-        <table border="0">
-            <tr></tr>
+        <table class="layui-table">
+            <colgroup>
+                <col width="30%">
+                <col width="30%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
+            <thead>
             <tr>
-                <td>药品编号</td>
-                <td>药品名称</td>
-                <td>药品数量</td>
-                <td>药品价格</td>
+                <th text-align="center">药品编号</th>
+                <th text-align="center">药品名称</th>
+                <th text-align="center">药品数量</th>
+                <th text-align="center">药品价格</th>
             </tr>
+            </thead>
+            <tbody>
             {% for i in context.order_med %}
                 <tr>
                     <td>{{ i.med_code }}</td>
@@ -92,8 +89,7 @@
                     <td>{{ i.med_price }}</td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
-        <br>
-    </div>
     </div>
 {% endblock right_content %}

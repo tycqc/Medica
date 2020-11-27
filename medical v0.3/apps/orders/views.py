@@ -150,7 +150,7 @@ def staff_order_add(request):
 def order_details(request):
     # 判断是否登录
     context = {
-        'page': 'homepage_update',
+        'page': 'order_list',
     }
     if request.session.get('is_login', None):
         username = request.session.get('username')
@@ -167,7 +167,7 @@ def order_details(request):
     paymethod = ['现金支付', '微信支付', '支付宝']
     orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
 
-    context = {
+    context1 = {
         'order': {
             'order_id': Order.order_id,
             'staff': Order.staff.name,
@@ -194,9 +194,9 @@ def order_details(request):
             'med_count': med.count,
             'med_price': med.price,
         }
-        context['order_med'].append(med_detail)
-
-    return render(request, "orders/order_details.html", {'context': context})
+        context1['order_med'].append(med_detail)
+    context['context'] = context1
+    return render(request, "orders/order_details.html", context = context)
 
 
 def order_list(request):
@@ -211,7 +211,7 @@ def order_list(request):
     else:
         return login(request)
 
-    if request.method == "POST":
+    if request.POST.get("search_text") != None:
         search = request.POST.get("search_text")
         context['search_text'] = search
         id = request.session.get('storeid')
@@ -308,8 +308,6 @@ def order_list(request):
 
             Orderlist.append(context1)
     context['orderlist'] = Orderlist
-    print(context['page'])
-    print(Orderlist[0])
     return render(request, "orders/find_orders.html", context = context)
 
 
@@ -433,6 +431,11 @@ def find_order_data(request):
         if i >= num:
             break
         order.append(Orderlist[i])
+    for order1 in order:
+        id = order1['order_id']
+        order1['del_cart'] ='<button class="button1" onclick="del_order('+id+')">删除</button>'
+        order1['order_details'] ='<button class="button1" onclick="window.location.href=\'../order_details/?order_id=' + id + '\'">详情</button>'
+
     return HttpResponse(
         '{"code":0,"msg":"","count":' + str(num) + ',"data":' + json.dumps(order, ensure_ascii=False) + "}",
         content_type="application/json")
@@ -465,7 +468,7 @@ def find_order_data(request):
 def del_order(request):
     # 判断是否登录
     context = {
-        'page': 'homepage_update',
+        'page': 'order_list',
     }
     if request.session.get('is_login', None):
         username = request.session.get('username')

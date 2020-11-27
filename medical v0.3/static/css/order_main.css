@@ -1,0 +1,10 @@
+.button1 {
+  width: 100%;
+  background: none;
+  border: 0px;
+  height: 38px;
+  outline: none;
+  text-indent: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}

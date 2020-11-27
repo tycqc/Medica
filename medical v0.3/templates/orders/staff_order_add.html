@@ -44,7 +44,7 @@
             </tr>
             </tbody>
         </table>
-
+        <br>
         <h3 class="common_title2">包含药品</h3>
 
         <table class="layui-table" lay-skin="row">
@@ -70,7 +70,7 @@
             {% endfor %}
             </tbody>
         </table>
-
+{% if order.total_count != 0 %}
         <form class="layui-form layui-form-pane" action="" method="post">
             {% csrf_token %}
             <div class="layui-form-item" pane>
@@ -81,17 +81,10 @@
                     <input type="radio" name="pay_method" value="2" title="支付宝">
                 </div>
             </div>
-            <div class="layui-form-item" pane>
-                <div class="layui-input-inline">
-                    <input type="text" name="total_count" value="{{ order.total_count }}" lay-filter="depCart"
-                           style="display: none" autocomplete="off">
-                </div>
-            </div>
-
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formAddorder">确认订单</button>
+                    <button class="layui-btn" lay-submit lay-filter="formVerify">确认订单</button>
                     <button class="layui-btn layui-btn-disabled" disabled>如需修改，请返回购物车</button>
                     {% if errmsg %}
                         <button class="layui-btn layui-btn-danger">{{ errmsg }}</button>
@@ -105,35 +98,68 @@
                     , layer = layui.layer
                     , layedit = layui.layedit
                     , laydate = layui.laydate;
-                form.render();
-
+                form.render('radio')
                 //创建一个编辑器
                 var editIndex = layedit.build('LAY_demo_editor');
 
                 //自定义验证规则
                 form.verify({
                     depCart: function (value) {
-                        if (Number(value) === 0) {
-                            return '购物车还没有药品';
+                        if (Number(value) == 0) {
+                            return '购物车里还没有药品';
                         }
                         if (Number(value) < 0) {
-                            return '药品数量小于0，请重新查看购物车';
+                            return '购物车数据错误，请检查购物车';
                         }
                     }
+
                 });
 
                 //监听提交
-                form.on('submit(formAddorder)', function (data) {
+                form.on('submit(formVerify)', function (data) {
                     layer.msg('添加成功', {
                         icon: 1,
                         time: 3000
                     });
-                    location.reload(); //刷新父页面
                 });
-
             });
 
         </script>
-
+        {#        <script>#}
+        {#            layui.use(['form', 'layedit', 'laydate'], function () {#}
+        {#                var form = layui.form#}
+        {#                    , layer = layui.layer#}
+        {#                    , layedit = layui.layedit#}
+        {#                    , laydate = layui.laydate;#}
+        {##}
+        {#                //创建一个编辑器#}
+        {#                var editIndex = layedit.build('LAY_demo_editor');#}
+        {##}
+        {#                //自定义验证规则#}
+        {#                form.verify({#}
+        {#                    depCart: function (value) {#}
+        {#                        if (Number(value) == 0) {#}
+        {#                            return '购物车里还没有药品';#}
+        {#                        }#}
+        {#                        if (Number(value) < 0) {#}
+        {#                            return '购物车数据错误，请检查购物车';#}
+        {#                        }#}
+        {#                    }#}
+        {##}
+        {#                });#}
+        {##}
+        {##}
+        {#                //监听提交#}
+        {#                form.on('submit(formVerify)', function (data) {#}
+        {#                    layer.msg('添加成功', {#}
+        {#                        icon: 1,#}
+        {#                        time: 2000#}
+        {#                    })#}
+        {#                    return false;#}
+        {#                });#}
+        {##}
+        {#            });#}
+        {#        </script>#}
+{% endif %}
     </div>
 {% endblock right_content %}
