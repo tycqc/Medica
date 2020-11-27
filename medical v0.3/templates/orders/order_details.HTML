@@ -2,88 +2,98 @@
 
 {# 用户中心右侧内容块 #}
 {% block right_content %}
-<div class="right_content clearfix">
-	<h3 class="common_title2">订单查询</h3>
+    <div class="right_content clearfix">
+        <h3 class="common_title2">订单查询</h3>
 
-	<form action="" method="post" class="search_con">
-		{% csrf_token %}
-		<label for="订单查询"></label>
-		<input type="text" class="input_text fl" name="" placeholder="查询订单">
-		<input type="button" class="input_btn fr" name="" value="查询">
-	</form>
-
-
-	<h3 class="common_title2">
-		订单详情&nbsp&nbsp&nbsp&nbsp
-		<label>
-			<font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
-		</label>
-	</h3>
-
-	<div class="reg_form2 clearfix">
-		<table bgcolor="#7fffd4">
-			<tr>
-				<td>
-					订单ID:{{ context.order.order_id }}
-				</td>
-				<td>
-					操作员:{{ context.order.staff }}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					支付方式:{{ context.order.pay_method }}
-				</td>
-				<td>
-					总件数:{{ context.order.total_count }}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					药品总价:{{ context.order.med_price }}
-				</td>
-				<td>
-					运费:{{ context.order.transit_price }}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					合计总价:{{ context.order.total_price }}
-				</td>
-				<td>
-					进度状态:{{ context.order.order_status }}
-				</td>
-			</tr>
-		</table>
-	</div>
+        <form action="" method="post" class="search_con">
+            {% csrf_token %}
+            <label for="订单查询"></label>
+            <input type="text" class="input_text fl" name="" placeholder="查询订单">
+            <input type="button" class="input_btn fr" name="" value="查询">
+        </form>
 
 
-	<h3 class="common_title2">
-		药品信息&nbsp&nbsp&nbsp&nbsp
-		<label>
-			<font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
-		</label>
-	</h3>
+        <h3 class="common_title2">
+            订单详情&nbsp&nbsp&nbsp&nbsp
+            <label>
+                <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+            </label>
+        </h3>
 
-	<div class="reg_form2 clearfix fr">
-		<table border="0">
-			<tr></tr>
-			<tr>
-				<td>药品编号</td>
-				<td>药品名称</td>
-				<td>药品数量</td>
-				<td>药品价格</td>
-			</tr>
-			{% for i in context.order_med %}
-			<tr>
-				<td>{{ i.med_code}}</td>
-				<td>{{ i.med_name}}</td>
-				<td>{{ i.med_count}}</td>
-				<td>{{ i.med_price}}</td>
-			</tr>
-			{% endfor %}
-		</table>
-		<br>
-	</div>
-</div>
+        <table class="layui-table">
+            <colgroup>
+                <col width="30%">
+                <col width="60%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th colspan="2" text-align="center">订单信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>订单ID:</td>
+                <td>{{ context.order.order_id }}</td>
+            </tr>
+            <tr>
+                <td>操作员:</td>
+                <td>{{ context.order.staff }}</td>
+            </tr>
+            <tr>
+                <td>支付方式:</td>
+                <td>{{ context.order.pay_method }}</td>
+            </tr>
+            <tr>
+                <td>总件数:</td>
+                <td>{{ context.order.total_count }}</td>
+            </tr>
+            <tr>
+                <td>药品总价:</td>
+                <td>{{ context.order.med_price }}</td>
+            </tr>
+            <tr>
+                <td>运费:</td>
+                <td>{{ context.order.transit_price }}</td>
+            </tr>
+            <tr>
+                <td>合计总价:</td>
+                <td>{{ context.order.total_price }}</td>
+            </tr>
+            <tr>
+                <td>进度状态:</td>
+                <td>{{ context.order.order_status }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <h3 class="common_title2">
+        药品信息&nbsp&nbsp&nbsp&nbsp
+        <label>
+            <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+        </label>
+    </h3>
+
+    <div class="reg_form2 clearfix fr">
+        <table border="0">
+            <tr></tr>
+            <tr>
+                <td>药品编号</td>
+                <td>药品名称</td>
+                <td>药品数量</td>
+                <td>药品价格</td>
+            </tr>
+            {% for i in context.order_med %}
+                <tr>
+                    <td>{{ i.med_code }}</td>
+                    <td>{{ i.med_name }}</td>
+                    <td>{{ i.med_count }}</td>
+                    <td>{{ i.med_price }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    </div>
+    </div>
 {% endblock right_content %}

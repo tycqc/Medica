@@ -29,6 +29,7 @@ function del_cart(id) {
         // },
     });
 }
+
 function del_medicine(id) {
   layer.open({
         title: ['确认删除'],
@@ -47,6 +48,7 @@ function del_medicine(id) {
         // },
     });
 }
+
 function staff_order_add() {
   layer.open({
         title: ['确认删除'],
