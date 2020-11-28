@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>add_to_cart</title>
+  <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
+</head>
+
+<body>
+
+  <table class="layui-table">
+    <colgroup>
+      <col width="30%">
+      <col width="60%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th colspan="2" text-align="center">药品信息</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>序号</td>
+        <td>{{ good.id }}</td>
+      </tr>
+      <tr>
+        <td>药品名称</td>
+        <td>{{ good.name }}</td>
+      </tr>
+      <tr>
+        <td>药品价格</td>
+        <td>{{ good.price }}</td>
+      </tr>
+      <tr>
+        <td>药品库存</td>
+        <td>{{ good.stock }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <form class="layui-form" action="{% url 'medicine:add_to_cart' %}" method="post">
+      <input type="hidden" name="id" value="{{ good.id }}">
+      <div class="layui-form-item">
+        {% csrf_token %}
+        <label class="layui-form-label">购买数量</label>
+        <div class="layui-input-inline">
+          <input type="text" name="goodsnum" class="layui-input" placeholder="库存仅有{{ good.stock }}" 
+            lay-verify="depGoodsnum" value="{{ goodnum }}" autocomplete="off">
+          <button class="layui-btn" lay-filter="formVerify" lay-submit  style="display: none">添加</button>
+          {#          <button class="layui-btn" lay-filter="formVerify" lay-submit  style="display: none">添加</button>#}
+
+        </div>
+
+      </div>
+
+      <!-- 隐藏提交按钮，在父层中调用 -->
+
+    </form>
+  </div>
+  <script src="{% static 'js/layui/layui.js' %}"  charset="utf-8"></script>
+
+  <script>
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate;
+            form.render();
+
+            //创建一个编辑器
+            var editIndex = layedit.build('LAY_demo_editor');
+
+            //自定义验证规则
+            form.verify({
+              depGoodsnum:function (value) {
+                    if (value.length < 1) {
+                        return '还没有填写数量';
+                    }
+                    if (value.length > 0) {
+                        var reg = /^[1-9]*$/
+                        if(!reg.test(value)) {
+                          return '请输入正整数'
+                        }
+                    }
+                    if (Number(value) <= 0) {
+                        return '数量要大于0';
+                    }
+                    if (Number(value) > {{ good.stock }} ) {
+                        return '没有那么多库存';
+                    }
+                }
+                
+            });
+
+
+            //监听提交
+            form.on('submit(formVerify)', function (data) {
+                
+                var index = parent.layer.getFrameIndex(window.name);
+	              //parent.location.reload(); //刷新父页面
+                parent.layer.msg('添加成功', {
+                  icon: 1,
+                  time: 2000
+                });
+                parent.layer.close(index);
+                parent.location.reload(); //刷新父页面
+            });
+
+        });
+    </script>
+</body>
+
+</html>

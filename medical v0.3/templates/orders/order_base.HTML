@@ -4,7 +4,7 @@
 
 {# 订单管理base #}
 <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 {% load static %}
 
@@ -17,6 +17,12 @@
     </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/order_main.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/order.js' %}"></script>
+    <script src="{% static 'js/layui/layui.js' %}" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
 
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
@@ -24,26 +30,26 @@
 </head>
 
 <body>
-    {% csrf_token %}
+{% csrf_token %}
 
-    {# 顶部欢迎条 不用改#}
+{# 顶部欢迎条 不用改#}
 
-    {% block header_con %}
+{% block header_con %}
     <div class="header_con">
         <div class="header">
             <div class="welcome fl">欢迎来到medica药店管理系统!</div>
             <div class="fr">
-                {% if store.username %}
-                <div class="login_btn fl">
-                    欢迎您：<em><a href="{% url 'store:homepage' %}">{{ store.username }}</a></em> <span>|</span>
-                    <a href="{% url 'store:logout' %}">退出</a>
-                </div>
+                {% if username %}
+                    <div class="login_btn fl">
+                        欢迎您：<em><a href="{% url 'store:homepage' %}">{{ username }}</a></em> <span>|</span>
+                        <a href="{% url 'store:logout' %}">退出</a>
+                    </div>
                 {% else %}
-                <div class="login_btn fl">
-                    <a href="{% url 'store:login' %}">登录</a>
-                    <span>|</span>
-                    <a href="{% url 'store:register' %}">注册</a>
-                </div>
+                    <div class="login_btn fl">
+                        <a href="{% url 'store:login' %}">登录</a>
+                        <span>|</span>
+                        <a href="{% url 'store:register' %}">注册</a>
+                    </div>
                 {% endif %}
                 <div class="user_link fl">
                     <span>|</span>
@@ -54,12 +60,12 @@
             </div>
         </div>
     </div>
-    {% endblock header_con %}
+{% endblock header_con %}
 
 
-    {# 顶部导航栏 不用改 #}
+{# 顶部导航栏 不用改 #}
 
-    {% block search_bar %}
+{% block search_bar %}
     <div class="search_bar clearfix">
         <a href="index.html" class="logo fl"><img src="{% static 'images/logo.png' %}"></a>
         <div class="sub_page_name fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
@@ -72,24 +78,25 @@
             <a href="#">财务信息</a>
         </div>
     </div>
-    {% endblock search_bar %}
+{% endblock search_bar %}
 
 
-    {# 网站主体内容块 #}
-    {% block body %}
+{# 网站主体内容块 #}
+{% block body %}
     <div class="main_con clearfix">
         {# 左侧导航栏 不用改 #}
         {% block left_bar %}
-        <div class="left_menu_con clearfix">
-            <h3>用户中心</h3>
-            <ul>
-                <li><a href="{% url 'orders:order_list' %}" class="active" {% if page == 'order_list' %}class="active"
-                        {% endif %}>·
-                        订单查询</a></li>
-                {#                <li><a href="{% url 'store:homepage_update' %}" {% if page == 'homepage_update' %}class="active"#}
-                {#                        {% endif %}>· 订单添加</a></li>#}
-            </ul>
-        </div>
+            <div class="left_menu_con clearfix">
+                <h3>用户中心</h3>
+                <ul>
+                    <li><a href="{% url 'orders:order_list' %}"
+                           {% if page == 'order_list' %}class="active"
+                           {% endif %}>·订单查询</a></li>
+                    <li><a href="{% url 'orders:staff_order_add' %}"
+                           {% if page == 'staff_order_add' %}class="active"
+                           {% endif %}>·订单生成</a></li>
+                </ul>
+            </div>
         {% endblock left_bar %}
 
 
@@ -98,10 +105,10 @@
         {% block right_content %}
         {% endblock right_content %}
     </div>
-    {% endblock body %}
+{% endblock body %}
 
-    {# 底部导航栏 不用改 #}
-    {% block button_bar %}
+{# 底部导航栏 不用改 #}
+{% block button_bar %}
     <div class="footer">
         <div class="foot_link">
             <a href="#">关于我们</a>
@@ -119,4 +126,4 @@
     {% block bottom %}{% endblock bottom %}
     {# 网页底部引入文件块 #}
     {% block bottomfiles %}{% endblock bottomfiles %}
-    {% endblock button_bar %}
+{% endblock button_bar %}

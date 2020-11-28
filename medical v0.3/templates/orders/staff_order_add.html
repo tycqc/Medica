@@ -1,60 +1,165 @@
 {% extends 'orders/order_base.html' %}
-{% block body %}{# 网站主体内容块 #}
-<div class="main_con clearfix">
+{# 网站主体内容块 #}
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+    <div class="right_content clearfix">
+        <h3 class="common_title2">基本信息</h3>
 
-	{# 用户中心左侧导航栏 #}
-	<div class="left_menu_con clearfix">
-		<h3>用户中心</h3>
-		<ul>
-			<li><a href="{% url 'store:homepage' %}" {% if page == 'homepage' %}class="active" {% endif %}>· 账户信息</a>
-			</li>
-			<li><a href="{% url 'store:homepage_update' %}" {% if page == 'homepage_update' %}class="active"
-					{% endif %}>· 信息修改</a></li>
-			<li><a href="{% url 'store:cancellation' %}" {% if page == 'cancellation' %}class="active" {% endif %}>·
-					账号注销</a></li>
-			<li><a href="#{# {% url 'store:' %} #}" {% if page == 'cancellation' %}class="active" {% endif %}>· 订单管理</a>
-			</li>
-			<li><a href="#{# {% url 'store:cancellation' %} #}" {% if page == 'cancellation' %}class="active"
-					{% endif %}>· 员工管理</a></li>
-		</ul>
-	</div>
+        <table class="layui-table">
+            <colgroup>
+                <col width="20%">
+                <col width="30%">
+                <col width="20%">
+                <col width="30%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th colspan="4">订单信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>订单号</td>
+                <td>{{ order.order_id }}</td>
+                <td>操作员名</td>
+                <td>{{ order.staff }}</td>
+            </tr>
+            <tr>
+                <td>药品总数</td>
+                <td>{{ order.total_count }}</td>
+                <td>药品总价</td>
+                <td>{{ order.med_price }}</td>
+            </tr>
+            <tr>
+                <td>运费</td>
+                <td>{{ order.transit_price }}</td>
+                <td>总量</td>
+                <td>{{ order.total_count }}</td>
+            </tr>
+            <tr>
+                <td>订单状态</td>
+                <td>{{ order.order_status }}</td>
+                <td>订单状态</td>
+                <td>{{ order.order_status }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <h3 class="common_title2">包含药品</h3>
 
-	{# 用户中心右侧内容块 #}
-	{% block right_content %}
-	<div class="right_content clearfix">
-		<h3 class="common_title2">订单生成</h3>
+        <table class="layui-table" lay-skin="row">
+            <colgroup>
+                <col width="16%">
+                <col width="16%">
+                <col width="16%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>药品名</th>
+                <th>药品数量</th>
+                <th>药品总价</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for med in ordergoods %}
+                <tr>
+                    <td>{{ med.med_name }}</td>
+                    <td>{{ med.med_count }}</td>
+                    <td>{{ med.med_price }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% if order.total_count != 0 %}
+        <form class="layui-form layui-form-pane" action="" method="post">
+            {% csrf_token %}
+            <div class="layui-form-item" pane>
+                <label class="layui-form-label">支付方式</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="pay_method" value="0" title="现金支付" checked>
+                    <input type="radio" name="pay_method" value="1" title="微信支付">
+                    <input type="radio" name="pay_method" value="2" title="支付宝">
+                </div>
+            </div>
 
-		<div class="reg_form2 clearfix">
-			<h3 class="common_title2">基本信息</h3>
-			<div class="new_goods">
-				<ul>
-					<li><span>订单号</span>{{ order.order_id }}</li>
-					<li><span>操作员名</span>{{ order.staff }}</li>
-					<li><span>药品总数</span>{{ order.total_count }}</li>
-					<li><span>药品总价</span>{{ order.med_price }}</li>
-					<li><span>运费</span>{{ order.transit_price }}</li>
-					<li><span>总量</span>{{ order.total_count }}</li>
-					<li><span>订单状态</span>{{ order.order_status }}</li>
-					<form method="post">
-						{% csrf_token %}
-						<li>
-							<label>支付方式</label>
-							<label>现金支付</label>
-							<input type="radio" value="0" name="pay_method" />
-							<label>微信支付</label>
-							<input type="radio" value="1" name="pay_method" />
-							<label>支付宝</label>
-							<input type="radio" value="2" name="pay_method" />
-						</li>
-						{% for med in ordergoods %}
-						<li><span>药品名</span>{{ med.med_name }}</li>
-						<li><span>药品数</span>{{ med.med_count }}</li>
-						<li><span>药品总价</span>{{ med.med_price }}</li>
-						{% endfor %}
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-							type="submit" name="submit" id="submit" value="确认订单">
-					</form>
-				</ul>
-				{% endblock right_content %}
-			</div>
-			{% endblock body %}
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formVerify">确认订单</button>
+                    <button class="layui-btn layui-btn-disabled" disabled>如需修改，请返回购物车</button>
+                    {% if errmsg %}
+                        <button class="layui-btn layui-btn-danger">{{ errmsg }}</button>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+        <script>
+            layui.use(['form', 'layedit', 'laydate'], function () {
+                var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , laydate = layui.laydate;
+                form.render('radio')
+                //创建一个编辑器
+                var editIndex = layedit.build('LAY_demo_editor');
+
+                //自定义验证规则
+                form.verify({
+                    depCart: function (value) {
+                        if (Number(value) == 0) {
+                            return '购物车里还没有药品';
+                        }
+                        if (Number(value) < 0) {
+                            return '购物车数据错误，请检查购物车';
+                        }
+                    }
+
+                });
+
+                //监听提交
+                form.on('submit(formVerify)', function (data) {
+                    layer.msg('添加成功', {
+                        icon: 1,
+                        time: 3000
+                    });
+                });
+            });
+
+        </script>
+        {#        <script>#}
+        {#            layui.use(['form', 'layedit', 'laydate'], function () {#}
+        {#                var form = layui.form#}
+        {#                    , layer = layui.layer#}
+        {#                    , layedit = layui.layedit#}
+        {#                    , laydate = layui.laydate;#}
+        {##}
+        {#                //创建一个编辑器#}
+        {#                var editIndex = layedit.build('LAY_demo_editor');#}
+        {##}
+        {#                //自定义验证规则#}
+        {#                form.verify({#}
+        {#                    depCart: function (value) {#}
+        {#                        if (Number(value) == 0) {#}
+        {#                            return '购物车里还没有药品';#}
+        {#                        }#}
+        {#                        if (Number(value) < 0) {#}
+        {#                            return '购物车数据错误，请检查购物车';#}
+        {#                        }#}
+        {#                    }#}
+        {##}
+        {#                });#}
+        {##}
+        {##}
+        {#                //监听提交#}
+        {#                form.on('submit(formVerify)', function (data) {#}
+        {#                    layer.msg('添加成功', {#}
+        {#                        icon: 1,#}
+        {#                        time: 2000#}
+        {#                    })#}
+        {#                    return false;#}
+        {#                });#}
+        {##}
+        {#            });#}
+        {#        </script>#}
+{% endif %}
+    </div>
+{% endblock right_content %}
