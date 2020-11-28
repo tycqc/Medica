@@ -14,7 +14,7 @@ class Medicine(models.Model):
     desc = models.CharField(max_length=256, verbose_name='药品简介')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='药品价格')
     unite = models.CharField(max_length=20, verbose_name='药品生产单位')
-    image = models.ImageField(upload_to='medicine_image', verbose_name='药品图片')
+    image = models.CharField(max_length=225, verbose_name='药品图片')
     stock = models.IntegerField(default=1, verbose_name='药品库存')
     sales = models.IntegerField(default=0, verbose_name='药品销量')
     status = models.SmallIntegerField(default=1, choices=status_choices, verbose_name='药品状态')

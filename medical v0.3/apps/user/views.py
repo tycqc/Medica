@@ -31,8 +31,6 @@ class MessageView(APIView):
 
         # 搭建redis服务器
         # django中方便使用redis的模块 django-redis
-
-
         conn = get_redis_connection()
         conn.set(phone, random_code, ex=300) #有效期300s
 

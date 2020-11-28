@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from django_redis import get_redis_connection
-
 from .validators import phone_validator
 
 class MessageSerializer(serializers.Serializer):
