@@ -553,7 +553,6 @@ def email_s(request):
                     lasttime = emailrecord.send_time
                     lasttime = lasttime.replace(tzinfo=None)
                     sec = (nowtime - lasttime).seconds
-                    print(sec)
                     if int(sec) <= 60:
                         context['send_errmsg'] = "请{0}秒后重试".format(60-sec)
                         return render(request, 'store/email_s.html', context=context)
@@ -623,9 +622,7 @@ def send_code_email(email, send_type="register"):
     email_record.code = code
     email_record.email = email
     email_record.send_type = send_type
-    print(email_record.send_time)
     email_record.send_time = datetime.datetime.now().replace(tzinfo=None)
-    print(email_record.send_time)
     # 初始化为空
     email_title = ""
     email_body = ""
