@@ -447,3 +447,44 @@ def index(request):
 
 
 
+
+
+# 注册发送邮箱验证码
+class SendEmailRegisterCodeView(APIView):
+    def get(self, request, *args, **kwargs):
+        return redirect('/register')
+
+    def post(self, request, *args, **kwargs):
+        ret = BaseResponseData()
+        try:
+            email = request.POST.get("email", None)
+
+            ret.data = {
+                'code': "0",'email': email,'error_email': ''
+            }
+
+            user_obj = models.MembershipAccount.objects.filter(username=email, is_active=True).first()
+            if user_obj:
+                ret.data['code'] = "111"
+                ret.data['error_email'] = "用户已存在"
+                return Response(ret.dict)
+            else:
+                # 发送邮箱
+                res_email = send_code_email(email)
+                if res_email:
+                    # 注册用户信息，设置登陆状态为False
+                    create_last_user = models.MembershipAccount.objects.update_or_create(username=email, is_active=False)
+                    if not create_last_user:
+                        ret.data['code'] = "111"
+                        ret.data['error_email'] = "注册错误，请重试"
+                        return Response(ret.dict)
+                    return Response(ret.dict)
+                else:
+                    ret.data['code'] = "111"
+                    ret.data['error_email'] = "验证码发送失败, 请稍后重试"
+                    return Response(ret.dict)
+        except Exception as e:
+            print("错误信息 : ", e)
+            ret.data['code'] = "111"
+            ret.data['error_email'] = "验证错误, 请稍后重试"
+        return Response(ret.dict)

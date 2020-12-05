@@ -7,13 +7,13 @@ import datetime
 
 
 # 生成随机字符串
-def random_str(randomlength=8):
+def random_str(randomlength=4):
     """
     随机字符串
     :param randomlength: 字符串长度
     :return: String 类型字符串
     """
-    str = ''
+    str = ""
     chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789'
     length = len(chars) - 1
     random = Random()
