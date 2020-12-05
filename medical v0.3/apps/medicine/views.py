@@ -395,7 +395,8 @@ def cart_list_data(request):
         data['edit_cart'] ='<button class="button1" onclick="add('+med_id+')">修改数量</button>'
     num = len(carts_)+1
     cart1 ={
-        'price':str(allprice)+"元"
+        'id': "总价",
+        'price':str(allprice)+"元",
     }
     carts_.append(cart1)
     return HttpResponse(

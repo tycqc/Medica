@@ -119,9 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -162,5 +162,13 @@ CACHES = {
 # ),
 #}
 
+# 发送邮箱验证码
+
+EMAIL_HOST = "smtp.163.com"     # 服务器
+EMAIL_PORT = 25                 # 一般情况下都为25
+EMAIL_HOST_USER = "medica_medica@163.com"     # 账号
+EMAIL_HOST_PASSWORD = "AHVUDYGPCROYWUZJ"          # 密码 (注意：这里的密码指的是授权码)
+EMAIL_USE_TLS = False       # 一般都为False
+EMAIL_FROM = "medica_medica@163.com"      # 邮箱来自
 
 

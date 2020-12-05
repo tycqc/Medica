@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 
 class medstore(models.Model):
     '''药店模型类'''
@@ -13,5 +13,22 @@ class medstore(models.Model):
     postcode = models.CharField(max_length=20, verbose_name='邮政编码')
     time = models.DateField(auto_now_add=True,null=True, blank=True) #开办时间
 
+
+# 邮箱验证
+class EmailVerifyRecord(models.Model):
+    # 验证码
+    code = models.CharField(max_length=20, verbose_name="验证码")
+    email = models.EmailField(max_length=50, verbose_name="邮箱")
+    # 包含注册验证和找回验证
+    send_type = models.CharField(verbose_name="验证码类型", max_length=10,
+                                 choices=(("register", "注册"), ("forget", "找回密码")))
+    send_time = models.DateTimeField(verbose_name="发送时间", default=datetime.datetime.now())
+
+    class Meta:
+        verbose_name = u"2. 邮箱验证码"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return '{0}({1})'.format(self.code, self.email)
 
 

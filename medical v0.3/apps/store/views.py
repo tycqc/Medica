@@ -1,7 +1,7 @@
 from store.models import medstore
 from staff.models import Staff
 from django.http import HttpResponseRedirect,HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import re,json
 
 # Create your views here.
@@ -444,3 +444,6 @@ def index(request):
         return render(request, 'store/AAAshiyan.html', {'store':store})
     else:
         return render(request, 'store/AAAshiyan.html')
+
+
+
