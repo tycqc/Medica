@@ -22,7 +22,8 @@
     <script type="text/javascript" src="{% static 'js/store.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
-
+    <script src="{% static 'js/layui/layui.js' %}" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
 
@@ -94,6 +95,8 @@
                         {% endif %}>· 信息修改</a></li>
                 <li><a href="{% url 'store:cancellation' %}" {% if page == 'cancellation' %}class="active" {% endif %}>·
                         账号注销</a></li>
+            <li><a href="{% url 'store:email_check' %}" {% if page == 'email_check' %}class="active" {% endif %}>·
+                        邮箱验证</a></li>
             </ul>
         </div>
         {% endblock left_bar %}

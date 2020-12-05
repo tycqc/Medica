@@ -1,8 +1,9 @@
-from store.models import medstore
+from store.models import medstore, EmailVerifyRecord
 from staff.models import Staff
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-import re,json
+import re, json
+
 
 # Create your views here.
 # def shiyan_index(request):
@@ -42,12 +43,11 @@ def register(request):
         info["address"] = address
         info["postcode"] = postcode
 
-
         # 参数验证
         if not all([username, name, password, cpwd, ypjyxkzcode,
                     gspcode, desc, address, postcode]):
             # 参数不完整
-            return render(request, 'store/REGISTER.html', {'info' : info, 'errmsg': '数据不完整'})
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '数据不完整'})
 
         # 用户名验证
         if len(username) > 20 or len(username) < 5:
@@ -55,24 +55,24 @@ def register(request):
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '请输入5-20个字符的用户名'})
 
         # 密码验证
-        if len(password) <8 or len(password) >20:
+        if len(password) < 8 or len(password) > 20:
             # 密码不合格
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '密码最少8位，最长20位'})
 
         # 密码一致性验证
         if password != cpwd:
             # 密码不一致
-            return render(request, 'store/REGISTER.html', {'info' : info,'errmsg': '密码不一致'})
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '密码不一致'})
 
         # 是否同意使用协议
         if allow != 'on':
             # 协议不同意
-            return render(request, 'store/REGISTER.html', {'info' : info,'errmsg': '请首先同意协议'})
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '请首先同意协议'})
 
-        #用户名是否存在
+        # 用户名是否存在
         store = medstore.objects.filter(username=username)
         if store:
-            return render(request, 'store/REGISTER.html', {'info' : info,'errmsg': '用户已存在'})
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '用户已存在'})
 
         # 注册
         try:
@@ -90,8 +90,8 @@ def register(request):
                 store.time = time
             store.save()
         except:
-            return render(request, 'store/REGISTER.html', {'info': info,'errmsg': '用户注册失败，请重试'})
-        else: # try成功的奖励
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '用户注册失败，请重试'})
+        else:  # try成功的奖励
             # 直接登录
             request.session['is_login'] = True
             request.session['username'] = store.username
@@ -103,8 +103,9 @@ def register(request):
     else:
         return render(request, 'store/REGISTER.html')
 
+
 # 药店，店主，员工登录
-def login(request,user = None):
+def login(request, user=None):
     # print (request)
     # print(type(request))
     # 判断是否登录，已登录则返回信息详情页
@@ -131,7 +132,6 @@ def login(request,user = None):
             password = request.POST.get('pwd')
             remember = request.POST.get('remember')
 
-
             # 重复登录检验
             if request.session.get('is_login', None):
                 # 重复登录
@@ -145,7 +145,7 @@ def login(request,user = None):
             # 业务处理：用户注册，验证用户是否存在
             # 业务处理:登录校验
             try:
-                store = medstore.objects.get(username = username)
+                store = medstore.objects.get(username=username)
             except:
                 return render(request, 'store/login.html', {'errmsg': '用户名不存在'})
 
@@ -207,20 +207,22 @@ def login(request,user = None):
                 # 登录成功返回信息界面
                 # 调用的函数
                 return store_homepage(request)
-                #return staff_views
+                # return staff_views
             # 用户名或密码错误
             else:
                 return render(request, 'store/login.html', {'errmsg': '用户名或密码错误'})
         # 用户名或密码错误
         else:
-            return  render(request, 'store/login.html', {'errmsg': '登录失败，请重试'})
+            return render(request, 'store/login.html', {'errmsg': '登录失败，请重试'})
+
 
 # 登出
 def logout(request):
     """退出登录"""
-    #if request.session.get('is_login', None):
+    # if request.session.get('is_login', None):
     request.session.flush()
     return index(request)
+
 
 # 药店信息详情页
 def store_homepage(request):
@@ -233,12 +235,13 @@ def store_homepage(request):
     username = request.session.get('username')
     # 组织上下文
     context = {
-        'username':username,
+        'username': username,
         'store': store,
         'page': 'homepage',
     }
 
     return render(request, 'store/USER_INFO_homepage.HTML', context=context)
+
 
 # 药店信息详情修改
 def store_homepage_update(request):
@@ -266,7 +269,7 @@ def store_homepage_update(request):
             return render(request, 'store/USER_INFO_update.html', context=context)
 
         else:
-            store = medstore.objects.get(pk = storeid)
+            store = medstore.objects.get(pk=storeid)
             Opassword = request.POST.get('Opassword')
             name = request.POST.get('name')
             password = request.POST.get('password')
@@ -302,32 +305,31 @@ def store_homepage_update(request):
             if Opassword != store.password:
                 # 参数不完整
                 context['errmsg'] = '原密码不正确'
-                return render(request, 'store/USER_INFO_update.html', context = context)
+                return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 用户名验证
             if len(username) > 20 or len(username) < 5:
                 # 用户名不合格
                 context['errmsg'] = '请输入5-20个字符的用户名'
-                return render(request, 'store/USER_INFO_update.html', context = context)
+                return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 密码验证
             if len(password) < 8 or len(password) > 20:
                 # 密码不合格
                 context['errmsg'] = '密码最少8位，最长20位'
-                return render(request, 'store/USER_INFO_update.html', context = context)
+                return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 密码一致性验证
             if password != cpwd:
                 # 密码不一致
                 context['errmsg'] = '新密码不一致'
-                return render(request, 'store/USER_INFO_update.html', context = context)
+                return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 是否同意使用协议
             if allow != 'on':
                 # 协议不同意
                 context['errmsg'] = '请首先同意协议'
-                return render(request, 'store/USER_INFO_update.html', context = context)
-
+                return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 注册
             try:
@@ -345,24 +347,25 @@ def store_homepage_update(request):
                 print("OK")
             except:
                 context['errmsg'] = '信息修改失败（可能是时间格式不正确），请重试'
-                return render(request, 'store/USER_INFO_update.html', context = context)
+                return render(request, 'store/USER_INFO_update.html', context=context)
             else:
                 return store_homepage(request)
     else:
         # 员工不可操作
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
-            return render(request, 'store/USER_INFO_update.html', context = context)
+            return render(request, 'store/USER_INFO_update.html', context=context)
 
         else:
             store = medstore.objects.get(pk=storeid)
-            context ={
+            context = {
                 'username': username,
                 'store': store,
                 'info': store,
                 'page': 'homepage_update'
             }
         return render(request, 'store/USER_INFO_update.html', context=context)
+
 
 # 药店注销
 def store_cancellation(request):
@@ -375,11 +378,11 @@ def store_cancellation(request):
         username = request.session.get('username')
         context['username'] = username
         store = medstore.objects.get(pk=storeid)
-        context["store"] =store
+        context["store"] = store
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
             shopkeeper = False
-            return render(request, 'store/CANCELLATION.HTML', context = context)
+            return render(request, 'store/CANCELLATION.HTML', context=context)
         else:
             shopkeeper = True
     else:
@@ -389,10 +392,10 @@ def store_cancellation(request):
         # 员工不可操作
         context['errmsg'] = '请以店主账号登录'
         if request.session.get('identity') != 'shopkeeper':
-            return render(request, 'store/CANCELLATION.HTML', context = context)
+            return render(request, 'store/CANCELLATION.HTML', context=context)
 
         else:
-            store = medstore.objects.get(pk = storeid)
+            store = medstore.objects.get(pk=storeid)
             staffs = Staff.objects.filter(store_id=store)
             context = {
                 'store': store,
@@ -422,7 +425,7 @@ def store_cancellation(request):
         # 员工不可操作
         if request.session.get('identity') != 'shopkeeper':
             context['errmsg'] = '请以店主账号登录'
-            return render(request, 'store/CANCELLATION.HTML', context =context)
+            return render(request, 'store/CANCELLATION.HTML', context=context)
 
         else:
             store = medstore.objects.get(pk=storeid)
@@ -436,55 +439,211 @@ def store_cancellation(request):
             }
         return render(request, 'store/CANCELLATION.HTML', context=context)
 
+
 # 临时主页
 def index(request):
     if request.session.get('is_login', None):
         username = request.session.get('storeusername')
-        store = medstore.objects.get(username = username)
-        return render(request, 'store/AAAshiyan.html', {'store':store})
+        store = medstore.objects.get(username=username)
+        return render(request, 'store/AAAshiyan.html', {'store': store})
     else:
         return render(request, 'store/AAAshiyan.html')
 
 
+def forget_password(request):
+    return 0
 
+
+def email_check(request):
+    context = {
+        'page': 'email_check',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        store = medstore.objects.get(pk=storeid)
+        emailrecord = {
+            'email': store.email,
+            'emailstatus': store.emailstatus
+        }
+        context['emailrecord'] = emailrecord
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['send_errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/email_s.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
+
+    if request.method == "POST" and shopkeeper:
+        try:
+            email = request.POST.get("email")
+            email_record = EmailVerifyRecord.objects.get(email=email)
+        except:
+            context["check_errmsg"] = "还没有发送邮件"
+            return render(request, 'store/email_s.html', context=context)
+        code = request.POST.get("code")
+        if code:
+            if code == email_record.code:
+                try:
+                    store.emailstatus = "已激活"
+                    store.save()
+                    emailrecord = {
+                        'email': store.email,
+                        'emailstatus': store.emailstatus
+                    }
+                    context['emailrecord'] = emailrecord
+                    context["check_errmsg"] = "激活成功"
+                except:
+                    context["check_errmsg"] = "未激活，请稍后重试"
+            else:
+                context["check_errmsg"] = "验证码不正确，请稍后重试"
+        else:
+            context["check_errmsg"] = "请填写验证码"
+        return render(request, 'store/email_s.html', context=context)
+
+    else:
+        return render(request, 'store/email_s.html', context=context)
 
 
 # 注册发送邮箱验证码
-class SendEmailRegisterCodeView(APIView):
-    def get(self, request, *args, **kwargs):
-        return redirect('/register')
+def email_s(request):
+    context = {
+        'page': 'email_check',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        store = medstore.objects.get(pk=storeid)
+        emailrecord = {
+            'email': store.email,
+            'emailstatus': store.emailstatus
+        }
+        context['emailrecord'] = emailrecord
+        context['username'] = username
+        if request.session.get('identity') != 'shopkeeper':
+            context['send_errmsg'] = '请以店主账号登录'
+            shopkeeper = False
+            return render(request, 'store/email_s.html', context=context)
+        else:
+            shopkeeper = True
+    else:
+        return login(request)
 
-    def post(self, request, *args, **kwargs):
-        ret = BaseResponseData()
+    if request.method == "POST" and shopkeeper:
+        mail_message = {}
         try:
-            email = request.POST.get("email", None)
-
-            ret.data = {
-                'code': "0",'email': email,'error_email': ''
+            email = request.POST.get("email")
+            mail_message = {
+                'code': "0", 'email': email, 'error_email': ''
             }
 
-            user_obj = models.MembershipAccount.objects.filter(username=email, is_active=True).first()
+            user_obj = medstore.objects.filter(email=email, emailstatus="已激活").first()
+            emailrecord = EmailVerifyRecord.objects.filter(email=email).first()
             if user_obj:
-                ret.data['code'] = "111"
-                ret.data['error_email'] = "用户已存在"
-                return Response(ret.dict)
+                mail_message['code'] = "fail"
+                mail_message['error_email'] = "邮箱已注册"
+                context['send_errmsg'] = "邮箱已注册"
+                return render(request, 'store/email_s.html', context=context)
             else:
-                # 发送邮箱
+                if emailrecord:
+                    nowtime = datetime.datetime.now()
+                    lasttime = emailrecord.send_time
+                    lasttime = lasttime.replace(tzinfo=None)
+                    sec = (nowtime - lasttime).seconds
+                    print(sec)
+                    if int(sec) <= 60:
+                        context['send_errmsg'] = "请{0}秒后重试".format(60-sec)
+                        return render(request, 'store/email_s.html', context=context)
+
+                    # 发送邮箱
+
                 res_email = send_code_email(email)
                 if res_email:
-                    # 注册用户信息，设置登陆状态为False
-                    create_last_user = models.MembershipAccount.objects.update_or_create(username=email, is_active=False)
-                    if not create_last_user:
-                        ret.data['code'] = "111"
-                        ret.data['error_email'] = "注册错误，请重试"
-                        return Response(ret.dict)
-                    return Response(ret.dict)
+                    mail_message['code'] = "OK"
+                    mail_message['error_email'] = "发送成功"
+                    context["send_errmsg"] = mail_message['error_email']
+                    return render(request, 'store/email_s.html', context=context)
                 else:
-                    ret.data['code'] = "111"
-                    ret.data['error_email'] = "验证码发送失败, 请稍后重试"
-                    return Response(ret.dict)
+                    mail_message['code'] = "fail"
+                    mail_message['error_email'] = "验证码发送失败, 请稍后重试"
+                    context["send_errmsg"] = mail_message['error_email']
+                    return render(request, 'store/email_s.html', context=context)
+
         except Exception as e:
             print("错误信息 : ", e)
-            ret.data['code'] = "111"
-            ret.data['error_email'] = "验证错误, 请稍后重试"
-        return Response(ret.dict)
+            mail_message['code'] = "fail"
+            mail_message['error_email'] = "验证错误, 请稍后重试(注意检查邮箱格式)"
+            context["send_errmsg"] = mail_message['error_email']
+            return render(request, 'store/email_s.html', context=context)
+    else:
+        return render(request, 'store/email_s.html', context=context)
+
+
+# 邮箱发送所需函数
+from random import Random  # 用于生成随机码
+from django.core.mail import send_mail  # 发送邮件模块
+from store.models import EmailVerifyRecord  # 邮箱验证model
+from django.conf import settings  # setting.py添加的的配置信息
+import datetime
+
+
+# 生成随机字符串
+def random_str(randomlength=4):
+    """
+    随机字符串
+    :param randomlength: 字符串长度
+    :return: String 类型字符串
+    """
+    str = ""
+    chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789'
+    length = len(chars) - 1
+    random = Random()
+    for i in range(randomlength):
+        str += chars[random.randint(0, length)]
+    return str
+
+
+# 发送电子邮件
+def send_code_email(email, send_type="register"):
+    """
+    发送电子邮件
+    :param email: 要发送的邮箱
+    :param send_type: 邮箱类型
+    :return: True/False
+    """
+    try:
+        email_record = EmailVerifyRecord.objects.get(email=email)
+    except:
+        email_record = EmailVerifyRecord()
+    # 将给用户发的信息保存在数据库中
+    code = random_str()
+    email_record.code = code
+    email_record.email = email
+    email_record.send_type = send_type
+    print(email_record.send_time)
+    email_record.send_time = datetime.datetime.now().replace(tzinfo=None)
+    print(email_record.send_time)
+    # 初始化为空
+    email_title = ""
+    email_body = ""
+    # 如果为注册类型
+    if send_type == "register":
+        email_title = "绑定邮箱"
+        # email_body = "请点击下面的链接激活你的账号:http://127.0.0.1:8000/active/{0}".format(code)
+        email_body = "您的邮箱注册验证码为：{0}, 请及时进行验证，若不是您本人操作，请忽略。".format(code)
+        # 发送邮件
+        send_status = send_mail(email_title, email_body, settings.EMAIL_FROM, [email])
+        if not send_status:
+            return False
+    if send_type == "retrieve":
+        email_title = "找回密码"
+        email_body = "您正在找回密码，验证码为：{0}, 请及时进行验证，若不是您本人操作，请忽略。".format(code)
+        # 发送邮件
+        send_status = send_mail(email_title, email_body, settings.EMAIL_FROM, [email])
+        if not send_status:
+            return False
+    email_record.save()
+    return True

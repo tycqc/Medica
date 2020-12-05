@@ -1006,6 +1006,9 @@ OK .r_con2 {
 .reg_form2 tr td {
   width: 400px;
 }
+.reg_form2 tr td.td2 {
+  width: 900px;
+}
 .reg_form2 tr a {
   font-size: medium;
 }
@@ -1019,6 +1022,15 @@ OK .r_con2 {
 }
 .reg_form2 tr input {
   width: 200px;
+  height: 38px;
+  border: 1px solid #e0e0e0;
+  float: left;
+  outline: none;
+  text-indent: 10px;
+  background-color: #f8f8f8;
+}
+.reg_form2 tr td.td2 input {
+  width: 600px;
   height: 38px;
   border: 1px solid #e0e0e0;
   float: left;

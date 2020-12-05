@@ -1,0 +1,56 @@
+{# 用户中心 #}
+{% extends 'store/store_base.html' %}
+
+
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+    <div class="right_content clearfix">
+        <h3 class="common_title2">发送验证码&nbsp&nbsp&nbsp&nbsp
+            <label><font color="red">&nbsp&nbsp&nbsp&nbsp{{ send_errmsg }}</font></label>
+        </h3>
+        <div class="site_con clearfix">
+            <dl>
+                <dt>邮箱：</dt>
+                <dd><label>{{ emailrecord.email }}</label></dd>
+            </dl>
+            <dl>
+                <dt>状态：</dt>
+                <dd><label>{{ emailrecord.emailstatus }}</label></dd>
+            </dl>
+
+            <form class="reg_form2" method="post" action="email_s">
+                {% csrf_token %}
+                <input type="hidden" name="email" value="{{ emailrecord.email }}">
+                {% if emailrecord.emailstatus == "未激活" %}
+                    <button type="submit" class="layui-btn" lay-submit="">发送验证码</button>
+                {% else %}
+                    <button type="button" class="layui-btn layui-btn-normals" onclick="">请记住您的注册邮箱方便找回密码</button>
+                {% endif %}
+            </form>
+        </div>
+        {% if emailrecord.emailstatus == "未激活" %}
+            <h3 class="common_title2">验证邮箱&nbsp&nbsp&nbsp&nbsp
+                <label><font color="red">&nbsp&nbsp&nbsp&nbsp{{ check_errmsg }}</font></label>
+            </h3>
+            <div class="reg_form2 clearfix">
+                <form method="post" action="email_check">
+                    <table>
+                        <tr>
+                            <td>
+                                {% csrf_token %}
+                                <label>验证码:</label>
+                                <input type="text" name="code">
+                                <input type="hidden" name="email" value="{{ emailrecord.email }}">
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="layui-btn" lay-submit="">绑定邮箱</button>
+                    <br>
+                    <font color="#6495ed">被他人误用???点击</font>
+                    <a href="{% url 'store:forget_password' %}">这里</a>
+                    <font color="#6495ed">强行激活!!</font>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

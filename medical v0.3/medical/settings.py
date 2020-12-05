@@ -127,7 +127,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -167,7 +167,7 @@ CACHES = {
 EMAIL_HOST = "smtp.163.com"     # 服务器
 EMAIL_PORT = 25                 # 一般情况下都为25
 EMAIL_HOST_USER = "medica_medica@163.com"     # 账号
-EMAIL_HOST_PASSWORD = "AHVUDYGPCROYWU"          # 密码 (注意：这里的密码指的是授权码)
+EMAIL_HOST_PASSWORD = "AHVUDYGPCROYWUZJ"          # 密码 (注意：这里的密码指的是授权码)
 EMAIL_USE_TLS = False       # 一般都为False
 EMAIL_FROM = "medica_medica@163.com"      # 邮箱来自
 

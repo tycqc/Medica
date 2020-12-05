@@ -10,6 +10,10 @@ urlpatterns = [
     url(r'^homepage$', views.store_homepage, name='homepage'),  # 用户中心-信息主页
     url(r'^homepage_update$', views.store_homepage_update, name='homepage_update'),  # 用户中心-修改信息
     url(r'^cancellation$', views.store_cancellation, name='cancellation'),  # 用户中心-注销账户
+    url(r'^email_s$', views.email_s, name='email_s'),  # 用户中心-发送验证码
+    url(r'^forget_password$', views.forget_password, name='forget_password'),  # 用户中心-忘记密码
+    url(r'^email_check$', views.email_check, name='email_check'),  # 用户中心-邮箱验证
+
     # url(r'^shiyan$', views.shiyan, name='shiyan'),
     # url(r'^shiyan_index$', views.shiyan_index, name='shiyan_index'),
 ]
