@@ -16,7 +16,7 @@ cmds = [
     "python manage.py makemigrations --empty store",
     "python manage.py makemigrations",
     "python manage.py migrate",
-    "python manage.py runserver",
+    # "python manage.py runserver",
 ]
 for cmd in cmds:
     runcmd(cmd)

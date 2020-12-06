@@ -13,6 +13,7 @@ from store.models import medstore
 from store.views import login
 
 
+
 # 线下订单添加
 def staff_order_add(request):
     # 判断是否登录
@@ -24,9 +25,10 @@ def staff_order_add(request):
         store = request.session.get('storeid')
         context['username'] = username
         if request.session.get('identity') == 'shopkeeper':
-            context['errmsg'] = '请以员工账号登录'
+            context['page'] = 'find_staff'
+            context['errmsg'] = '请以员工账号登录，用以生成订单'
             shopkeeper = True
-            return render(request, 'staff/register_staff.html', context=context)
+            return render(request, 'staff/find_staff.html', context=context)
         else:
             shopkeeper = False
     else:

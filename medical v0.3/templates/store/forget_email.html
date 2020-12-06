@@ -1,0 +1,132 @@
+{# 首页 注册 登录 #}
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+{% load static %}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    {# 网页标题内容块 #}
+    <title>
+        {% block title %}MADICAL-密码重置{% endblock title %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/store_main.css' %}">
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/store.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer.js' %}"></script>
+    <script src="{% static 'js/layui/layui.js' %}" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
+    {# 网页顶部引入文件块 #}
+    {% block topfiles %}
+        <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/register.js' %}"></script>
+    {% endblock topfiles %}
+</head>
+
+<body>
+{# 网站主体内容块 #}
+{% block body %}
+    <div class="register_con2">
+        <div class="l_con fl">
+            <a class="reg_logo"><img src="{% static 'images/logo02.png' %}"></a>
+            <div class="reg_slogan">MEDICAL</div>
+            <div class="reg_banner"></div>
+        </div>
+
+        <div class="r_con fr">
+            <div class="reg_title2 clearfix">
+                <h1>密码重置</h1>
+                <a href="{% url 'store:login' %}">登录</a>
+            </div>
+            <div class="reg_form2 clearfix">
+                <form method="post" action="/store/forget_email">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                                <label>药店用户名:</label>
+                                <input type="text" name="username" id="username" value="{{ info.username }}"
+                                       placeholder="请输入5-20个字符的用户名">
+                            </td>
+                            <td>
+                                <label>药店名:</label>
+                                <input type="text" name="name" id="name" value="{{ info.name }}" placeholder="必填">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>经营许可证:</label>
+                                <input type="text" name="ypjyxkzcode" id="ypjyxkzcode" value="{{ info.ypjyxkzcode }}"
+                                       placeholder="必填:川AA0280001">
+                            </td>
+                            <td>
+                                <label>gsp证书编号:</label>
+                                <input type="text" name="gspcode" id="gspcode" value="{{ info.gspcode }}"
+                                       placeholder="必填:A-JS05-028">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label></label>
+                                <button type="submit" class="layui-btn" lay-submit="">验证信息</button>
+                            </td>
+                            {% if errmsg %}
+                                <td>
+                                    <button type="button" class="layui-btn layui-btn-danger">{{ errmsg }}</button>
+                                </td>
+                            {% endif %}
+                        </tr>
+                        {% if email %}
+                            <tr></tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label>您的邮箱为:</label>
+                                    <button type="button" class="layui-btn" disabled="disabled">{{ email }}</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label>邮箱状态:</label>
+                                    <button type="button"
+                                            {% if emailstatus == "已激活" %}
+                                            class="layui-btn layui-btn-normal"
+                                            {% endif %}
+                                            {% if emailstatus == "未激活" %}
+                                            class="layui-btn layui-btn-danger"
+                                            {% endif %} disabled="disabled">
+                                        {{ emailstatus }}</button>
+                                    <a href="/store/forget_password/?email={{ email }}" class="layui-btn"
+                                       target="_blank">重置密码</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2020 成都MADICAL信息技术有限公司 All Rights Reserved</p>
+    <p>电话：010-****888 SCU-ICP备*******8号</p>
+</div>
+{# 网页底部html元素块 #}
+{% block bottom %}{% endblock bottom %}
+{# 网页底部引入文件块 #}
+{% block bottomfiles %}{% endblock bottomfiles %}
+</body>
+
+</html>

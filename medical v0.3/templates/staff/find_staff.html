@@ -5,7 +5,7 @@
 <div class="right_content clearfix" onload="function changbackgroundcolor()">
     <h3 class="common_title2">员工查询</h3>
     <div class="search_con">
-        <form action="" method="post">
+        <form action="/staff/find_staff/" method="post">
             {% csrf_token %}
             <div>
                 <input type="text" class="input_text fl" name="name" placeholder="查询员工">
@@ -33,7 +33,7 @@
             </tr>
             {% else %}
             <tr border="0">
-                <font color="red" size="5">没有找到</font>
+                <button type="button" class="layui-btn layui-btn-disabled">还没有员工</button>
             </tr>
             {% endif %}
             {% for staff in staff_model %}

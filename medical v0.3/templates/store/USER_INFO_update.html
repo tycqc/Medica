@@ -3,93 +3,113 @@
 
 {# 用户中心右侧内容块 #}
 {% block right_content %}
-<div class="right_content clearfix">
-    <h3 class="common_title2">用户名</h3>
-    <div class="site_con">
-        <dl>
-            <dt>用户名：</dt>
-            <dd><label>{{ store.username }}</label></dd>
-        </dl>
+    <div class="right_content clearfix">
+        <h3 class="common_title2">用户名</h3>
+        <div class="site_con">
+            <dl>
+                <dt>用户名：</dt>
+                <dd><label>{{ store.username }}</label></dd>
+            </dl>
+        </div>
+        <h3 class="common_title2">
+            修改信息&nbsp&nbsp&nbsp&nbsp
+            <label>
+                <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+            </label>
+        </h3>
+        <div class="reg_form2 clearfix">
+            <form method="post" action="/store/homepage_update">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>
+                            <label>药店用户名:</label>
+                            <input type="text" name="username" id="username" value="{{ info.username }}"
+                                   placeholder="请输入5-20个字符的用户名">
+                        </td>
+                        <td>
+                            <label>药店名:</label>
+                            <input type="text" name="name" id="name" value="{{ info.name }}" placeholder="必填">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>邮箱:</label>
+                            <input type="text" name="email" id="email" value="{{ info.email }}"
+                                   placeholder="请验自行验证邮箱">
+                        </td>
+                        <td>
+                            <label>温馨提示：</label>
+                            <button class="layui-btn layui-btn-danger" disabled="disabled">&nbsp&nbsp如有修改请重新激活邮箱&nbsp
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>原密码:</label>
+                            <input type="password" name="Opassword" id="Opassword" value="" placeholder="请输入原密码">
+                        </td>
+                        <td>
+                            <label>gsp证书编号:</label>
+                            <input type="text" name="gspcode" id="gspcode" value="{{ info.gspcode }}"
+                                   placeholder="必填:A-JS05-028">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>密码:</label>
+                            <input type="password" name="password" id="password" value="{{ info.password }}"
+                                   placeholder="密码最少8位，最长20位">
+                        </td>
+                        <td>
+                            <label>确认密码:</label>
+                            <input type="password" name="cpwd" id="cpwd1" value="{{ info.cpwd }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>经营许可证:</label>
+                            <input type="text" name="ypjyxkzcode" id="ypjyxkzcode" value="{{ info.ypjyxkzcode }}"
+                                   placeholder="必填:川AA0280001">
+                        </td>
+                        <td>
+                            <label>开办时间:</label>
+                            <input type="text" name="time" id="time" value="{{ info.time }}"
+                                   placeholder="可不填:2000-01-01">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>药店地址:</label>
+                            <input type="text" name="address" id="address" value="{{ info.address }}"
+                                   placeholder="必填">
+                        </td>
+                        <td>
+                            <label>邮政编码:</label>
+                            <input type="text" name="postcode" id="postcode" value="{{ info.postcode }}"
+                                   placeholder="必填">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td2" colspan="2">
+                            <label>药店简介:</label>
+                            <input name="desc" id="desc" value="{{ info.desc }}" placeholder="必填">
+                        </td>
+                    </tr>
+                </table>
+                <ul>
+                    <li class="agreement">
+                        <input type="checkbox" name="allow" id="allow" checked="checked">
+                        <label>同意”MEDICAL用户使用协议“&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                        {% if errmsg == "原密码不正确" %}
+                            <a href="{% url 'store:forget_password' %}" class="layui-btn" target="_blank">忘记原密码???退出并重置!!!</a>
+                        {% endif %}
+                    </li>
+                    <li class="reg_sub">
+                        <input type="submit" value="修   改" name="">
+                    </li>
+                </ul>
+            </form>
+        </div>
     </div>
-    <h3 class="common_title2">
-        修改信息&nbsp&nbsp&nbsp&nbsp
-        <label>
-            <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
-        </label>
-    </h3>
-    <div class="reg_form2 clearfix">
-        <form method="post" action="/store/homepage_update">
-            {% csrf_token %}
-            <table>
-                <tr>
-                    <td>
-                        <label>药店名:</label>
-                        <input type="text" name="name" id="name" value="{{ info.name }}">
-                    </td>
-                    <td>
-                        <label>原密码:</label>
-                        <input type="password" name="Opassword" id="Opassword" value="" placeholder="请输入原密码">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>密码:</label>
-                        <input type="password" name="password" id="password" value="{{ info.password }}"
-                            placeholder="密码最少8位，最长20位">
-                    </td>
-                    <td>
-                        <label>确认密码:</label>
-                        <input type="password" name="cpwd" id="cpwd1" value="{{ info.cpwd }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>密码:</label>
-                        <input type="text" name="email" id="email" value="{{ info.email }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>药品经营许可证号码:</label>
-                        <input type="text" name="ypjyxkzcode" id="ypjyxkzcode" value="{{ info.ypjyxkzcode }}">
-                    </td>
-                    <td>
-                        <label>开办时间:</label>
-                        <input type="text" name="time" id="time" value="{{ info.time }}" placeholder="可不填">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>gsp证书编号:</label>
-                        <input type="text" name="gspcode" id="gspcode" value="{{ info.gspcode }}">
-                    </td>
-                    <td>
-                        <label>药店简介:</label>
-                        <input type="text" name="desc" id="desc" value="{{ info.desc }}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>药店地址:</label>
-                        <input type="text" name="address" id="address" value="{{ info.address }}">
-                    </td>
-                    <td>
-                        <label>邮政编码:</label>
-                        <input type="text" name="postcode" id="postcode" value="{{ info.postcode }}">
-                    </td>
-                </tr>
-
-            </table>
-            <ul>
-                <li class="agreement">
-                    <input type="checkbox" name="allow" id="allow" checked="checked">
-                    <label>同意”MEDICAL用户使用协议“&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-                </li>
-                <li class="reg_sub">
-                    <input type="submit" value="修   改" name="">
-                </li>
-            </ul>
-        </form>
-    </div>
-</div>
 {% endblock right_content %}

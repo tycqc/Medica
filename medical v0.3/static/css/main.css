@@ -839,6 +839,13 @@ s .slogan {
   background-color: #fff;
   margin-top: 50px;
 }
+.login_form2 {
+  width: 420px;
+  height: 420px;
+  border: 1px solid #c6c6c5;
+  background-color: #fff;
+  margin-top: 50px;
+}
 
 .login_title {
   height: 60px;
@@ -891,7 +898,30 @@ s .slogan {
   top: 65px;
   background-position: 280px -95px;
 }
-
+.email_input {
+  width: 306px;
+  height: 36px;
+  border: 1px solid #e0e0e0;
+  background: url(../images/icons02.png) 280px -41px no-repeat #f8f8f8;
+  outline: none;
+  font-size: 14px;
+  text-indent: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.code_input {
+  width: 140px;
+  height: 36px;
+  border: 1px solid #e0e0e0;
+  background: url(../images/icons02.png) 280px -41px no-repeat #f8f8f8;
+  outline: none;
+  font-size: 14px;
+  text-indent: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .user_error,
 .pwd_error {
   color: #f00;

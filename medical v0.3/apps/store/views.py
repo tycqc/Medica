@@ -30,6 +30,7 @@ def register(request):
         address = request.POST.get('address')
         postcode = request.POST.get('postcode')
         allow = request.POST.get('allow')
+        email = request.POST.get('email')
 
         info = {}
         info["username"] = username
@@ -42,6 +43,7 @@ def register(request):
         info["desc"] = desc
         info["address"] = address
         info["postcode"] = postcode
+        info["email"] = email
 
         # 参数验证
         if not all([username, name, password, cpwd, ypjyxkzcode,
@@ -86,6 +88,9 @@ def register(request):
             store.desc = desc
             store.address = address
             store.postcode = postcode
+            store.email = email
+            store.emailstatus = "未激活"
+
             if time != "":
                 store.time = time
             store.save()
@@ -113,6 +118,8 @@ def login(request, user=None):
         return store_homepage(request)
 
     if request.method == "GET":
+        if request.GET.get('errmsg') == "重置成功":
+            return render(request, 'store/login.html', {'errmsg': '密码修改成功请登录'})
         # 判断是否已经记录了用户名
         if 'username' in request.COOKIES:
             username = request.COOKIES.get('username')
@@ -158,7 +165,7 @@ def login(request, user=None):
                 request.session['storename'] = store.name
                 request.session['identity'] = "shopkeeper"
                 # 登录成功返回信息界面
-                re = render(request, 'store/USER_INFO_homepage.html', {'username': store.username})
+                re = render(request, 'store/LOGIN.html', {'username': store.username})
 
                 # 判断是否需要记住用户名
                 if remember == 'on':
@@ -281,10 +288,12 @@ def store_homepage_update(request):
             address = request.POST.get('address')
             postcode = request.POST.get('postcode')
             allow = request.POST.get('allow')
+            email = request.POST.get('email')
 
             info = {}
             info['username'] = store.username
             info["name"] = name
+            info["email"] = email
             info["password"] = password
             info["cpwd"] = cpwd
             info["ypjyxkzcode"] = ypjyxkzcode
@@ -302,6 +311,10 @@ def store_homepage_update(request):
                 'page': 'homepage_update'
             }
             # 原密码验证
+            if email != store.email:
+                # 参数不完整
+                emailstatus1 = "未激活"
+
             if Opassword != store.password:
                 # 参数不完整
                 context['errmsg'] = '原密码不正确'
@@ -341,6 +354,8 @@ def store_homepage_update(request):
                 store.desc = desc
                 store.address = address
                 store.postcode = postcode
+                store.email = email
+                store.emailstatus = emailstatus1
                 if time != "":
                     store.time = time
                 store.save()
@@ -451,7 +466,232 @@ def index(request):
 
 
 def forget_password(request):
-    return 0
+    # 判断是否登录
+    context = {}
+    if request.session.get('is_login', None):
+        storeid = request.session.get('storeid')
+        username = request.session.get('username')
+        context['username'] = username
+        store = medstore.objects.get(pk=storeid)
+        email = store.email
+        context["store"] = store
+        context["email"] = email
+        if request.session.get('identity') != 'shopkeeper':
+            return redirect('store:store_homepage_update')
+        else:
+            request.session.flush()
+            return render(request, 'store/forget_password.html', context=context)
+
+    if request.method == 'POST':
+        email = request.POST.get("email")
+        if email:
+            store = medstore.objects.get(email=email)
+            context['email'] = email
+        else:
+            context['check_errmsg'] = "这个邮箱不在系统"
+            return render(request, 'store/forget_password.html', context=context)
+        try:
+            email_record = EmailVerifyRecord.objects.get(email=email)
+        except:
+            context['check_errmsg'] = "还未发送邮件"
+            return render(request, 'store/forget_password.html', context=context)
+
+        code = request.POST.get("code")
+        if code:
+            if code == email_record.code:
+                try:
+                    emailrecord = {
+                        'email': store.email,
+                        'emailstatus': store.emailstatus
+                    }
+                    context['emailrecord'] = emailrecord
+                    context["check_errmsg"] = "激活成功"
+                    request.session['is_check'] = True
+                    request.session['email'] = email
+                    return redirect('store:reset_password')
+                except:
+                    context["check_errmsg"] = "未激活，请稍后重试"
+            else:
+                context["check_errmsg"] = "验证码不正确，请稍后重试"
+        else:
+            context["check_errmsg"] = "请填写验证码"
+        return render(request, 'store/forget_password.html', context=context)
+
+    if request.method == 'GET':
+        email = request.GET.get('email')
+        if email:
+            context['email'] = email
+        return render(request, 'store/forget_password.html', context=context)
+
+
+def email_s2(request):
+    context = {
+        'page': 'forget_password',
+    }
+    if request.method == "POST":
+        mail_message = {}
+        try:
+            try:
+                email = request.POST.get("email")
+                context['email'] = email
+            except:
+                context['send_errmsg'] = "请输入验证码"
+                return render(request, 'store/forget_password.html', context=context)
+            try:
+                store = medstore.objects.get(email=email)
+            except:
+                context['send_errmsg'] = "该邮箱未注册"
+                return render(request, 'store/forget_password.html', context=context)
+            mail_message = {
+                'code': "0", 'email': email, 'error_email': ''
+            }
+
+            emailrecord = EmailVerifyRecord.objects.filter(email=email).first()
+            if emailrecord:
+                nowtime = datetime.datetime.now()
+                lasttime = emailrecord.send_time
+                lasttime = lasttime.replace(tzinfo=None)
+                sec = (nowtime - lasttime).seconds
+                if int(sec) <= 60:
+                    context['send_errmsg'] = "请{0}秒后重试".format(60 - sec)
+                    return render(request, 'store/forget_password.html', context=context)
+
+            # 发送邮箱
+            res_email = send_code_email(email, 'forget')
+            if res_email:
+                mail_message['code'] = "OK"
+                mail_message['error_email'] = "发送成功"
+                context["send_errmsg"] = mail_message['error_email']
+                return render(request, 'store/forget_password.html', context=context)
+            else:
+                mail_message['code'] = "fail"
+                mail_message['error_email'] = "发送失败, 请稍后重试"
+                context["send_errmsg"] = mail_message['error_email']
+                return render(request, 'store/forget_password.html', context=context)
+
+        except Exception as e:
+            print("错误信息 : ", e)
+            mail_message['code'] = "fail"
+            mail_message['error_email'] = "验证错误, 请稍后重试(注意检查邮箱格式)"
+            context["send_errmsg"] = mail_message['error_email']
+        return render(request, 'store/forget_password.html', context=context)
+
+    if request.method == "GET":
+        if request.GET.get('email'):
+            context['email'] = request.GET.get('email')
+        return render(request, 'store/forget_password.html', context=context)
+
+
+def reset_password(request):
+    if request.session.get('is_check', None):
+        email = request.session.get('email')
+        store = medstore.objects.get(email=email)
+    else:
+        context = {
+            "check_errmsg": "请填写验证码"
+        }
+        return render(request, 'store/email_check.html', context=context)
+
+    if request.method == 'POST':
+        password = request.POST.get('password')
+        copypassword = request.POST.get('copypassword')
+        info={
+            'password': password,
+            'copypassword': copypassword
+        }
+        context={
+            'info': info
+        }
+        if not all([password, copypassword]):
+            context = {
+                "errmsg": "请填写密码"
+            }
+            return render(request, 'store/reset_password.html', context=context)
+        if password != copypassword:
+            context = {
+                "errmsg": "两次密码不一致"
+            }
+            return render(request, 'store/reset_password.html', context=context)
+        # 密码验证
+        if len(password) < 8 or len(password) > 20:
+            # 密码不合格
+            context = {
+                "errmsg": "密码最少8位，最长20位"
+            }
+            return render(request, 'store/REGISTER.html', context=context)
+
+        try:
+            store.password = password
+            store.save()
+            request.session.flush()
+            # request.session['is_login'] = True
+            # request.session['username'] = store.username
+            # request.session['storeid'] = store.pk
+            # request.session['storename'] = store.name
+            # request.session['identity'] = "shopkeeper"
+            context = {
+                "errmsg": "重置成功"
+            }
+            return render(request, 'store/reset_password.html', context=context)
+        except:
+            context = {
+                "errmsg": "重置失败，请重试"
+            }
+            return render(request, 'store/reset_password.html', context=context)
+
+    if request.method == 'GET':
+        return render(request, 'store/reset_password.html')
+
+
+def forget_email(request):
+    # 界面逻辑的处理
+    # 验证参数
+    # 接收参数
+    if request.method == "POST":
+        username = request.POST.get('username')
+        name = request.POST.get('name')
+        ypjyxkzcode = request.POST.get('ypjyxkzcode')
+        gspcode = request.POST.get('gspcode')
+
+        info = {}
+        info["username"] = username
+        info["name"] = name
+        info["ypjyxkzcode"] = ypjyxkzcode
+        info["gspcode"] = gspcode
+
+        # 参数验证
+        if not all([username, name, ypjyxkzcode, gspcode]):
+            # 参数不完整
+            return render(request, 'store/forget_email.html', {'info': info, 'errmsg': '数据不完整'})
+
+        # 用户名验证
+        try:
+            try:
+                store = medstore.objects.get(username=username)
+            except:
+                store = medstore.objects.get(name=name)
+        except:
+            return render(request, 'store/forget_email.html', {'info': info, 'errmsg': '用户或药店名不存在'})
+
+        # 信息是否完整
+        if store:
+            check = [False, False, False, False]
+            check[0] = (store.username == username)
+            check[1] = (store.name == name)
+            check[2] = (store.ypjyxkzcode == ypjyxkzcode)
+            check[3] = (store.gspcode == gspcode)
+            if False not in check:
+                email = store.email
+                emailstatus = store.emailstatus
+                context = {'info': info, 'errmsg': '验证成功', 'email': email}
+                context['emailstatus'] = emailstatus
+                return render(request, 'store/forget_email.html', context=context)
+            else:
+                return render(request, 'store/forget_email.html', {'info': info, 'errmsg': '验证失败'})
+
+    # 显示界面
+    else:
+        return render(request, 'store/forget_email.html')
 
 
 def email_check(request):
@@ -471,7 +711,7 @@ def email_check(request):
         if request.session.get('identity') != 'shopkeeper':
             context['send_errmsg'] = '请以店主账号登录'
             shopkeeper = False
-            return render(request, 'store/email_s.html', context=context)
+            return render(request, 'store/email_check.html', context=context)
         else:
             shopkeeper = True
     else:
@@ -483,7 +723,7 @@ def email_check(request):
             email_record = EmailVerifyRecord.objects.get(email=email)
         except:
             context["check_errmsg"] = "还没有发送邮件"
-            return render(request, 'store/email_s.html', context=context)
+            return render(request, 'store/email_check.html', context=context)
         code = request.POST.get("code")
         if code:
             if code == email_record.code:
@@ -502,10 +742,10 @@ def email_check(request):
                 context["check_errmsg"] = "验证码不正确，请稍后重试"
         else:
             context["check_errmsg"] = "请填写验证码"
-        return render(request, 'store/email_s.html', context=context)
+        return render(request, 'store/email_check.html', context=context)
 
     else:
-        return render(request, 'store/email_s.html', context=context)
+        return render(request, 'store/email_check.html', context=context)
 
 
 # 注册发送邮箱验证码
@@ -526,7 +766,7 @@ def email_s(request):
         if request.session.get('identity') != 'shopkeeper':
             context['send_errmsg'] = '请以店主账号登录'
             shopkeeper = False
-            return render(request, 'store/email_s.html', context=context)
+            return render(request, 'store/email_check.html', context=context)
         else:
             shopkeeper = True
     else:
@@ -546,7 +786,7 @@ def email_s(request):
                 mail_message['code'] = "fail"
                 mail_message['error_email'] = "邮箱已注册"
                 context['send_errmsg'] = "邮箱已注册"
-                return render(request, 'store/email_s.html', context=context)
+                return render(request, 'store/email_check.html', context=context)
             else:
                 if emailrecord:
                     nowtime = datetime.datetime.now()
@@ -554,8 +794,8 @@ def email_s(request):
                     lasttime = lasttime.replace(tzinfo=None)
                     sec = (nowtime - lasttime).seconds
                     if int(sec) <= 60:
-                        context['send_errmsg'] = "请{0}秒后重试".format(60-sec)
-                        return render(request, 'store/email_s.html', context=context)
+                        context['send_errmsg'] = "请{0}秒后重试".format(60 - sec)
+                        return render(request, 'store/email_check.html', context=context)
 
                     # 发送邮箱
 
@@ -564,21 +804,21 @@ def email_s(request):
                     mail_message['code'] = "OK"
                     mail_message['error_email'] = "发送成功"
                     context["send_errmsg"] = mail_message['error_email']
-                    return render(request, 'store/email_s.html', context=context)
+                    return render(request, 'store/email_check.html', context=context)
                 else:
                     mail_message['code'] = "fail"
                     mail_message['error_email'] = "验证码发送失败, 请稍后重试"
                     context["send_errmsg"] = mail_message['error_email']
-                    return render(request, 'store/email_s.html', context=context)
+                    return render(request, 'store/email_check.html', context=context)
 
         except Exception as e:
             print("错误信息 : ", e)
             mail_message['code'] = "fail"
             mail_message['error_email'] = "验证错误, 请稍后重试(注意检查邮箱格式)"
             context["send_errmsg"] = mail_message['error_email']
-            return render(request, 'store/email_s.html', context=context)
+            return render(request, 'store/email_check.html', context=context)
     else:
-        return render(request, 'store/email_s.html', context=context)
+        return render(request, 'store/email_check.html', context=context)
 
 
 # 邮箱发送所需函数
@@ -635,7 +875,7 @@ def send_code_email(email, send_type="register"):
         send_status = send_mail(email_title, email_body, settings.EMAIL_FROM, [email])
         if not send_status:
             return False
-    if send_type == "retrieve":
+    if send_type == "forget":
         email_title = "找回密码"
         email_body = "您正在找回密码，验证码为：{0}, 请及时进行验证，若不是您本人操作，请忽略。".format(code)
         # 发送邮件

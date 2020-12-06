@@ -5,9 +5,7 @@
 {# 用户中心右侧内容块 #}
 {% block right_content %}
     <div class="right_content clearfix">
-        <h3 class="common_title2">发送验证码&nbsp&nbsp&nbsp&nbsp
-            <label><font color="red">&nbsp&nbsp&nbsp&nbsp{{ send_errmsg }}</font></label>
-        </h3>
+        <h3 class="common_title2">发送验证码</h3>
         <div class="site_con clearfix">
             <dl>
                 <dt>邮箱：</dt>
@@ -26,12 +24,13 @@
                 {% else %}
                     <button type="button" class="layui-btn layui-btn-normals" onclick="">请记住您的注册邮箱方便找回密码</button>
                 {% endif %}
+                {% if send_errmsg %}
+                    <button class="layui-btn layui-btn-danger" disabled="disabled">{{ send_errmsg }}</button>
+                {% endif %}
             </form>
         </div>
         {% if emailrecord.emailstatus == "未激活" %}
-            <h3 class="common_title2">验证邮箱&nbsp&nbsp&nbsp&nbsp
-                <label><font color="red">&nbsp&nbsp&nbsp&nbsp{{ check_errmsg }}</font></label>
-            </h3>
+            <h3 class="common_title2">验证邮箱</h3>
             <div class="reg_form2 clearfix">
                 <form method="post" action="email_check">
                     <table>
@@ -41,6 +40,9 @@
                                 <label>验证码:</label>
                                 <input type="text" name="code">
                                 <input type="hidden" name="email" value="{{ emailrecord.email }}">
+                                {% if check_errmsg %}
+                                    <button class="layui-btn layui-btn-danger" disabled="disabled">{{ check_errmsg }}</button>
+                                {% endif %}
                             </td>
                         </tr>
                     </table>

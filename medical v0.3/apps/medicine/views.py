@@ -31,7 +31,9 @@ def add_medicine(request):
         unite = request.POST.get("unite")
         type=request.POST.get("type")
         # image=request.FILES.get("medicineimg")
-
+        if not all([name,price,desc,status,stock,medicinecode,unite, type]):
+            context['errmsg'] = '数据不完整'
+            return render(request, "medicine/add_medicine.html", context=context)
         medicine = Medicine()
         medicine.name = name
         medicine.price = price
