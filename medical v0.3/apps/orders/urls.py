@@ -11,4 +11,5 @@ urlpatterns = [
     path('staff_order_add/', views.staff_order_add, name='staff_order_add'),
     path('get_tag/', views.get_tag, name='get_tag'),
     path('finance/', views.finance, name='finance'),
+    path('finance_days_datas/', views.finance_days_datas, name='finance_days_datas'),
 ]

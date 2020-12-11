@@ -1,9 +1,9 @@
 import os
-from datetime import datetime
+from datetime import datetime, time
 import jieba
 import simplejson as json
 from django.db import transaction
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from staff.models import Staff
@@ -11,7 +11,6 @@ from medicine.models import Medicine, Cart
 from orders.models import Orders, OrderGoods
 from store.models import medstore
 from store.views import login
-
 
 
 # 线下订单添加
@@ -55,7 +54,8 @@ def staff_order_add(request):
             count += med.C_goods_num
 
         order = Orders()
-        order.order_id = datetime.now().strftime('%Y%m%d%H%M%S') + str(store_id) + str(staff_id)
+        order.order_id = datetime.now().strftime('%Y%m%d%H%M%S') + \
+            str(store_id) + str(staff_id)
         order.staff_id = staff_id
         order.drugstore_id = store_id
         order.med_price = med_price
@@ -119,7 +119,8 @@ def staff_order_add(request):
             count += med.C_goods_num
 
         order = Orders()
-        order.order_id = datetime.now().strftime('%Y%m%d%H%M%S') + str(store_id) + str(staff_id)
+        order.order_id = datetime.now().strftime('%Y%m%d%H%M%S') + \
+            str(store_id) + str(staff_id)
         order.staff_id = staff_id
         order.drugstore_id = store_id
         order.med_price = med_price
@@ -146,7 +147,7 @@ def staff_order_add(request):
         }
     context['ordergoods'] = ordergoods
     context['order'] = order_
-    return render(request, "orders/staff_order_add.html", context = context)
+    return render(request, "orders/staff_order_add.html", context=context)
 
 
 def order_details(request):
@@ -198,7 +199,7 @@ def order_details(request):
         }
         context1['order_med'].append(med_detail)
     context['context'] = context1
-    return render(request, "orders/order_details.html", context = context)
+    return render(request, "orders/order_details.html", context=context)
 
 
 def order_list(request):
@@ -310,7 +311,7 @@ def order_list(request):
 
             Orderlist.append(context1)
     context['orderlist'] = Orderlist
-    return render(request, "orders/find_orders.html", context = context)
+    return render(request, "orders/find_orders.html", context=context)
 
 
 def find_order_data(request):
@@ -435,13 +436,14 @@ def find_order_data(request):
         order.append(Orderlist[i])
     for order1 in order:
         id = order1['order_id']
-        order1['del_cart'] ='<button class="button1" onclick="del_order('+id+')">删除</button>'
-        order1['order_details'] ='<button class="button1" onclick="window.location.href=\'../order_details/?order_id=' + id + '\'">详情</button>'
+        order1['del_cart'] = '<button class="button1" onclick="del_order(' + \
+            id+')">删除</button>'
+        order1['order_details'] = '<button class="button1" onclick="window.location.href=\'../order_details/?order_id=' + id + '\'">详情</button>'
 
     return HttpResponse(
-        '{"code":0,"msg":"","count":' + str(num) + ',"data":' + json.dumps(order, ensure_ascii=False) + "}",
+        '{"code":0,"msg":"","count":' +
+        str(num) + ',"data":' + json.dumps(order, ensure_ascii=False) + "}",
         content_type="application/json")
-
 
     carts = Cart.objects.filter(C_store=store)
     carts_ = []
@@ -463,8 +465,10 @@ def find_order_data(request):
         id = str(data['id'])
         data['med_price'] = str(data['med_price'])+"元"
         data['price'] = str(data['price'])+"元"
-        data['del_cart'] ='<button class="button1" onclick="del_cart('+id+')">删除</button>'
-        data['edit_cart'] ='<button class="button1" onclick="add('+med_id+')">修改数量</button>'
+        data['del_cart'] = '<button class="button1" onclick="del_cart(' + \
+            id+')">删除</button>'
+        data['edit_cart'] = '<button class="button1" onclick="add(' + \
+            med_id+')">修改数量</button>'
 
 
 def del_order(request):
@@ -525,3 +529,166 @@ def finance(request):
 def get_tag(dict_):
     tag = dict_.get('tag')
     return tag
+
+
+def finance_days_datas(request):
+    # 判断是否登录
+    context = {
+        'page': 'order_list',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+    else:
+        return login(request)
+
+    if request.method == 'GET':
+        day = request.GET.get('day')
+        all = {
+            "title": str(day)+"的销售数据：",
+            "allnum": 0,
+            "allmoney": 0,
+            "all_medname": [],
+            "all_medcount": [],
+            "all_medallprice": [],
+        }
+        year = day[:4]
+        month = day[5:7]
+        day = day[8:]
+
+        orders = Orders.objects.filter(time__year=year,time__month=month,time__day=day)
+
+        print(orders[0])
+        print(day)
+
+        all_medcount = {}
+        all_medprice = {}
+        # all["all_med"] = all_medcount
+        for order in orders:  # 读取每一笔订单
+            all["allmoney"] += order.med_price
+            all["allnum"] += order.total_count
+            allmed = OrderGoods.objects.filter(order=order)
+            for med in allmed:  # 读取每一笔订单中的具体药品
+                medname = med.sku.name
+                count = med.count
+                price = med.price
+                all_medprice[medname] = price
+                if medname in all_medcount:
+                    all_medcount[medname] += count
+                else:
+                    all_medcount[medname] = count
+        all["title"] = all["title"]+" 总销售量：{0}；总销售额：{1}".format(all["allnum"],all["allmoney"])
+        for medname in all_medcount.keys():
+            all["all_medname"].append(medname)
+            all["all_medcount"].append(all_medcount[medname])
+            all["all_medallprice"].append(all_medcount[medname]*all_medprice[medname])
+    data = json.dumps(all, ensure_ascii=False)
+    return HttpResponse(data)
+
+
+def finance_month_datas(request):
+    # 判断是否登录
+    context = {
+        'page': 'order_list',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+    else:
+        return login(request)
+
+    if request.method == 'GET':
+        month = request.GET.get('month')
+        all = {
+            "title": str(month)+"的销售数据：",
+            "allnum": 0,
+            "allmoney": 0,
+            "all_medname": [],
+            "all_medcount": [],
+            "all_medallprice": [],
+        }
+        year = month[:4]
+        month = month[5:7]
+        month = month[8:]
+        orders = Orders.objects.filter(time__year=year)
+        all_medcount = {}
+        all_medprice = {}
+        # all["all_med"] = all_medcount
+        for order in orders:  # 读取每一笔订单
+            all["allmoney"] += order.med_price
+            all["allnum"] += order.total_count
+            allmed = OrderGoods.objects.filter(order=order)
+            for med in allmed:  # 读取每一笔订单中的具体药品
+                medname = med.sku.name
+                count = med.count
+                price = med.price
+                all_medprice[medname] = price
+                if medname in all_medcount:
+                    all_medcount[medname] += count
+                else:
+                    all_medcount[medname] = count
+        all["title"] = all["title"]+" 总销售量：{0}；总销售额：{1}".format(all["allnum"],all["allmoney"])
+        for medname in all_medcount.keys():
+            all["all_medname"].append(medname)
+            all["all_medcount"].append(all_medcount[medname])
+            all["all_medallprice"].append(all_medcount[medname]*all_medprice[medname])
+    data = json.dumps(all, ensure_ascii=False)
+    return HttpResponse(data)
+
+
+def finance_year_datas(request):
+    # 判断是否登录
+    context = {
+        'page': 'order_list',
+    }
+    if request.session.get('is_login', None):
+        username = request.session.get('username')
+        storeid = request.session.get('storeid')
+        context['username'] = username
+    else:
+        return login(request)
+
+    if request.method == 'GET':
+        day = request.GET.get('day')
+        all = {
+            "title": str(day)+"的销售数据：",
+            "allnum": 0,
+            "allmoney": 0,
+            "all_medname": [],
+            "all_medcount": [],
+            "all_medallprice": [],
+        }
+        year = day[:4]
+        month = day[5:7]
+        day = day[8:]
+
+        orders = Orders.objects.filter(time__year=year)
+
+        print(orders[0])
+        print(day)
+
+        all_medcount = {}
+        all_medprice = {}
+        # all["all_med"] = all_medcount
+        for order in orders:  # 读取每一笔订单
+            all["allmoney"] += order.med_price
+            all["allnum"] += order.total_count
+            allmed = OrderGoods.objects.filter(order=order)
+            for med in allmed:  # 读取每一笔订单中的具体药品
+                medname = med.sku.name
+                count = med.count
+                price = med.price
+                all_medprice[medname] = price
+                if medname in all_medcount:
+                    all_medcount[medname] += count
+                else:
+                    all_medcount[medname] = count
+        all["title"] = all["title"]+" 总销售量：{0}；总销售额：{1}".format(all["allnum"],all["allmoney"])
+        for medname in all_medcount.keys():
+            all["all_medname"].append(medname)
+            all["all_medcount"].append(all_medcount[medname])
+            all["all_medallprice"].append(all_medcount[medname]*all_medprice[medname])
+    data = json.dumps(all, ensure_ascii=False)
+    return HttpResponse(data)

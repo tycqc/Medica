@@ -425,4 +425,3 @@ def del_cart_list(request):
 def get_tag(dict_):
     tag = dict_.get('tag')
     return tag
-
