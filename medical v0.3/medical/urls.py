@@ -28,6 +28,8 @@ urlpatterns = [
     re_path('medicine/', include(('medicine.urls', 'medicine'), namespace='medicine')),
     re_path('store/', include(('store.urls', 'store'), namespace='store')),
     re_path('orders/', include(('orders.urls', 'orders'), namespace='orders')),
+    re_path('salesDATA/', include(('salesDATA.urls', 'salesDATA'), namespace='salesDATA')),
+
     re_path('user/', include(('user.urls', 'user'), namespace='user')),
     re_path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
     path('', views.login),
