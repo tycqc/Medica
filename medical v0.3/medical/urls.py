@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls import url
-from store import views
+from store.views import login
 
 
 urlpatterns = [
@@ -32,5 +32,5 @@ urlpatterns = [
 
     re_path('user/', include(('user.urls', 'user'), namespace='user')),
     re_path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
-    path('', views.login),
+    path('', login),
 ]

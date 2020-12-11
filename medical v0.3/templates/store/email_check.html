@@ -41,16 +41,17 @@
                                 <input type="text" name="code">
                                 <input type="hidden" name="email" value="{{ emailrecord.email }}">
                                 {% if check_errmsg %}
-                                    <button class="layui-btn layui-btn-danger" disabled="disabled">{{ check_errmsg }}</button>
+                                    <button class="layui-btn layui-btn-danger"
+                                            disabled="disabled">{{ check_errmsg }}</button>
                                 {% endif %}
                             </td>
                         </tr>
                     </table>
                     <button type="submit" class="layui-btn" lay-submit="">绑定邮箱</button>
                     <br>
-                    <font color="#6495ed">被他人误用???点击</font>
-                    <a href="{% url 'store:forget_password' %}">这里</a>
-                    <font color="#6495ed">强行激活!!</font>
+                    {#                    <font color="#6495ed">被他人误用???点击</font>#}
+                    {#                    <a href="{% url 'store:forget_password' %}">这里</a>#}
+                    {#                    <font color="#6495ed">强行激活!!</font>#}
                 </form>
             </div>
         {% endif %}

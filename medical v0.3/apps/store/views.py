@@ -52,7 +52,7 @@ def register(request):
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '数据不完整'})
 
         # 用户名验证
-        if len(username) <= 5 and len(username) <= 20:
+        if len(username) >= 5 and len(username) <= 20:
             # pattern = "/^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8|8\d|9|d)\d{8}$"
             # if re.match(pattern,)
             True
@@ -70,27 +70,29 @@ def register(request):
             # 密码不一致
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '密码不一致'})
 
+        # GSP编号
         pattern = "^[A-C]{1}\-[A-Z]{2,5}[0-9]{2}\-[0-9]{3,4}$"
         b = re.match(pattern, gspcode)
         if b == None:
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': 'GSP编号不合格'})
 
+        # 邮箱格式
         pattern = "^[A-Za-z0-9\u4e00-\u9fa5]*@[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*$"
         b = re.match(pattern, email)
         if b == None:
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '邮箱格式不正确'})
 
-
+        # 经营许可证编号
         pattern = "^[\u4e00-\u9fff]{1}[A-D]{1}[A-B]{1}[0-9]{7}$"
         b = re.match(pattern, ypjyxkzcode)
         if b == None:
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '经营许可证编号不合格'})
 
+        # 时间编号
         pattern = "^[0-9]{4}\-(((0[13578]|(10|12))\-(0[1-9]|[1-2][0-9]|3[0-1]))|(02\-(0[1-9]|[1-2][0-9]))|((0[469]|11)\-(0[1-9]|[1-2][0-9]|30)))$"
         b = re.match(pattern, time)
         if b == None:
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '时间编号不合格'})
-
 
         # 是否同意使用协议
         if allow != 'on':
@@ -364,6 +366,34 @@ def store_homepage_update(request):
                 context['errmsg'] = '新密码不一致'
                 return render(request, 'store/USER_INFO_update.html', context=context)
 
+            # GSP编号
+            pattern = "^[A-C]{1}\-[A-Z]{2,5}[0-9]{2}\-[0-9]{3,4}$"
+            b = re.match(pattern, gspcode)
+            if b == None:
+                context['errmsg'] = 'GSP编号不合格'
+                return render(request, 'store/REGISTER.html', context=context)
+
+            # 邮箱格式
+            pattern = "^[A-Za-z0-9\u4e00-\u9fa5]*@[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*$"
+            b = re.match(pattern, email)
+            if b == None:
+                context['errmsg'] = '邮箱格式不正确'
+                return render(request, 'store/REGISTER.html', context=context)
+
+            # 经营许可证编号
+            pattern = "^[\u4e00-\u9fff]{1}[A-D]{1}[A-B]{1}[0-9]{7}$"
+            b = re.match(pattern, ypjyxkzcode)
+            if b == None:
+                context['errmsg'] = '经营许可证编号不合格'
+                return render(request, 'store/REGISTER.html', context=context)
+
+            # 时间编号
+            pattern = "^[0-9]{4}\-(((0[13578]|(10|12))\-(0[1-9]|[1-2][0-9]|3[0-1]))|(02\-(0[1-9]|[1-2][0-9]))|((0[469]|11)\-(0[1-9]|[1-2][0-9]|30)))$"
+            b = re.match(pattern, time)
+            if b == None:
+                context['errmsg'] = '时间编号不合格'
+                return render(request, 'store/REGISTER.html', context=context)
+
             # 是否同意使用协议
             if allow != 'on':
                 # 协议不同意
@@ -503,7 +533,7 @@ def forget_password(request):
         context["store"] = store
         context["email"] = email
         if request.session.get('identity') != 'shopkeeper':
-            return redirect('store:store_homepage_update')
+            return redirect('store:homepage_update')
         else:
             request.session.flush()
             return render(request, 'store/forget_password.html', context=context)
@@ -621,11 +651,11 @@ def reset_password(request):
     if request.method == 'POST':
         password = request.POST.get('password')
         copypassword = request.POST.get('copypassword')
-        info={
+        info = {
             'password': password,
             'copypassword': copypassword
         }
-        context={
+        context = {
             'info': info
         }
         if not all([password, copypassword]):
