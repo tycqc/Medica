@@ -12,4 +12,5 @@ urlpatterns = [
     path('get_tag/', views.get_tag, name='get_tag'),
     path('finance/', views.finance, name='finance'),
     # path('finance_days_datas/', views.finance_days_datas, name='finance_days_datas'),
+    path('order_add/', views.order_add.as_view(), name='order_add'),
 ]
