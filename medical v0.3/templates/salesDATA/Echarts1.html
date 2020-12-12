@@ -1,0 +1,217 @@
+{% extends 'salesDATA/salesDATA_base.HTML' %}
+{# 用户中心右侧内容块 #}
+{% block right_content %}
+    <div class="right_content clearfix" onload="function changbackgroundcolor()">
+        {# 开始时间和结束时间 #}
+        <h3 class="common_title2">数据时间</h3>
+        <form class="layui-form" action="/salesDATA/finance_staff/" method="get">
+            {% csrf_token %}
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">开始日期：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="startdate" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">结束日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="enddate" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript">
+            layui.use(['form', 'layedit', 'laydate'], function () {
+                var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , laydate = layui.laydate;
+
+                //日期
+                laydate.render({
+                    elem: '#startdate'
+                });
+                laydate.render({
+                    elem: '#enddate'
+                });
+            });
+        </script>
+        <h3 class="common_title2">
+            {{ all.title }}
+            <label>
+                <font color="red">&nbsp&nbsp&nbsp&nbsp{{ errmsg }}</font>
+            </label>
+        </h3>
+        <div style="width: 100%;height: 550px;" id="main"></div>
+        <script type="text/javascript">
+            var dom = document.getElementById("main");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            var posList = ["left", "right", "top", "bottom",
+                "inside", "insideTop", "insideLeft", "insideRight", "insideBottom",
+                "insideTopLeft", "insideTopRight", "insideBottomLeft", "insideBottomRight",
+            ];
+
+            app.configParameters = {
+                rotate: {
+                    min: -90,
+                    max: 90,
+                },
+                align: {
+                    options: {
+                        left: "left",
+                        center: "center",
+                        right: "right",
+                    },
+                },
+                verticalAlign: {
+                    options: {
+                        top: "top",
+                        middle: "middle",
+                        bottom: "bottom",
+                    },
+                },
+                position: {
+                    options: echarts.util.reduce(
+                        posList,
+                        function (map, pos) {
+                            map[pos] = pos;
+                            return map;
+                        },
+                        {}
+                    ),
+                },
+                distance: {
+                    min: 0,
+                    max: 100,
+                },
+            };
+
+            app.config = {
+                rotate: 90,
+                align: "left",
+                verticalAlign: "middle",
+                position: "insideBottom",
+                distance: 15,
+                onChange: function () {
+                    var labelOption = {
+                        normal: {
+                            rotate: app.config.rotate,
+                            align: app.config.align,
+                            verticalAlign: app.config.verticalAlign,
+                            position: app.config.position,
+                            distance: app.config.distance,
+                        },
+                    };
+                    myChart.setOption({
+                        series: [
+                            {
+                                label: labelOption,
+                            },
+                            {
+                                label: labelOption,
+                            },
+                        ],
+                    });
+                },
+            };
+
+            var labelOption = {
+                normal: {
+                    show: false,
+                    position: app.config.position,
+                    distance: app.config.distance,
+                    align: app.config.align,
+                    verticalAlign: app.config.verticalAlign,
+                    rotate: app.config.rotate,
+                    formatter: "{c}  {name|{a}}",
+                    fontSize: 16,
+                    rich: {
+                        name: {
+                            textBorderColor: "#fff",
+                        },
+                    },
+                },
+            };
+
+            option = {
+                color: ["#ffcc66", "#4cabce"],
+                tooltip: {
+                    trigger: "axis",
+                    axisPointer: {
+                        type: "shadow",
+                    },
+                },
+                legend: {
+                    data: ["销量", "销售额"],
+                },
+                toolbox: {
+                    show: true,
+                    orient: "vertical",
+                    left: "right",
+                    top: "center",
+                    feature: {
+                        mark: {show: true},
+                        dataView: {show: true, readOnly: false},
+                        magicType: {show: true, type: ["line", "bar", "stack", "tiled"]},
+                        restore: {show: true},
+                        saveAsImage: {show: true},
+                    },
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: "category",
+                        axisTick: {show: false},
+                        data: {{ all.all_staffname|safe }}
+                    },
+                ],
+                yAxis: [
+                    {
+                        type: "value",
+                        name: "销量",
+                        axisLabel: {
+                            formatter: '{value} 件'
+                        }
+                    },
+                    {
+                        type: "value",
+                        name: "销售额",
+                        axisLabel: {
+                            formatter: '{value} 元'
+                        }
+                    },
+                ],
+                series: [
+                    {
+                        name: "销量",
+                        type: "bar",
+                        label: labelOption,
+                        barGap: "0", //柱图间距
+                        data: {{ all.all_staffcount }}
+                    },
+                    {
+                        name: "销售额",
+                        type: "bar",
+                        label: labelOption,
+                        yAxisIndex: 1,
+                        data: {{ all.all_staffallprice }}
+                    },
+                ],
+            };
+
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        </script>
+    </div>
+{% endblock right_content %}

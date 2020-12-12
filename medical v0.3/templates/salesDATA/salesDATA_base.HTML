@@ -23,6 +23,8 @@
     <script type="text/javascript" src="{% static 'js/staff.js' %}"></script>
     <script src="{% static 'js/layui/layui.js' %}" charset="utf-8"></script>
     <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
+    <script src="{% static 'js/dist/echarts.min.js' %}" charset="utf-8"></script>
+
     {#注意导入js的顺序#}
     {# 网页顶部引入文件块 #}
     {% block topfiles %}{% endblock topfiles %}
@@ -73,7 +75,7 @@
             <a href="{% url 'medicine:find_medicine' %}">药品管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'staff:find_staff' %}">员工管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{% url 'orders:order_list' %}">订单管理</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'salesDATA:order_list' %}">
+            <a href="{% url 'salesDATA:finance_medicine' %}">
                 <font color="#ff8800">财务信息</font>
             </a>
         </div>
@@ -87,13 +89,17 @@
         {# 左侧导航栏 不用改 #}
         {% block left_bar %}
             <div class="left_menu_con clearfix">
-                <h3>员工管理</h3>
+                <h3>销售数据</h3>
                 <ul>
-                    <li><a href="{% url 'staff:find_staff' %}" {% if page == 'find_staff' %}class="active" {% endif %}>·
-                        员工查询</a></li>
-                    <li><a href="{% url 'staff:register_staff' %}" {% if page == 'register_staff' %}class="active"
-                    {% endif %}>·
-                        员工添加</a></li>
+                    <li><a href="{% url 'salesDATA:finance_medicine' %}"
+                           {% if page == 'finance_medicine' %}class="active"
+                           {% endif %}>·药品销售数据</a></li>
+                    <li><a href="{% url 'salesDATA:finance_staff' %}" {% if page == 'finance_staff' %}class="active"
+                    {% endif %}>·员工销售报表</a></li>
+                    <li><a href="{% url 'salesDATA:finance_month' %}" {% if page == 'finance_month' %}class="active"
+                    {% endif %}>·月度销售报表</a></li>
+                    <li><a href="{% url 'salesDATA:finance_year' %}" {% if page == 'finance_year' %}class="active"
+                    {% endif %}>·年度销售报表</a></li>
                 </ul>
             </div>
         {% endblock left_bar %}
