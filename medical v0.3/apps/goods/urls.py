@@ -7,6 +7,7 @@ urlpatterns = [
     path('index/', views.index.as_view(), name='index'),
     path('detail/', views.detail.as_view(), name='detail'),
     path('search/', views.search.as_view(), name='search'),
+    path('history/', views.history.as_view(), name='history'),
 
 
 ]

@@ -11,7 +11,7 @@ class medstore(models.Model):
     desc = models.CharField(max_length=256, verbose_name='药店简介')
     address = models.CharField(max_length=40, verbose_name='药店地址')
     postcode = models.CharField(max_length=20, verbose_name='邮政编码')
-    email = models.EmailField(max_length=50, verbose_name="邮箱")
+    email = models.EmailField(max_length=50, verbose_name="邮箱",default="none")
     emailstatus = models.CharField(max_length=10, verbose_name="邮箱状态",default="未激活",
                                     choices = (("未激活", "未激活"), ("已激活", "已激活")))
     time = models.DateField(auto_now_add=True,null=True, blank=True) #开办时间

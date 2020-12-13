@@ -534,16 +534,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from store.models import medstore
-from  user.models import  User
+from  user.models import User
 
-from django.forms.models import model_to_dict
-from store.serializer import detailSerializer
 
 class order_add(APIView):
     def post(self,request):
         medlist = request.data.get('list')
-        userph = request.data.get('user')
-        user = User.objects.filter(phone=userph)
+        userph = request.data.get('phone')
+        print(medlist)
+        user = User.objects.get(phone=userph)
         user_id = user.id
         store_id = medlist[0]['drugstore']
 
@@ -582,7 +581,7 @@ class order_add(APIView):
 
             order_ = {
                 'order_id': order.order_id,
-                'user': Staff.objects.get(id=user_id).name,
+
                 'address': order.customer.addr,
                 'receiver': order.customer.name,
                 'phone': order.customer.phone,
@@ -642,7 +641,7 @@ class order_add(APIView):
 
             order_ = {
                 'order_id': order.order_id,
-                'user': Staff.objects.get(id=user_id).name,
+                'user': User.objects.get(id=user_id).name,
                 'address': order.customer.addr,
                 'receiver': order.customer.name,
                 'phone': order.customer.phone,
@@ -653,5 +652,4 @@ class order_add(APIView):
                 'transit_price': order.transit_price,
                 'order_status': orderstatus[order.order_status],
             }
-
-            return Response({'ordergoods': ordergoods, 'order': order_})
+        return Response({'ordergoods': ordergoods, 'order': order_})
