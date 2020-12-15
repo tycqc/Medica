@@ -48,6 +48,6 @@ class history(APIView):
             medicine = Medicine.objects.get(id=i['id'])
             medicine= model_to_dict(medicine)
             c.append(medicine)
-        print(c)
+        c.reverse()
         return Response({"medicine":c})
 

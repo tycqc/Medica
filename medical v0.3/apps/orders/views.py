@@ -547,7 +547,7 @@ class order_add(APIView):
         store_id = medlist[0]['drugstore']
 
         if request.data.get('pay_method'):
-            pay_method = request.POST.get('pay_method')
+            pay_method = request.data.get('pay_method')
 
             med_price = 0
             count = 0
@@ -573,7 +573,7 @@ class order_add(APIView):
             order.total_price = med_price + order.transit_price
             order.total_count = count
             order.order_status = 1
-            order.pay_method = int(pay_method)
+            order.pay_method = pay_method
             order.save()
 
             paymethod = ['现金支付', '微信支付', '支付宝']
