@@ -42,7 +42,7 @@
                             <td>
                                 <label>药店用户名:</label>
                                 <input type="text" name="username" id="username" value="{{ info.username }}"
-                                       placeholder="请输入5-20个字符的用户名">
+                                       placeholder="请输入2-10个字符的用户名">
                             </td>
                             <td>
                                 <label>药店名:</label>
@@ -53,7 +53,7 @@
                             <td>
                                 <label>密码:</label>
                                 <input type="password" name="password" id="password" value="{{ info.password }}"
-                                       placeholder="密码最少8位，最长20位">
+                                       placeholder="密码最少6位，最长20位">
                             </td>
                             <td>
                                 <label>确认密码:</label>
@@ -68,14 +68,24 @@
                             </td>
                             <td>
                                 <label>gsp证书编号:</label>
-                                <input type="text" name="gspcode" id="gspcode" value="{{ info.gspcode }}"
+                                <input type="text" name="gspcode" id="gspcode"
+                                        {% if info.gspcode %}
+                                       value="{{ info.gspcode }}"
+                                        {% else %}
+                                       value="A-JS05-028"
+                                        {% endif %}
                                        placeholder="必填:A-JS05-028">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>经营许可证:</label>
-                                <input type="text" name="ypjyxkzcode" id="ypjyxkzcode" value="{{ info.ypjyxkzcode }}"
+                                <input type="text" name="ypjyxkzcode" id="ypjyxkzcode"
+                                        {% if info.ypjyxkzcode %}
+                                       value="{{ info.ypjyxkzcode }}"
+                                        {% else %}
+                                       value="川AA0280001"
+                                        {% endif %}
                                        placeholder="必填:川AA0280001">
                             </td>
                             <td>
