@@ -39,3 +39,15 @@ class detail(APIView):
         print(store)
         return Response({"medicine_info": medicine,"store":store})
 
+class history(APIView):
+    def post(self,request):
+        history = request.data.get('history')
+
+        c = []
+        for i in history:
+            medicine = Medicine.objects.get(id=i['id'])
+            medicine= model_to_dict(medicine)
+            c.append(medicine)
+        c.reverse()
+        return Response({"medicine":c})
+

@@ -529,3 +529,127 @@ def finance(request):
 def get_tag(dict_):
     tag = dict_.get('tag')
     return tag
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from store.models import medstore
+from  user.models import User
+
+
+class order_add(APIView):
+    def post(self,request):
+        medlist = request.data.get('list')
+        userph = request.data.get('phone')
+        print(medlist)
+        user = User.objects.get(phone=userph)
+        user_id = user.id
+        store_id = medlist[0]['drugstore']
+
+        if request.data.get('pay_method'):
+            pay_method = request.data.get('pay_method')
+
+            med_price = 0
+            count = 0
+            ordergoods = []
+            for med in medlist:
+                price = med['price'] * med['num']
+
+                context = {
+                    'med_name': med['name'],
+                    'med_price': price,
+                    'med_count': med['num'],
+                }
+                ordergoods.append(context)
+                med_price += price
+                count += med['num']
+
+            order = Orders()
+            order.order_id = datetime.now().strftime('%Y%m%d%H%M%S') + str(store_id) + str(user_id)
+            order.customer_id = user_id
+            order.drugstore_id = store_id
+            order.med_price = med_price
+            order.transit_price = 2
+            order.total_price = med_price + order.transit_price
+            order.total_count = count
+            order.order_status = 1
+            order.pay_method = pay_method
+            order.save()
+
+            paymethod = ['现金支付', '微信支付', '支付宝']
+            orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
+
+            order_ = {
+                'order_id': order.order_id,
+
+                'address': order.customer.addr,
+                'receiver': order.customer.name,
+                'phone': order.customer.phone,
+                'drugstore': order.drugstore.name,
+                'med_price': order.med_price,
+                'total_count': order.total_count,
+                'total_price': order.total_price,
+                'transit_price': order.transit_price,
+                'order_status': orderstatus[order.order_status],
+                'pay_method': paymethod[order.pay_method],
+            }
+
+            for med in medlist:
+                price = med['price'] * med['num']
+
+                ordergood = OrderGoods()
+                ordergood.sku_id = med['id']
+                ordergood.order_id = order.order_id
+                ordergood.count = med['num']
+                ordergood.price = price
+                ordergood.save()
+                med_ = Medicine.objects.get(id=med['id'])
+                med_.stock -= med['num']
+                med_.sales += med['num']
+                med_.save()
+
+            return Response({'status': 1})
+        else:
+
+            med_price = 0
+            count = 0
+            ordergoods = []
+            for med in medlist:
+                price = med['price'] * med['num']
+
+                context = {
+                    'med_name': med['name'],
+                    'med_price': price,
+                    'med_count': med['num'],
+                }
+                ordergoods.append(context)
+                med_price += price
+                count += med['num']
+
+            order = Orders()
+            order.order_id = datetime.now().strftime('%Y%m%d%H%M%S') + str(store_id) + str(user_id)
+            order.customer_id = user_id
+            order.drugstore_id = store_id
+            order.med_price = med_price
+            order.transit_price = 2
+            order.total_price = med_price + order.transit_price
+            order.total_count = count
+            order.order_status = 1
+
+            paymethod = ['现金支付', '微信支付', '支付宝']
+            orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
+
+            order_ = {
+                'order_id': order.order_id,
+                'user': User.objects.get(id=user_id).name,
+                'address': order.customer.addr,
+                'receiver': order.customer.name,
+                'phone': order.customer.phone,
+                'drugstore': order.drugstore.name,
+                'med_price': order.med_price,
+                'total_count': order.total_count,
+                'total_price': order.total_price,
+                'transit_price': order.transit_price,
+                'order_status': orderstatus[order.order_status],
+            }
+        return Response({'ordergoods': ordergoods, 'order': order_})
