@@ -305,12 +305,15 @@ def store_homepage_update(request):
 
         else:
             store = medstore.objects.get(pk=storeid)
+            username1 = request.POST.get('username')
             Opassword = request.POST.get('Opassword')
             name = request.POST.get('name')
             password = request.POST.get('password')
             cpwd = request.POST.get('cpwd')
             ypjyxkzcode = request.POST.get('ypjyxkzcode')
-            time = request.POST.get('time')
+            time="2020-01-01"
+            if request.POST.get('time'):
+                time = request.POST.get('time')
             gspcode = request.POST.get('gspcode')
             desc = request.POST.get('desc')
             address = request.POST.get('address')
@@ -402,6 +405,7 @@ def store_homepage_update(request):
 
             # 注册
             try:
+                store.username = username1
                 store.password = password
                 store.cpwd = cpwd
                 store.ypjyxkzcode = ypjyxkzcode
@@ -411,10 +415,12 @@ def store_homepage_update(request):
                 store.address = address
                 store.postcode = postcode
                 store.email = email
-                store.emailstatus = emailstatus1
+                if email != store.email:
+                    store.emailstatus = emailstatus1
                 if time != "":
                     store.time = time
                 store.save()
+                request.session['username'] = store.username
                 print("OK")
             except:
                 context['errmsg'] = '信息修改失败（可能是时间格式不正确），请重试'
