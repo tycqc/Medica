@@ -940,3 +940,215 @@ def send_code_email(email, send_type="register"):
             return False
     email_record.save()
     return True
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from store.models import medstore
+from medicine.models import Medicine
+import requests
+import json
+import  jieba
+
+from django.forms.models import model_to_dict
+
+def get_tag(dict_):
+    tag = dict_.get('tag')
+    return tag
+
+class store_li(APIView):
+    def post(self,request):
+        if request.data.get("search_text"):
+            search = request.data.get("search_text")
+            stall = medstore.objects.filter()
+
+            search_list = jieba.lcut(search)
+
+            x = request.data.get('x')
+            y = request.data.get('y')
+
+            stlist = []
+            stlist0 = []
+            stlist1 = []
+            stlist2 = []
+            stlist3 = []
+            stlist4 = []
+
+            for store in stall:
+                key = 'TB6BZ-IDFLS-HHPOM-6OM6K-UQ245-S5BF2'
+                api_url = 'https://apis.map.qq.com/ws/direction/v1/bicycling/?from=' + store.address + '&to=' + str(
+                    x) + ',' + str(y) + '&key=' + key
+                response = requests.get(api_url)
+                way = json.loads(response.text)
+                dis = way["result"]["routes"][0]["distance"]
+                if dis <= 5000 :
+                    st_det = {
+                        'store':{
+                            'name': store.name,
+                            'desc': store.desc,
+                            'code': store.ypjyxkzcode,
+                            'dis': dis,
+                        },
+                        'store_med':[]
+                    }
+
+                    store_med = Medicine.objects.filter(drugstore=store.id)
+                    for med in store_med:
+                        med_detail = model_to_dict(med)
+                        st_det['store_med'].append(med_detail)
+                    tag0 = 0
+                    tag1 = 0
+                    tag = 0
+                    order_str = str(st_det)
+                    for word in search_list:
+                        if order_str.find(word) != -1:
+                            word_count = order_str.count(word)
+                            tag0 = tag0 + 10
+                            tag1 = tag1 + word_count
+                            tag = tag0 + tag1
+                    if tag == 0:
+                        continue
+
+                    # address_ = Order.addr
+                    # drug_store = Order.drugstore
+                    context = {
+                        'id': store.id,
+                        'name': store.name,
+                        'code': store.ypjyxkzcode,
+                        'dis': dis,
+                        'tag': tag,
+                    }
+                    stlist.append(context)
+            stlist.sort(key=get_tag, reverse=True)
+
+            for a in stlist:
+                if a['dis'] <= 500:
+                    stlist0.append(a)
+                if a['dis'] <= 1000:
+                    stlist1.append(a)
+                if a['dis'] <= 1500:
+                    stlist2.append(a)
+                if a['dis'] <= 2000:
+                    stlist3.append(a)
+                if a['dis'] <= 2500:
+                    stlist4.append(a)
+            return Response({"stlist": stlist,
+                             "stlist0": stlist0,
+                             "stlist1": stlist1,
+                             "stlist2": stlist2,
+                             "stlist3": stlist3,
+                             "stlist4": stlist4,
+                             })
+        else:
+            stall = medstore.objects.filter()
+            x = request.data.get('x')
+            y = request.data.get('y')
+
+            stlist = []
+            stlist0 = []
+            stlist1 = []
+            stlist2 = []
+            stlist3 = []
+            stlist4 = []
+
+            for store in stall:
+                key = 'TB6BZ-IDFLS-HHPOM-6OM6K-UQ245-S5BF2'
+                api_url = 'https://apis.map.qq.com/ws/direction/v1/bicycling/?from=' + store.address + '&to=' + str(x) + ',' + str(y) + '&key=' + key
+                response = requests.get(api_url)
+                way = json.loads(response.text)
+                print(way)
+                dis = way["result"]["routes"][0]["distance"]
+                context = {
+                    'id': store.id,
+                    'name': store.name,
+                    'code': store.ypjyxkzcode,
+                    'dis': dis,
+                }
+                if dis <= 3000:
+                    stlist.append(context)
+            for a in stlist:
+                if a['dis'] <= 500:
+                    stlist0.append(a)
+                if a['dis'] <= 1000:
+                    stlist1.append(a)
+                if a['dis'] <= 1500:
+                    stlist2.append(a)
+                if a['dis'] <= 2000:
+                    stlist3.append(a)
+                if a['dis'] <= 2500:
+                    stlist4.append(a)
+            return Response({"stlist": stlist,
+                             "stlist0": stlist0,
+                             "stlist1": stlist1,
+                             "stlist2": stlist2,
+                             "stlist3": stlist3,
+                             "stlist4": stlist4,
+                             })
+
+class store_det(APIView):
+    def post(self,request):
+        if request.data.get("search_text"):
+            search = request.data.get("search_text")
+            id = request.data.get('id')
+            store = medstore.objects.get(id=id)
+            medall = Medicine.objects.filter(drugstore=id)
+
+            search_list = jieba.lcut(search)
+
+            medlist = []
+
+            for med in medall:
+                med_detail =model_to_dict(med)
+                tag0 = 0
+                tag1 = 0
+                tag = 0
+                order_str = str(med_detail)
+                for word in search_list:
+                    if order_str.find(word) != -1:
+                        word_count = order_str.count(word)
+                        tag0 = tag0 + 10
+                        tag1 = tag1 + word_count
+                        tag = tag0 + tag1
+                if tag == 0:
+                    continue
+
+                # address_ = Order.addr
+                # drug_store = Order.drugstore
+                context = {
+                    'id': med.id,
+                    'name': med.name,
+                    'price': med.price,
+                    'stock': med.stock,
+                    'sales': med.sales,
+                    'tag':tag,
+                }
+                medlist.append(context)
+            medlist.sort(key=get_tag, reverse=True)
+
+            return Response({"medlist": medlist,
+                             "name": store.name,
+                             })
+        else:
+            id = request.data.get('id')
+            store = medstore.objects.get(id=id)
+            medall = Medicine.objects.filter(drugstore=id)
+
+            medlist = []
+            medlist0 = []
+
+            for med in medall:
+                context = {
+                    'id': med.id,
+                    'name': med.name,
+                    'price': med.price,
+                    'stock': med.stock,
+                    'sales': med.sales,
+                    'tag':med.sales,
+                }
+                medlist0.append(context)
+            medlist0.sort(key=get_tag, reverse=True)
+            medlist = medlist0[0:5]
+            return Response({"medlist": medlist,
+                             "medlist0": medlist0,
+                             "name": store.name,
+                             })

@@ -16,6 +16,9 @@ urlpatterns = [
     path('reset_password/', views.reset_password, name='reset_password'),  # 用户中心-忘记密码-邮箱验证
     url(r'^forget_email$', views.forget_email, name='forget_email'),  # 用户中心-忘记密码-忘记邮箱
     url(r'^email_check$', views.email_check, name='email_check'),  # 用户中心-邮箱验证
+    path('store_li/', views.store_li.as_view(), name='store_li'),
+    path('store_det/', views.store_det.as_view(), name='store_det'),
+
 
     # url(r'^shiyan$', views.shiyan, name='shiyan'),
     # url(r'^shiyan_index$', views.shiyan_index, name='shiyan_index'),

@@ -534,14 +534,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from store.models import medstore
-from  user.models import User
+from  user.models import  User
 
+from django.forms.models import model_to_dict
 
 class order_add(APIView):
     def post(self,request):
         medlist = request.data.get('list')
         userph = request.data.get('phone')
-        print(medlist)
         user = User.objects.get(phone=userph)
         user_id = user.id
         store_id = medlist[0]['drugstore']
@@ -581,7 +581,7 @@ class order_add(APIView):
 
             order_ = {
                 'order_id': order.order_id,
-
+                'user': User.objects.get(id=user_id).name,
                 'address': order.customer.addr,
                 'receiver': order.customer.name,
                 'phone': order.customer.phone,
@@ -634,7 +634,7 @@ class order_add(APIView):
             order.transit_price = 2
             order.total_price = med_price + order.transit_price
             order.total_count = count
-            order.order_status = 1
+            order.order_status = 0
 
             paymethod = ['现金支付', '微信支付', '支付宝']
             orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
@@ -652,4 +652,190 @@ class order_add(APIView):
                 'transit_price': order.transit_price,
                 'order_status': orderstatus[order.order_status],
             }
-        return Response({'ordergoods': ordergoods, 'order': order_})
+
+            return Response({'ordergoods': ordergoods, 'order': order_})
+
+class order_det(APIView):
+    def post(self,request):
+        id = request.data.get('id')
+
+        order = Orders.objects.get(order_id=id)
+
+        paymethod = ['现金支付', '微信支付', '支付宝']
+        orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
+
+        context = {
+            'order': {
+                'order_id': order.order_id,
+                'user': order.customer.name,
+                'address': order.customer.addr,
+                'phone': order.customer.phone,
+                'drugstore': order.drugstore.name,
+                'med_price': order.med_price,
+                'total_count': order.total_count,
+                'total_price': order.total_price,
+                'transit_price': order.transit_price,
+                'order_status': orderstatus[order.order_status],
+            },
+            'order_med': [
+            ]
+        }
+
+        order_med = OrderGoods.objects.filter(order=order.order_id)
+        for med in order_med:
+            med_detail = {
+                'med_code': med.sku.medicinecode,
+                'med_name': med.sku.name,
+                'med_count': med.count,
+                'med_price': med.price,
+            }
+            context['order_med'].append(med_detail)
+        print(1)
+        return Response(context)
+
+class order_li(APIView):
+    def post(self,request):
+        if request.data.get("search_text"):
+            search = request.data.get("search_text")
+            userph = request.data.get('phone')
+            user = User.objects.get(phone=userph)
+            id = user.id
+            Orders_ = Orders.objects.filter(customer=id)
+
+            search_list = jieba.lcut(search)
+
+            Orderlist = []
+            Orderlist0 = []
+            Orderlist1 = []
+            Orderlist2 = []
+            Orderlist3 = []
+            Orderlist4 = []
+            paymethod = ['现金支付', '微信支付', '支付宝']
+            orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
+
+            for order in Orders_:
+
+                order_detail = {
+                    'order': {
+                        'order_id': order.order_id,
+                        'user': order.customer.name,
+                        'address': order.customer.addr,
+                        'phone': order.customer.phone,
+                        'drugstore': order.drugstore.name,
+                        'med_price': order.med_price,
+                        'total_count': order.total_count,
+                        'total_price': order.total_price,
+                        'transit_price': order.transit_price,
+                        'order_status': orderstatus[order.order_status],
+                    },
+                    'order_med': []
+                }
+
+                order_med = OrderGoods.objects.filter(order=order.order_id)
+                for med in order_med:
+                    med_detail = {
+                        'med_code': med.sku.medicinecode,
+                        'med_name': med.sku.name,
+                        'med_count': med.count,
+                        'med_price': med.price,
+                    }
+                    order_detail['order_med'].append(med_detail)
+                tag0 = 0
+                tag1 = 0
+                tag = 0
+                order_str = str(order_detail)
+                for word in search_list:
+                    if order_str.find(word) != -1:
+                        word_count = order_str.count(word)
+                        tag0 = tag0 + 10
+                        tag1 = tag1 + word_count
+                        tag = tag0 + tag1
+                if tag == 0:
+                    continue
+
+                # address_ = Order.addr
+                # drug_store = Order.drugstore
+                context = {
+                    'order_id': order.order_id,
+                    'user': order.customer.name,
+                    'address': order.customer.addr,
+                    'phone': order.customer.phone,
+                    'drugstore': order.drugstore.name,
+                    'med_price': order.med_price,
+                    'total_count': order.total_count,
+                    'total_price': order.total_price,
+                    'transit_price': order.transit_price,
+                    'order_status': orderstatus[order.order_status],
+                    'tag': tag,
+                }
+                Orderlist.append(context)
+            Orderlist.sort(key=get_tag, reverse=True)
+
+            for a in Orderlist:
+                if a['order_status'] == '待支付':
+                    Orderlist0.append(a)
+                if a['order_status'] == '待配送':
+                    Orderlist1.append(a)
+                if a['order_status'] == '已送达':
+                    Orderlist2.append(a)
+                if a['order_status'] == '待评价':
+                    Orderlist3.append(a)
+                if a['order_status'] == '已完成':
+                    Orderlist4.append(a)
+            return Response({"orderlist": Orderlist,
+                             "orderlist0": Orderlist0,
+                             "orderlist1": Orderlist1,
+                             "orderlist2": Orderlist2,
+                             "orderlist3": Orderlist3,
+                             "orderlist4": Orderlist4,
+                             })
+        else:
+            userph = request.data.get('phone')
+            user = User.objects.get(phone=userph)
+            id = user.id
+            Orders_ = Orders.objects.filter(customer=id)
+
+            Orderlist = []
+            Orderlist0 = []
+            Orderlist1 = []
+            Orderlist2 = []
+            Orderlist3 = []
+            Orderlist4 = []
+            # paymethod = ['现金支付', '微信支付', '支付宝']
+            orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']
+
+            for order in Orders_:
+                # address_ = Order.addr
+                # drug_store = Order.drugstore
+                context = {
+                    'order_id': order.order_id,
+                    'user': order.customer.name,
+                    'address': order.customer.addr,
+                    'phone': order.customer.phone,
+                    'drugstore': order.drugstore.name,
+                    'med_price': order.med_price,
+                    'total_count': order.total_count,
+                    'total_price': order.total_price,
+                    'transit_price': order.transit_price,
+                    'order_status': orderstatus[order.order_status],
+                }
+
+                Orderlist.append(context)
+            for a in Orderlist:
+                if a['order_status'] == '待支付':
+                    Orderlist0.append(a)
+                if a['order_status'] == '待配送':
+                    Orderlist1.append(a)
+                if a['order_status'] == '已送达':
+                    Orderlist2.append(a)
+                if a['order_status'] == '待评价':
+                    Orderlist3.append(a)
+                if a['order_status'] == '已完成':
+                    Orderlist4.append(a)
+            return Response({"orderlist": Orderlist,
+                             "orderlist0": Orderlist0,
+                             "orderlist1": Orderlist1,
+                             "orderlist2": Orderlist2,
+                             "orderlist3": Orderlist3,
+                             "orderlist4": Orderlist4,
+                             })
