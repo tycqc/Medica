@@ -52,18 +52,18 @@ def register(request):
             return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '数据不完整'})
 
         # 用户名验证
-        if len(username) >= 5 and len(username) <= 20:
+        if len(username) >= 2 and len(username) <= 10:
             # pattern = "/^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8|8\d|9|d)\d{8}$"
             # if re.match(pattern,)
             True
         else:
             # 用户名不合格
-            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '请输入5-20个字符的用户名'})
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '请输入2-10个字符的用户名'})
 
         # 密码验证
-        if len(password) < 8 or len(password) > 20:
+        if len(password) < 6 or len(password) > 20:
             # 密码不合格
-            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '密码最少8位，最长20位'})
+            return render(request, 'store/REGISTER.html', {'info': info, 'errmsg': '密码最少6位，最长20位'})
 
         # 密码一致性验证
         if password != cpwd:
@@ -305,12 +305,15 @@ def store_homepage_update(request):
 
         else:
             store = medstore.objects.get(pk=storeid)
+            username1 = request.POST.get('username')
             Opassword = request.POST.get('Opassword')
             name = request.POST.get('name')
             password = request.POST.get('password')
             cpwd = request.POST.get('cpwd')
             ypjyxkzcode = request.POST.get('ypjyxkzcode')
-            time = request.POST.get('time')
+            time="2020-01-01"
+            if request.POST.get('time'):
+                time = request.POST.get('time')
             gspcode = request.POST.get('gspcode')
             desc = request.POST.get('desc')
             address = request.POST.get('address')
@@ -349,15 +352,15 @@ def store_homepage_update(request):
                 return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 用户名验证
-            if len(username) > 20 or len(username) < 5:
+            if len(username) > 10 or len(username) < 2:
                 # 用户名不合格
-                context['errmsg'] = '请输入5-20个字符的用户名'
+                context['errmsg'] = '请输入2-10个字符的用户名'
                 return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 密码验证
-            if len(password) < 8 or len(password) > 20:
+            if len(password) < 6 or len(password) > 20:
                 # 密码不合格
-                context['errmsg'] = '密码最少8位，最长20位'
+                context['errmsg'] = '密码最少6位，最长20位'
                 return render(request, 'store/USER_INFO_update.html', context=context)
 
             # 密码一致性验证
@@ -402,6 +405,7 @@ def store_homepage_update(request):
 
             # 注册
             try:
+                store.username = username1
                 store.password = password
                 store.cpwd = cpwd
                 store.ypjyxkzcode = ypjyxkzcode
@@ -411,10 +415,12 @@ def store_homepage_update(request):
                 store.address = address
                 store.postcode = postcode
                 store.email = email
-                store.emailstatus = emailstatus1
+                if email != store.email:
+                    store.emailstatus = emailstatus1
                 if time != "":
                     store.time = time
                 store.save()
+                request.session['username'] = store.username
                 print("OK")
             except:
                 context['errmsg'] = '信息修改失败（可能是时间格式不正确），请重试'

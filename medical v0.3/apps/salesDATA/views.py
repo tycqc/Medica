@@ -130,9 +130,12 @@ def finance_staff(request):
         orders = Orders.objects.filter(drugstore=store)
         if not orders.exists():
             context['errmsg'] = "您还没有数据"
-        order1 = orders[0]
-        if startdate == None:
-            startdate = order1.time.strftime('%Y-%m-%d')
+        try:
+            order1 = orders[0]
+            if startdate == None:
+                startdate = order1.time.strftime('%Y-%m-%d')
+        except:
+            startdate = '2020-01-01'
         if enddate == None:
             enddate = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
         all = {
@@ -163,7 +166,10 @@ def finance_staff(request):
             all["allmoney"] += med_price
             total_count = order.total_count
             all["allnum"] += total_count
-            staffname = order.staff.name
+            try:
+                staffname = order.staff.name
+            except:
+                staffname = "线上销售"
             if staffname in all_staffcount:
                 all_staffcount[staffname] += total_count
                 all_staffprice[staffname] += med_price
