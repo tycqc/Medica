@@ -14,12 +14,16 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.idea/inspectionProfiles" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/drugstore/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/apps/medicine/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/apps/orders/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/apps/staff/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/apps/store/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/templates/salesDATA/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (medical v0.3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

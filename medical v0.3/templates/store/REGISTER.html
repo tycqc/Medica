@@ -12,6 +12,7 @@
     </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'js/layui/css/layui.css' %}" media="all">
     {# 网页顶部引入文件块 #}
     {% block topfiles %}
         <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
@@ -90,16 +91,24 @@
                             </td>
                             <td>
                                 <label>开办时间:</label>
-                                <input type="text" name="time" id="time" value="{{ info.time }}"
+                                <input type="date" name="time" id="time" value="{{ info.time }}"
                                        placeholder="可不填:2000-01-01">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>药店地址:</label>
+                                <label>药店经纬度:</label>
                                 <input type="text" name="address" id="address" value="{{ info.address }}"
-                                       placeholder="必填">
+                                       placeholder="30.669810,104.037781">
                             </td>
+                            <td>
+                                <a href="/store/getXY_readme" class="layui-btn layui-btn-normal" 
+                                target="_blank" style="width: 36%">经纬度填写说明</a>
+                                <a href="https://lbs.qq.com/tool/getpoint/index.html" class="layui-btn layui-btn-normal" 
+                                target="_blank" style="width: 36%">点此获取经纬度</a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>
                                 <label>邮政编码:</label>
                                 <input type="text" name="postcode" id="postcode" value="{{ info.postcode }}"

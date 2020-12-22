@@ -5,19 +5,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="待完善弹窗提交">
+    <list default="true" id="13ee1fd6-66ae-4566-b106-d642ef0cf72f" name="Default Changelist" comment="报表全部完成，网页全部完成">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/medical v0.3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/medical v0.3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_19_17_52_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_19_17_52__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_19_17_52__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_19_17_52__Default_Changelist_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_22_23_42_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2020_11_22_23_42__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/medicine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/medicine/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/orders/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/orders/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/staff/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/staff/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/staff/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/salesDATA/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/salesDATA/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/zhongyoo_data_all_0.2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/store/REGISTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/REGISTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/store/USER_INFO_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/USER_INFO_update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,32 +32,32 @@
     <SUITE FILE_PATH="coverage/medical$views.coverage" NAME="views Coverage Results" MODIFIED="1602391984018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sb" />
     <SUITE FILE_PATH="coverage/medical_v0_1_0$DecisionTree.coverage" NAME="DecisionTree Coverage Results" MODIFIED="1604485807376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../机器学习" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -74,27 +78,30 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/apps/drugstore/migrations/__init__.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\templates\salesDATA" />
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js" />
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\templates\store" />
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static" />
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js\layer" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\apps" />
       <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\templates" />
       <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static" />
-      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js\layer" />
-      <recent name="C:\Users\Administrator\Desktop\信息系统分析与设计-工具\GitHUB\django\Medica\medical v0.3\static\js" />
-      <recent name="C:\Users\Administrator\Desktop\medical\apps\orders" />
-      <recent name="C:\Users\Administrator\Desktop\medical\apps\medicine" />
-    </key>
   </component>
   <component name="RunManager" selected="Django Server.medical v0.3">
-    <configuration name="Database migration command" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Database migration command" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="medical v0.3" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -178,7 +185,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="localhost" />
+      <option name="host" value="127.0.0.1" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
@@ -212,9 +219,14 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Database migration command" />
+      <item itemvalue="Python.DecisionTree" />
+      <item itemvalue="Django Server.medical v0.3" />
+      <item itemvalue="Django Server.medical" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Database migration command" />
         <item itemvalue="Python.DecisionTree" />
       </list>
     </recent_temporary>
@@ -298,7 +310,31 @@
       <workItem from="1606178208797" duration="175000" />
       <workItem from="1606181143927" duration="4551000" />
       <workItem from="1606194909328" duration="30653000" />
-      <workItem from="1606290668732" duration="742000" />
+      <workItem from="1606290668732" duration="28236000" />
+      <workItem from="1606373983079" duration="51000" />
+      <workItem from="1606374097735" duration="90000" />
+      <workItem from="1606374318459" duration="33000" />
+      <workItem from="1606391120004" duration="592000" />
+      <workItem from="1606391881730" duration="595000" />
+      <workItem from="1606392591697" duration="14378000" />
+      <workItem from="1606408445012" duration="40410000" />
+      <workItem from="1606495566200" duration="78000" />
+      <workItem from="1606543286824" duration="4723000" />
+      <workItem from="1607164925003" duration="61043000" />
+      <workItem from="1607353763648" duration="5941000" />
+      <workItem from="1607407717073" duration="2539000" />
+      <workItem from="1607413504534" duration="594000" />
+      <workItem from="1607656396743" duration="17203000" />
+      <workItem from="1607696970647" duration="32583000" />
+      <workItem from="1608015240240" duration="540000" />
+      <workItem from="1608020025573" duration="3057000" />
+      <workItem from="1608190225264" duration="5187000" />
+      <workItem from="1608195706329" duration="983000" />
+      <workItem from="1608197183644" duration="1149000" />
+      <workItem from="1608203056875" duration="449000" />
+      <workItem from="1608203566392" duration="227000" />
+      <workItem from="1608203814788" duration="3213000" />
+      <workItem from="1608623334363" duration="288000" />
     </task>
     <task id="LOCAL-00001" summary="v3.0">
       <created>1605525643827</created>
@@ -454,17 +490,134 @@
       <option name="project" value="LOCAL" />
       <updated>1606290963342</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="待完善弹窗提交">
+      <created>1606291537484</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1606291537484</updated>
+    </task>
+    <task id="LOCAL-00024" summary="差订单管理">
+      <created>1606398104778</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1606398104779</updated>
+    </task>
+    <task id="LOCAL-00025" summary="待完善订单模块">
+      <created>1606403761628</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1606403761644</updated>
+    </task>
+    <task id="LOCAL-00026" summary="差验证">
+      <created>1606486169682</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1606486169682</updated>
+    </task>
+    <task id="LOCAL-00027" summary="除财务全部完成">
+      <created>1606495379325</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1606495379325</updated>
+    </task>
+    <task id="LOCAL-00028" summary="实验：邮箱验证">
+      <created>1607167782937</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1607167782937</updated>
+    </task>
+    <task id="LOCAL-00029" summary="邮箱">
+      <created>1607169396089</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1607169396089</updated>
+    </task>
+    <task id="LOCAL-00030" summary="邮箱激活完成">
+      <created>1607193153313</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1607193153319</updated>
+    </task>
+    <task id="LOCAL-00031" summary="邮箱激活完成">
+      <created>1607193235549</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1607193235549</updated>
+    </task>
+    <task id="LOCAL-00032" summary="完成邮箱验证，找回密码，找回邮箱">
+      <created>1607256015891</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1607256015923</updated>
+    </task>
+    <task id="LOCAL-00033" summary="微调">
+      <created>1607393802253</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1607393802284</updated>
+    </task>
+    <task id="LOCAL-00034" summary="加了个财务模块，还在做">
+      <created>1607658085381</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1607658085381</updated>
+    </task>
+    <task id="LOCAL-00035" summary="财务待渲染">
+      <created>1607658284684</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1607658284684</updated>
+    </task>
+    <task id="LOCAL-00036" summary="加了一个Echarts框架，有点大，可能拉取的很慢">
+      <created>1607674309026</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1607674309026</updated>
+    </task>
+    <task id="LOCAL-00037" summary="报表全部完成，网页全部完成&#10;store 8+2：注册，登录，邮箱验证，忘记密码，重置密码，找回邮箱，详情页，修改信息，（退出登录，注销）&#10;staff 4+1：添加员工，信息修改，查找员工，员工详情，（删除员工）&#10;salesDATA 4:药品报表，员工报表，年度报表，月度报表&#10;orders 3+1：查找订单，订单详情，生成订单，（订单删除）&#10;medicine 6+1：添加药品，添加到购物车，购物车，药品编辑，药品查找，药品详情，（删除药品）&#10;共25个页面，30个功能">
+      <created>1607773789760</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1607773789927</updated>
+    </task>
+    <task id="LOCAL-00038" summary="废了">
+      <created>1608196561819</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1608196561819</updated>
+    </task>
+    <task id="LOCAL-00039" summary="报表全部完成，网页全部完成">
+      <created>1608206081479</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1608206081479</updated>
+    </task>
+    <task id="LOCAL-00040" summary="报表全部完成，网页全部完成">
+      <created>1608206894277</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1608206894277</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -516,8 +669,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="v3.0" />
-    <MESSAGE value="改前端" />
     <MESSAGE value="改界面" />
     <MESSAGE value="staff 和store完成" />
     <MESSAGE value="staff 和store完成1" />
@@ -528,7 +679,22 @@
     <MESSAGE value="药品查找排序分页完成" />
     <MESSAGE value="药品查找排序分页完成，在完善弹窗提交" />
     <MESSAGE value="待完善弹窗提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="待完善弹窗提交" />
+    <MESSAGE value="差订单管理" />
+    <MESSAGE value="待完善订单模块" />
+    <MESSAGE value="差验证" />
+    <MESSAGE value="除财务全部完成" />
+    <MESSAGE value="实验：邮箱验证" />
+    <MESSAGE value="邮箱" />
+    <MESSAGE value="邮箱激活完成" />
+    <MESSAGE value="完成邮箱验证，找回密码，找回邮箱" />
+    <MESSAGE value="微调" />
+    <MESSAGE value="加了个财务模块，还在做" />
+    <MESSAGE value="财务待渲染" />
+    <MESSAGE value="加了一个Echarts框架，有点大，可能拉取的很慢" />
+    <MESSAGE value="报表全部完成，网页全部完成&#10;store 8+2：注册，登录，邮箱验证，忘记密码，重置密码，找回邮箱，详情页，修改信息，（退出登录，注销）&#10;staff 4+1：添加员工，信息修改，查找员工，员工详情，（删除员工）&#10;salesDATA 4:药品报表，员工报表，年度报表，月度报表&#10;orders 3+1：查找订单，订单详情，生成订单，（订单删除）&#10;medicine 6+1：添加药品，添加到购物车，购物车，药品编辑，药品查找，药品详情，（删除药品）&#10;共25个页面，30个功能" />
+    <MESSAGE value="废了" />
+    <MESSAGE value="报表全部完成，网页全部完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="报表全部完成，网页全部完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="284" y="21" key="#Deployment" timestamp="1606058979534">
@@ -537,32 +703,47 @@
     <state x="284" y="21" key="#Deployment/0.0.1366.728@0.0.1366.728" timestamp="1606058979534" />
     <state x="267" y="19" key="#Inspections" timestamp="1605624210325" />
     <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
-    <state x="414" y="186" key="#Notifications" timestamp="1606047335160">
+    <state x="414" y="186" key="#Notifications" timestamp="1608190276971">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="414" y="186" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1606047335160" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605624210325" />
+    <state x="414" y="186" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1608190276971" />
+    <state x="274" y="13" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606391605379">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
+    <state x="274" y="13" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1606391605379" />
     <state x="435" y="163" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606058066612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="435" y="163" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1606058066612" />
-    <state width="1323" height="174" key="GridCell.Tab.0.bottom" timestamp="1606284305750">
+    <state x="197" y="66" width="1048" height="662" key="CommitChangelistDialog2" timestamp="1608206892684">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606284305750" />
-    <state width="1323" height="174" key="GridCell.Tab.0.center" timestamp="1606284305750">
+    <state x="197" y="66" width="1048" height="662" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1608206892684" />
+    <state x="538" y="0" key="EnvironmentVariablesDialog" timestamp="1606391634667">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606284305750" />
-    <state width="1323" height="174" key="GridCell.Tab.0.left" timestamp="1606284305750">
+    <state x="538" y="0" key="EnvironmentVariablesDialog/0.0.1366.728@0.0.1366.728" timestamp="1606391634667" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1608203510959">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606284305750" />
-    <state width="1323" height="174" key="GridCell.Tab.0.right" timestamp="1606284305750">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1608203510959" />
+    <state width="1286" height="124" key="GridCell.Tab.0.bottom" timestamp="1608207045712">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606284305750" />
+    <state width="1286" height="124" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1608207045712" />
+    <state width="1286" height="124" key="GridCell.Tab.0.center" timestamp="1608207045711">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="124" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1608207045711" />
+    <state width="1286" height="124" key="GridCell.Tab.0.left" timestamp="1608207045711">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="124" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1608207045711" />
+    <state width="1286" height="124" key="GridCell.Tab.0.right" timestamp="1608207045712">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="124" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1608207045712" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.center" timestamp="1605624210325" />
@@ -571,54 +752,55 @@
     <state width="1306" height="219" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.right" timestamp="1605624210325" />
     <state width="1306" height="219" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1605624210325" />
-    <state x="129" y="55" key="MergeDialog" timestamp="1606291051198">
+    <state x="129" y="55" key="MergeDialog" timestamp="1608623593257">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1606291051198" />
-    <state x="318" y="124" key="MultipleFileMergeDialog" timestamp="1606291052822">
+    <state x="129" y="55" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1608623593257" />
+    <state x="318" y="124" key="MultipleFileMergeDialog" timestamp="1606291625133">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="318" y="124" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1606291052822" />
-    <state x="284" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606047301885">
+    <state x="318" y="124" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1606291625133" />
+    <state x="315" y="0" key="RollbackChangesDialog" timestamp="1608205944361">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606047301884" />
-    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606291003658">
+    <state x="315" y="0" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1608205944361" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1606393408476">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1606291003658" />
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1606393408476" />
+    <state x="284" y="96" key="Vcs.Push.Dialog.v2" timestamp="1608206940119">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="284" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1608206940119" />
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608623604582">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="496" y="276" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1608623604582" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1" timestamp="1605624210325" />
     <state x="633" y="0" width="653" height="687" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="-7" y="0" width="653" height="687" key="dock-window-2" timestamp="1605624210325" />
     <state x="-7" y="0" width="653" height="687" key="dock-window-2/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
     <state x="199" y="144" width="1082" height="501" key="dock-window-3" timestamp="1605624210325" />
     <state x="199" y="144" width="1082" height="501" key="dock-window-3/0.0.1280.680@0.0.1280.680" timestamp="1605624210325" />
+    <state x="481" y="257" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1606401352951">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="481" y="257" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1366.728@0.0.1366.728" timestamp="1606401352951" />
     <state x="348" y="257" key="git4idea.ui.GitResetDialog" timestamp="1606291518205">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="348" y="257" key="git4idea.ui.GitResetDialog/0.0.1366.728@0.0.1366.728" timestamp="1606291518205" />
-    <state x="355" y="49" width="672" height="160" key="search.everywhere.popup" timestamp="1606231201536">
+    <state x="475" y="221" key="scopes" timestamp="1607769163492">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="355" y="49" width="672" height="160" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606231201536" />
+    <state x="475" y="221" key="scopes/0.0.1366.728@0.0.1366.728" timestamp="1607769163492" />
+    <state x="355" y="49" width="672" height="160" key="search.everywhere.popup" timestamp="1607757856285">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="355" y="49" width="672" height="160" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1607757856285" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1608195199460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/medical_v0_3$Random_data.coverage" NAME="Random data Coverage Results" MODIFIED="1605744676157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/medical_v0_3$Database_migration_command.coverage" NAME="Database migration command Coverage Results" MODIFIED="1606060674611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

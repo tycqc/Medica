@@ -149,7 +149,7 @@ def finance_staff(request):
         context['startdate'] = startdate
         context['enddate'] = enddate
         orders = orders.filter(time__range=(startdate, enddate))
-        print(orders)
+        # print(orders)
         if not orders.exists():
             context['errmsg'] = "没有销售数据"
         all_staffcount = {}

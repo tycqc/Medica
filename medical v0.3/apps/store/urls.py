@@ -19,6 +19,7 @@ urlpatterns = [
     path('store_li/', views.store_li.as_view(), name='store_li'),
     path('store_det/', views.store_det.as_view(), name='store_det'),
 
+    url(r'^getXY_readme$', views.getXY_readme, name='getXY_readme'),  # 用户中心-邮箱验证
 
     # url(r'^shiyan$', views.shiyan, name='shiyan'),
     # url(r'^shiyan_index$', views.shiyan_index, name='shiyan_index'),

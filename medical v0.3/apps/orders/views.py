@@ -534,7 +534,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from store.models import medstore
-from  user.models import  User
+from  user.models import User
 
 from django.forms.models import model_to_dict
 
@@ -634,7 +634,7 @@ class order_add(APIView):
             order.transit_price = 2
             order.total_price = med_price + order.transit_price
             order.total_count = count
-            order.order_status = 0
+            order.order_status = 1
 
             paymethod = ['现金支付', '微信支付', '支付宝']
             orderstatus = ['待支付', '待配送', '已送达', '待评价', '已完成']

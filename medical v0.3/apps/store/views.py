@@ -947,6 +947,12 @@ def send_code_email(email, send_type="register"):
     email_record.save()
     return True
 
+
+
+
+def getXY_readme(request):
+    return render(request, 'store/getXY_readme.html')
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
