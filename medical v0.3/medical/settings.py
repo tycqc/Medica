@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'salesDATA',
     'user',
     'goods',
+    'search',
     'rest_framework',
 
 

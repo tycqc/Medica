@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}just download{% endblock %}</title>
+    <script src="{% static 'jquery1.12.4.min.js' %}"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <link rel="icon" type="image/png" href="{% static 'ico.jpg' %}">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/amazeui/2.7.2/css/amazeui.min.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    {% block header_extend %}{% endblock %}
+</head>
+<body>
+    <div class="wrapper">
+        <div class="page">
+            <div class="am-g">
+                <div class="{% block search_row %}am-u-md-offset-4 am-u-md-4{% endblock %}">
+                    <div class="am-form-group am-form-icon am-form-feedback" style="{% block input_style %}margin-top: 12em{% endblock %}">
+{#                tyc：这里选项写上id，方便用val（）获取它的值#}
+                 <select name="category" id="category">
+                    <option value="">全部</option>
+                    <option value="城市运行">城市运行</option>
+                    <option value="社区服务">社区服务</option>
+                    <option value="绿色环保">绿色环保</option>
+                    <option value="文化教育">文化教育</option>
+                    <option value="关爱服务">关爱服务</option>
+                    <option value="应急救援">应急救援</option>
+                    <option value="在线志愿服务">在线志愿服务</option>
+                </select>
+                        <input type="text" class="am-form-field search-input" placeholder="搜索公益项目">
+                        <span id="search_btn" class="am-icon-search"
+                        onclick="search()"></span>
+                    </div>  
+                </div>
+            </div>
+            <div class="am-u-md-offset-4 am-u-md-4">
+            <ul class="{% block suggest_list %}am-list am-list-border datalist{% endblock %}">
+            </ul>
+            </div>
+            {% block result %}{% endblock %}
+        </div>
+    </div>
+    <div class="footer">
+       <div class="am-g">
+           <div class="am-u-md-offset-4 am-u-md-4">
+               <ul class="contact">
+                   <li style="font-style: italic;font-size: 1.5em;"><b>益搜 Yisou</b></li>
+                   <li style="margin-top: 1em;"><a href="https://github.com/tycqc" target="blank" class="am-icon-github am-icon-md" title="我的github"></a></li>
+               </ul>
+           </div>
+       </div>
+       <div class="am-u-md-offset-4 am-u-md-4 copy-right">
+           <span>Designed by Django 2.0 and <a href="http://amazeui.org">Amaze UI</a> © Yisou</span>
+       </div>
+    </div>
+</body>
+
+<script>
+    $('input.search-input').val('');
+    var search_arr;
+    if(localStorage.search){
+        search_arr = localStorage.search.split(',');
+    }else{
+        search_arr = [];
+    }
+    if(search_arr.length>5){
+            search_arr.length=5;
+        }
+    String.prototype.format = function(){
+        var str = this;
+        for(var i=0; i<arguments.length; i++){
+            str = str.replace(new RegExp('\\{'+i+'\}', 'g'), arguments[i]);
+        }
+        return str;
+    }
+    // 输入框变化事件
+    $("input.search-input").bind("input propertychange", function(){
+        // 输入汉字会执行两次？？？？？
+        var search_word = $(this).val();
+        // 输入词过短不发送ajax请求
+           if(search_word.length<2){
+                $('.datalist').html('');
+                return;
+           }
+           $.ajax({
+                url: "{% url 'suggest' %}",
+                type: 'GET',
+                data: {'search_word':search_word},
+                cache: false,
+                success: function(data){
+                    console.log(data.suggest);
+                    // 每次获取数据后清空ul
+                    $('.datalist').html('');
+                    for(var i=0;i<data.suggest.length;i++)
+                    {
+                        if(data.suggest[i]!=''){
+                            $('.datalist').append(
+                                '<li><a class="am-text-truncate" href="search?search_word={0}">{0}</a></li>'.format(data.suggest[i])
+                                );
+                        }
+                        // 建议列表的底边线
+                        $('ul.datalist li:last-child').attr('style','border-bottom:1px solid #dedede');    
+                    }
+                },
+                error: function(xhr){
+                    console.log(xhr);
+                },
+           })
+        });
+    // 移除search中的重复值
+    function removeByValue(arr, value){
+        for(var i=0; i<arr.length; i++){
+            if(arr[i].trim() === value){
+                arr.splice(i,1);
+            }
+        }
+        // return arr;
+    }
+    function search(){
+        var search_word = $('input.search-input').val();
+        var category = $('select#category').val();                         //tyc：这里用val方法获取html中元素值，照着这个写就行
+        // 长度限制
+        if(search_word.length <1 || search_word.length > 30){
+            return ;
+        }
+        for(var i=0; i<search_arr.length; i++){
+            if(search_arr[i] === search_word){
+                removeByValue(search_arr, search_word);
+            }
+        }
+        // 点击搜索按钮后添加搜索记录至localStorge的search变量中
+        search_arr.unshift(search_word);
+        localStorage.search = search_arr;
+        url = "{% url 'search' %}?search_word="+search_word+"&category="+category; //tyc：这里拼接出url，views用get方法获取上面所选的
+        window.location.href = url;
+    }
+    // 输入框获得焦点后显示搜索记录
+    $('.search-input').focus(function(){
+        $('ul.datalist').html('');
+        $('#search_btn').fadeIn(300);
+        for(var i=0; i<search_arr.length; i++){
+            $('ul.datalist').append(
+                '<li><a class="am-text-truncate" ><span onclick="to(this)" style="float:left;cursor:pointer;">{0}</span><span class="am-close" onclick="remove_history(this)" title="清除记录" style="float:right;">&times;</span></a></li>'.format(search_arr[i])
+                );
+        }
+        $('ul.datalist li:last-child').attr('style','border-bottom:1px solid #dedede');
+    });
+    $('.search-input').blur(function(){
+        // 延迟失去焦点事件的执行
+        setTimeout(function(){
+            $('ul.datalist').html('');
+            $('#search_btn').fadeOut();
+        }, 500);
+    });
+    function to(obj){
+        search_word = $(obj).text().trim();
+        window.location.href = '{% url "search" %}?search_word='+search_word+'&category=';  //tyc：这和上面差不多，照着格式拼出url
+    }
+    // 清除历史记录
+    function remove_history(obj){
+        var val = $(obj).prev('span').text().trim();
+        $(obj).parents('li').attr('style', 'display:none');
+        // 前一个li添加底边线
+        if($(obj).parents('li').prev('li').length==1){
+            $(obj).parents('li').prev('li').attr('style','border-bottom:1px solid #dedede');
+        }
+        removeByValue(search_arr, val);
+        localStorage.search = search_arr;
+        // e.stopPropagation();
+    }
+    // 点击事件
+    document.onkeydown = function(e){
+        var e = e || window.event ||argument.callee.caller.arguments[0];
+        if(e && e.keyCode ==13){
+            search();
+        }
+    }
+</script>
+{% block script_area %}{% endblock %}
+</html>

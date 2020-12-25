@@ -31,5 +31,6 @@ urlpatterns = [
     re_path('salesDATA/', include(('salesDATA.urls', 'salesDATA'), namespace='salesDATA')),
     re_path('user/', include(('user.urls', 'user'), namespace='user')),
     re_path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
+    path('search/', include('search.urls')),
     path('', login),
 ]

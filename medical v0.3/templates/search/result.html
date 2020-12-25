@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header_extend %}
+<link rel="stylesheet" href="{% static 'css/result.css' %}">
+{% endblock %}
+{% block search_row %}am-u-md-3 am-u-md-offset-1{% endblock %}
+{% block input_style %}margin-top: 1em{% endblock %}
+{% block suggest_list %}hide{% endblock %}
+{% block result %}
+<div class="am-g">
+    <div class="am-u-md-offset-1 am-u-md-8">
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-hd">
+                <span class="am-icon-search">&nbsp;&nbsp;搜索到 {{ search_count }} 条结果,用时 {{ search_time }} s</span>
+            </div>
+            <div class="am-panel-bd">
+{% for result in result_list %}
+<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+<!--列表标题-->
+<div class="am-list-news-hd am-cf">
+  <h3>{{ result.name | safe }}</h3>
+</div>
+
+<div class="am-list-news-bd">
+<ul class="am-list">
+ <!--缩略图在标题左边-->
+  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+    <div class="am-u-md-2 am-list-thumb" data-am-modal="{target: '#doc-modal-{{ result.project_id }}', width: 600, height: 600}">
+        <img src={% static "img/default.png"%} class="front-img" alt="" title="点击查看详情"/>
+    </div>
+        <div class="am-u-md-9 am-list-main">
+            <ul class="result-info">        
+                <li>分类:{{ result.type}}</li>
+                <li>建议价格:{{ result.price }}</li>
+                <li>国家药品编码:{{ result.code }}</li>
+            </ul>
+            <div class="am-list-item-text">{{ result.introduction | safe | truncatechars:70}}</div>
+        </div>
+  </li>
+  </ul>
+</div>
+</div>
+<!-- 详情模态框 -->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-{{ result.project_id }}">
+        <div class="am-modal-dialog">
+        <div class="am-modal-hd"><p style="margin:0; font-size: 1.3em;">{{ result.name |safe }}</p>
+          <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="movie-info">
+                <ul class="result-info-all">
+                    <li><b>分类</b>:{{ result.type }}</li>
+                    <li><b>主治</b>:{{ result.effect}}</li>
+                    <li><b>副作用</b>:{{ result.side_effect}}</li>
+                    <li><b>国家药品编码</b>:{{ result.code }}</li>
+                    <li><b>规格</b>:{{ result.standards}}</li>
+                    <li><b>建议价格</b>:{{ result.price}}</li>
+                    <li><b>服用方法</b>:{{ result.method}}</li>
+                    <li><b>制药公司</b>:{{result.company}}</li>
+
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+{% empty %}
+        <span class="no-result">无搜索结果!</span>
+{% endfor %}
+        </div>
+    </div>
+    </div>
+    <div class="am-u-md-3">
+        <div class="hot-word">
+
+        </div>
+    </div>
+</div>
+{% if not MAX_PAGE == 1 %}
+{#    tyc：下面所有的翻页链接都要改url，前端传什么url里就要有什么#}
+<div class="am-g">
+    <div class="am-u-md-offset-1 am-u-md-8">
+        <ul class="am-pagination" style="text-align: center;">
+            {% if previous %}
+            <li class="am-pagination-prev"><a href="?search_word={{search_word}}&category={{ category }}&page={{page_num|add:-1}}">&laquo; Prev</a></li>
+            {% else %}
+            <li class="am-disabled am-pagination-prev"><span>&laquo; Prev</span></li>
+            {% endif %}
+            {% for page_item in page %}
+            {% if page_item == page_num %}
+            <li class="am-active"><span>{{ page_item }}</span></li>
+            {% else %}
+                {% if page_item == '...' %}
+                    <li><span>{{page_item}}</span></li>
+                    {% else %}
+                    <li><a href="?search_word={{search_word}}&category={{category}}&page={{page_item}}">{{page_item}}</a></li>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% if next %}
+            <li class="am-pagination-next"><a href="?search_word={{search_word}}&category={{ category }}&page={{page_num|add:1}}">Next &raquo;</a></li>
+            {% else %}
+            <li class="am-disabled am-pagination-next"><span>Next &raquo;</span></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+{% endblock %}
+{% block script_area %}
+<script>
+ $('input.search-input').val('{{ search_word }}')
+ // 下载icon
+ $('.am-icon-cloud-download').click(function(){
+    url = $(this).prev('span').text();
+    window.location.href = url;
+    });
+ </script>
+{% endblock %}

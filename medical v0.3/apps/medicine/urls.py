@@ -13,7 +13,6 @@ urlpatterns = [
     path('cart_list/', views.cart_list, name='cart_list'),
     path('cart_list_data/', views.cart_list_data, name='cart_list_data'),
     path('del_cart_list/', views.del_cart_list, name='del_cart_list'),
-    # path('shiyan/', views.shiyan, name='shiyan'),
     path('find_medicine_data/', views.find_medicine_data, name='find_medicine_data'),
 
 ]
