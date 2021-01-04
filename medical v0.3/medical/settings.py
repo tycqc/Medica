@@ -27,7 +27,7 @@ SECRET_KEY = '83lc%1180(h_sqf&_do=)+t34f5pe&vy#!=kndol5^&_5$$+!6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'medical.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'medica',
+        'NAME': 'zxp',
         'USER': 'root',
-        'PASSWORD': 'tycqc0331',
-        'HOST': 'localhost',
+        'PASSWORD': 'Tycqc0331@',
+        'HOST': '118.25.250.131',
         'PORT': 3306,
     }
 }
@@ -169,7 +169,7 @@ CACHES = {
 EMAIL_HOST = "smtp.163.com"     # 服务器
 EMAIL_PORT = 25                 # 一般情况下都为25
 EMAIL_HOST_USER = "medica_medica@163.com"     # 账号
-EMAIL_HOST_PASSWORD = "AHVUDYGPCROYWU"          # 密码 (注意：这里的密码指的是授权码)
+EMAIL_HOST_PASSWORD = "AHVUDYGPCROYWUZJ"          # 密码 (注意：这里的密码指的是授权码)
 EMAIL_USE_TLS = False       # 一般都为False
 EMAIL_FROM = "medica_medica@163.com"      # 邮箱来自
 

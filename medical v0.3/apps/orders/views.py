@@ -308,7 +308,6 @@ def order_list(request):
                 'total_price': Order.total_price,
                 'order_status': orderstatus[Order.order_status],
             }
-
             Orderlist.append(context1)
     context['orderlist'] = Orderlist
     return render(request, "orders/find_orders.html", context=context)
@@ -574,6 +573,7 @@ class order_add(APIView):
             order.total_count = count
             order.order_status = 1
             order.pay_method = pay_method
+            order.staff_id = 999
             order.save()
 
             paymethod = ['现金支付', '微信支付', '支付宝']

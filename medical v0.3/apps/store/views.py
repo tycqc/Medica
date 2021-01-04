@@ -992,6 +992,8 @@ class store_li(APIView):
                     x) + ',' + str(y) + '&key=' + key
                 response = requests.get(api_url)
                 way = json.loads(response.text)
+                if way["status"] != 0:
+                    continue
                 dis = way["result"]["routes"][0]["distance"]
                 if dis <= 5000 :
                     st_det = {
@@ -1069,6 +1071,8 @@ class store_li(APIView):
                 response = requests.get(api_url)
                 way = json.loads(response.text)
                 print(way)
+                if way["status"] != 0:
+                    continue
                 dis = way["result"]["routes"][0]["distance"]
                 context = {
                     'id': store.id,

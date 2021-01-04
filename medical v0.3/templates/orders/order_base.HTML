@@ -44,6 +44,12 @@
                         欢迎您：<em><a href="{% url 'store:homepage' %}">{{ username }}</a></em> <span>|</span>
                         <a href="{% url 'store:logout' %}">退出</a>
                     </div>
+                    <div class="user_link fl">
+                        <span>|</span>
+                        <a href="{% url 'store:cancellation' %}">药店注销</a>
+                        <span>|</span>
+                        <a href="{% url 'medicine:cart_list' %}">购物车</a>
+                    </div>
                 {% else %}
                     <div class="login_btn fl">
                         <a href="{% url 'store:login' %}">登录</a>
@@ -53,9 +59,7 @@
                 {% endif %}
                 <div class="user_link fl">
                     <span>|</span>
-                    <a href="{% url 'store:cancellation' %}">药店注销</a>
-                    <span>|</span>
-                    <a href="{% url 'medicine:cart_list' %}">购物车</a>
+                    <a href="/search">药品搜索</a>
                 </div>
             </div>
         </div>
